@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>{{config('app.name')}}</title>
-
-        <!-- Styles / Scripts -->
-       
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-
-</head>
-<body class="bg-gray-400 flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+<div>
+    <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
 
 
-
-<div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-
-
-<form class="space-y-6" action="#">
+    <form class="space-y-6" wire:submit="login">
 
         <a href="https://flowbite.com" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{asset('images/kimfay.png')}}" class="h-30 w-40" alt="Flowbite Logo" />
@@ -27,11 +11,12 @@
 
         <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+            <input type="email" name="email" wire:model="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+             @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <div>
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+            <input type="password" name="password" wire:model="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         <div class="flex items-start">
             <div class="flex items-start">
@@ -47,6 +32,4 @@
     </form>
 </div>
 
-       
-</body>
-</html>
+</div>
