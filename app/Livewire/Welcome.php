@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Livewire\Attributes\Layout;
 
 class Welcome extends Component
 {
@@ -50,7 +51,7 @@ class Welcome extends Component
         // }
     // }
 
-
+    #[layout('layouts.auth')]
     public function render()
     {
         return view('livewire.welcome');
