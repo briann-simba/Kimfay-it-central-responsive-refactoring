@@ -6,6 +6,7 @@ use App\livewire\Home;
 use App\livewire\Dashboard;
 
 Route::get('/', Welcome::class)->name('welcome');
+
 //routes for the authenticated users
 Route::middleware(['auth'])->group(function(){
     //it routes
@@ -18,10 +19,5 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/home', Home::class)->name('home');
     });
 
-
-});
-
-//routes for unauthenticated users
-Route::middleware(['geust'])->group(function(){
 
 });
