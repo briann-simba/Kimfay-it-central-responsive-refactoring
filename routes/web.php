@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\livewire\Welcome;
 use App\livewire\Home;
 use App\livewire\Dashboard;
+use App\livewire\Login;
 
-Route::get('/', Welcome::class)->name('welcome');
- Route::get('/home', Home::class)->name('home');
+// Route::get('/', Welcome::class)->name('welcome');
+Route::get('/', Login::class)->name('login');
+
 //routes for the authenticated users
 Route::middleware(['auth'])->group(function(){
+    Route::get('/home', Home::class)->name('home');
+
     //it routes
     Route::middleware('role:It')->group(function(){
         
@@ -21,3 +25,5 @@ Route::middleware(['auth'])->group(function(){
 
 
 });
+
+

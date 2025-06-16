@@ -15,7 +15,7 @@ class Logout extends Component
         session()->regenerateToken();
     
         session()->flash('message', 'You have been logged out successfully.');
-        return redirect()->route('welcome');
+        return redirect()->route('login');
     }
 
     public function render()

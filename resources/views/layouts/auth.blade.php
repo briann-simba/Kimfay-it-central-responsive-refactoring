@@ -13,9 +13,7 @@
 
     <body class="bg-gray-400 flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
     
-    <div class="flex justify-end p-4 bg-gray-100">
-    @livewire('logout')
-    </div>
+
     
     {{ $slot }}
     </body>
