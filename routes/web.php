@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\livewire\Welcome;
 use App\livewire\Home;
-use App\livewire\Dashboard;
 use App\livewire\Login;
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -19,7 +17,7 @@ Route::middleware(['auth'])->group(function(){
     });
 
     Route::middleware('role:Hr')->group(function(){
-        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        // Route::get('/dashboard', Dashboard::class)->name('dashboard');
        
     });
 
