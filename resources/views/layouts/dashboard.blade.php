@@ -15,7 +15,7 @@
     <div class="flex min-h-screen container mx-auto mt-10">
   <!-- Sidebar -->
   <aside class="w-64 bg-gray-100 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-    <img src="{{asset('images/kimfay.png')}}" alt="Sidebar Top Image" class="w-full h-20 p-4 object-cover">
+    <img src="{{asset('images/kimfay.png')}}" alt="Sidebar Top Image" class="w-full h-35 p-8">
   <div class="px-3 py-4">
       <ul class="space-y-2 font-medium">
          <li>
@@ -119,10 +119,36 @@
       </nav>
     </div><hr><br>
 
+
+<div class="flex flex-col md:flex-row gap-2 mb-4">
+  
+    <div class="flex items-start gap-2.5 p-4 bg-white">
+      @isset($nav1)
+      {{$nav1}}
+      @endisset
+    </div>
+
+    <div class="flex items-start gap-2.5 p-4 bg-white">
+     @isset($nav2)
+      {{$nav2}}
+      @endisset
+    </div>
+
+    <div class="flex items-start gap-2.5 p-4 bg-white ">
+      @isset($nav3)
+      {{$nav3}}
+      @endisset
+    </div>
+
+    <div class="flex items-start gap-2.5 p-4 bg-white">
+      @isset($nav4)
+      {{$nav4}}
+      @endisset
+    </div>
+</div>
    
 
-<div class="p-2 mb-5 bg-white rounded shadow">
-      
+<div class="p-2 mb-5 bg-white rounded shadow">      
 @isset($top)
 <div class="p-4 relative overflow-x-auto shadow-md sm:rounded-lg">
 {{$top}}

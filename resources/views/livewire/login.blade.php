@@ -5,7 +5,7 @@
     <form class="space-y-6" wire:submit.prevent="login">
 
         <a href="https://flowbite.com" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{{asset('images/kimfay.png')}}" class="h-30 w-40" alt="Flowbite Logo" />
+            <img src="{{asset('images/kimfay.png')}}" class="h-10 w-25" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IT Central</span>
         </a>
 
