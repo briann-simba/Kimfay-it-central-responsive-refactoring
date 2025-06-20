@@ -8,6 +8,21 @@ use Illuminate\Support\Facades\Auth;
 class Logout extends Component
 {
 
+   public $show = false;
+
+    protected $listeners = ['onOpenLogoutModal' => 'open'];
+
+    public function open()
+    {
+        $this->show = true;
+    }
+
+    public function close()
+    {
+        $this->show = false;
+    }
+
+
     public function logout()
     {
         auth()->logout();
