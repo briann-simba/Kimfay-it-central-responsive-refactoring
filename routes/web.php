@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\livewire\Home;
 use App\livewire\Login;
+use App\livewire\ManageUser;
+use App\livewire\OffboardUser;
+use App\livewire\initiateoffboarding;
+use App\livewire\Inventory;
 
 // Route::get('/', Welcome::class)->name('welcome');
 Route::get('/', Login::class)->name('login');
@@ -12,6 +16,11 @@ Route::middleware(['auth'])->group(function(){
 
     // general route for all authenticated users but restricted to what they can view
     Route::get('/home', Home::class)->name('home');
+
+    Route::get('/usermanagement', ManageUser::class)->name('usermanagement');
+    Route::get('/offboarduser', OffboardUser::class)->name('offboarduser');
+    Route::get('/initiateoffboarding', initiateoffboarding::class)->name('initiateoffboarding');
+    Route::get('/inventory', Inventory::class)->name('inventory');
 
     //it routes
     Route::middleware('role:It')->group(function(){
