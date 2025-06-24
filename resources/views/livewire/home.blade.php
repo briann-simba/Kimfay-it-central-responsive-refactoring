@@ -14,19 +14,19 @@
 
   <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
     <li class="w-full">
-      <button id="hq-tab" data-tabs-target="#hq" type="button" role="tab" aria-controls="hq" aria-selected="true" class="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">HQ Inventory</button>
+      <button id="hq-tab" data-tabs-target="#hq" type="button" role="tab" aria-controls="hq" aria-selected="true" class="inline-block w-full p-4 rounded-none bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">HQ Inventory</button>
     </li>
     <li class="w-full">
-      <button id="tatu-tab" data-tabs-target="#tatu" type="button" role="tab" aria-controls="tatu" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Tatu City Inventory</button>
+      <button id="tatu-tab" data-tabs-target="#tatu" type="button" role="tab" aria-controls="tatu" aria-selected="false" class="inline-block w-full p-4 rounded-none bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Tatu City Inventory</button>
     </li>
     <li class="w-full">
-      <button id="fgs2-tab" data-tabs-target="#fgs2" type="button" role="tab" aria-controls="fgs2" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">FGS2 Inventory</button>
+      <button id="fgs2-tab" data-tabs-target="#fgs2" type="button" role="tab" aria-controls="fgs2" aria-selected="false" class="inline-block w-full p-4 rounded-none bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">FGS2 Inventory</button>
     </li>
     <li class="w-full">
-      <button id="wall-tab" data-tabs-target="#wall" type="button" role="tab" aria-controls="wall" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Wall Street Inventory</button>
+      <button id="wall-tab" data-tabs-target="#wall" type="button" role="tab" aria-controls="wall" aria-selected="false" class="inline-block w-full p-4 rounded-none bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Wall Street Inventory</button>
     </li>
     <li class="w-full">
-      <button id="mombasa-tab" data-tabs-target="#mombasa" type="button" role="tab" aria-controls="mombasa" aria-selected="false" class="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Mombasa Branch Inventory</button>
+      <button id="mombasa-tab" data-tabs-target="#mombasa" type="button" role="tab" aria-controls="mombasa" aria-selected="false" class="inline-block w-full p-4 rounded-none bg-gray-50 hover:bg-green-200 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Mombasa Inventory</button>
     </li>
   </ul>
 
