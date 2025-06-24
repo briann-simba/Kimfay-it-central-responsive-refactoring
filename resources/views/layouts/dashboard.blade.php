@@ -141,6 +141,15 @@
     </div><hr><br>
 
 
+
+<div class="flex flex-col md:flex-row gap-2 mb-4">
+
+@isset($header1)
+{{$header1}}
+@endisset
+</div>
+
+
 <div class="flex flex-col md:flex-row gap-2 mb-4">
   
     <div class="flex items-start gap-2.5 p-4 bg-white">
