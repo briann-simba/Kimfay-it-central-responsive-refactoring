@@ -30,7 +30,7 @@
         <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
                 <!-- Laptop/Device icon (Heroicons Outline) -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-indigo-600 dark:text-indigo-400">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-indigo-600 dark:text-indigo-400">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v10.5A2.25 2.25 0 0118.75 18H5.25A2.25 2.25 0 013 15.75V5.25z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 18.75h18" />
                 </svg>
@@ -39,7 +39,7 @@
             <!-- CTA: report issue -->
             <a href="mailto:it@company.com" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 transition-colors duration-300">
                 <!-- Heroicons Mini: Exclamation Triangle -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <svg  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.008v.008H12V17z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.29 3.86l-7.482 13.5A1.5 1.5 0 004.018 19.5h15.964a1.5 1.5 0 001.31-2.14l-7.482-13.5a1.5 1.5 0 00-2.62 0z" />
                 </svg>
