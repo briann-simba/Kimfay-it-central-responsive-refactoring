@@ -1,23 +1,12 @@
 <div>
 <x-slot name="navguide">
     <nav class="flex items-center mb-6 text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-2 md:space-x-3">
+        <ol class="inline-flex items-center space-x-2">
             <li class="inline-flex items-center">
-                <a href="{{ route('home') }}" class="inline-flex items-center text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <!-- Home icon -->
-                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path d="M10.707 1.707a1 1 0 00-1.414 0L2 9h2v8a1 1 0 001 1h4a1 1 0 001-1v-4h2v4a1 1 0 001 1h4a1 1 0 001-1V9h2L10.707 1.707z" />
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="w-3 h-3 text-gray-400 mx-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z"/>
-                    </svg>
-                    <span class="text-gray-900 dark:text-white">Dashboard Page</span>
-                </div>
+                <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
+                </svg>
+                <span class="text-gray-900 dark:text-white">Dashboard Page</span>
             </li>
         </ol>
     </nav>
