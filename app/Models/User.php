@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -48,9 +48,10 @@ class User extends Authenticatable
         ];
     }
 
-    //This user has one department 
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class, 'dep_id', 'id');
-    }
+    //This user heads one department 
+   public function headedDepartment(): HasOne
+{
+    return $this->HasOne(Department::class, 'hod_id', 'id');
+}
+
 }

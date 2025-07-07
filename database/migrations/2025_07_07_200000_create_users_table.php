@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // BIGINT UNSIGNED PRIMARY KEY
             $table->string('name');
             $table->string('email')->unique();
-            $table->foreignId('dep_id')->constrained('departments');
+            $table->string('dep_id');
             $table->foreignId('division_id')->constrained('divisions');
             $table->foreignId('designation_id')->constrained('designations');
             $table->timestamp('email_verified_at')->nullable();

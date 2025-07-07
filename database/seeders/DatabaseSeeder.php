@@ -16,11 +16,15 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 $this->call(RolesAndPermissionsSeeder::class);
 $this->call(DepartmentSeeder::class);
+$this->call(DivisionSeeder::class);
+$this->call(DesignationSeeder::class);
 
         $User=User::factory()->create([
             'name' => 'it officer',
             'email' => 'it@example.com',
             'dep_id' => '1', // Assuming the department ID is 1
+            'division_id' => '1', // Assuming the division ID is 1
+            'designation_id' => '1', // Assuming the designation ID is 1
             'password' => '12345'
         ])->assignRole('It'); 
        
@@ -28,6 +32,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'hr officer',
             'email' => 'hr@example.com',
             'dep_id' => '1',
+            'division_id' => '2', // Assuming the division ID is 2
+            'designation_id' => '1',
             'password' => '12345'
         ])->assignRole('Hr');
 
@@ -35,6 +41,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'super admin',
             'email' => 'superadmin@example.com',
             'dep_id' => '2',
+            'division_id' => '2', // Assuming the division ID is 2
+            'designation_id' => '2', 
             'password' => '12345'
         ])->assignRole('SuperAdmin');
 
@@ -42,6 +50,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'Line Manager',
             'email' => 'linemanager@example.com',
             'dep_id' => '2',
+            'division_id' => '1', // Assuming the division ID is 1
+            'designation_id' => '1', 
             'password' => '12345'
         ])->assignRole('LineManager');
 
@@ -49,6 +59,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'Admin officer',
             'email' => 'adminofficer@example.com',
             'dep_id' => '1',
+            'division_id' => '2', // Assuming the division ID is 2
+            'designation_id' => '2',
             'password' => '12345'
         ])->assignRole('AdminOfficer');
 
@@ -56,6 +68,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'finance officer',
             'email' => 'finance@example.com',
             'dep_id' => '1',
+            'division_id' => '1', // Assuming the division ID is 1
+            'designation_id' => '1', 
             'password' => '12345'
         ])->assignRole('Finance');
 
@@ -63,6 +77,8 @@ $this->call(DepartmentSeeder::class);
             'name' => 'User Officer',
             'email' => 'user@example.com',
             'dep_id' => '1',
+            'division_id' => '1', // Assuming the division ID is 1
+            'designation_id' => '1', 
             'password' => '12345'
         ])->assignRole('User');
     }
