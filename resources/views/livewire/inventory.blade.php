@@ -157,14 +157,16 @@
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
                     <!-- Example row -->
+                     @foreach ($devices as $device)
                     <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white">
-                            Apple&nbsp;MacBook&nbsp;Pro&nbsp;17″
-                        </th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4 text-right">$2,999</td>
+                      
+                        <td class="px-6 py-4">{{ $device->name }}</td>
+                        <td class="px-6 py-4">{{ $device->color }}</td>
+                        <td class="px-6 py-4">{{ $device->category }}</td>
+                        <td class="px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
+
                     </tr>
+                     @endforeach
                     <!-- Repeat rows dynamically here -->
                 </tbody>
             </table>
