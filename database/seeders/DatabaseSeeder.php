@@ -18,6 +18,7 @@ $this->call(RolesAndPermissionsSeeder::class);
 $this->call(DepartmentSeeder::class);
 $this->call(DivisionSeeder::class);
 $this->call(DesignationSeeder::class);
+$this->call(DeviceSeeder::class);
 
         $User=User::factory()->create([
             'name' => 'it officer',
