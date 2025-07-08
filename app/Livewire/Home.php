@@ -8,6 +8,10 @@ use Livewire\Attributes\Layout;
 class Home extends Component
 {
 
+  
+
+    
+
     #[layout('layouts.dashboard')]
     public function render()
     {

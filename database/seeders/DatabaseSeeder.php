@@ -18,7 +18,6 @@ $this->call(RolesAndPermissionsSeeder::class);
 $this->call(DepartmentSeeder::class);
 $this->call(DivisionSeeder::class);
 $this->call(DesignationSeeder::class);
-$this->call(DeviceSeeder::class);
 
         $User=User::factory()->create([
             'name' => 'it officer',
@@ -82,5 +81,9 @@ $this->call(DeviceSeeder::class);
             'designation_id' => '1', 
             'password' => '12345'
         ])->assignRole('User');
+    $this->call(DeviceSeeder::class);
+
     }
+
+
 }
