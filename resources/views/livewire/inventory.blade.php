@@ -147,18 +147,20 @@
                 </dl>
 
                 
-    <div class="overflow-x-auto ring-1 ring-gray-200 dark:ring-gray-700 rounded-xl shadow-sm mt-6">
-    <div class="space-y-6 p-4 sm:p-6 bg-white dark:bg-gray-900 rounded-xl">
+   <div class="overflow-x-auto ring-1 ring-gray-200 dark:ring-gray-700 rounded-2xl shadow-md mt-8">
+    <div class="space-y-6 p-6 bg-white dark:bg-gray-900 rounded-2xl">
 
         <!-- Top Bar -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">📦 Device Inventory</h2>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                📦 Device Inventory
+            </h2>
             <div class="relative w-full sm:w-72">
                 <input
                     type="text"
                     wire:model.debounce.300ms="search"
                     placeholder="Search devices..."
-                    class="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                    class="w-full pl-10 pr-4 py-2 text-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 >
                 <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 0 5 11a6 6 0 0 0 12 0z" />
@@ -168,8 +170,8 @@
 
         <!-- Table -->
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300 border-collapse">
-                <thead class="text-xs uppercase bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                <thead class="text-xs font-semibold uppercase bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                     <tr>
                         <th class="px-6 py-3">Device</th>
                         <th class="px-6 py-3">Color</th>
@@ -185,22 +187,22 @@
                             <td class="px-6 py-4">{{ $device->color }}</td>
                             <td class="px-6 py-4">{{ $device->category }}</td>
                             <td class="px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
-                            <td class="px-6 py-4 text-right space-x-2 whitespace-nowrap">
+                            <td class="px-6 py-4 text-right space-x-2">
                                 <a href="#"
-                                   class="inline-flex items-center px-3 py-1 text-sm font-medium text-indigo-600 hover:text-white hover:bg-indigo-600 border border-indigo-600 rounded-md transition-all duration-150">
+                                   class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-150">
                                     ✏️ Edit
                                 </a>
                                 <button
                                     wire:click="delete({{ $device->id }})"
                                     onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
-                                    class="inline-flex items-center px-3 py-1 text-sm font-medium text-red-600 hover:text-white hover:bg-red-600 border border-red-600 rounded-md transition-all duration-150">
+                                    class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 border border-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-150">
                                     🗑️ Delete
                                 </button>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                            <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
                                 No devices found.
                             </td>
                         </tr>
