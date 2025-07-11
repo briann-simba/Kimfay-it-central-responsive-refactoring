@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Inventory</title>
 
-    <title>{{ config('app.name') }}</title>
-    <link rel="icon" href="{{ asset('images/kimfay.png') }}" type="image/png">
-
-    <!-- Livewire styles -->
-    @livewireStyles
-
-    <!-- Vite assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white">
+<body class="bg-gray-100 text-gray-900">
 
-    <!-- Page content -->
-    {{ $slot }}
+    <main class="max-w-4xl mx-auto mt-10">
+        @yield('content')
+    </main>
 
-    <!-- Livewire logout component (use this syntax in v3) -->
-    <livewire:logout />
+    @livewireScripts
 
-    <!-- Livewire scripts (deferred for v3) -->
-    @livewireScripts(true)
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Is Livewire loaded?", window.Livewire);
+    });
+</script>
+
+
 </body>
 </html>
