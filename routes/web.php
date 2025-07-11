@@ -8,8 +8,10 @@ use App\livewire\OffboardUser;
 use App\livewire\initiateoffboarding;
 use App\livewire\Inventory;
 
+
 // Route::get('/', Welcome::class)->name('welcome');
 Route::get('/', Login::class)->name('login');
+Route::get('/users', App\livewire\Users::class)->name('users');
 
 //routes for the authenticated users
 Route::middleware(['auth'])->group(function(){
