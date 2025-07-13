@@ -8,8 +8,8 @@
          <link rel="icon" href="{{ asset('images/kimfay.png') }}" type="image/png">
 
         <!-- Styles / Scripts -->
-       @livewireStyles
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+      @livewireStyles
+      @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
 <body>

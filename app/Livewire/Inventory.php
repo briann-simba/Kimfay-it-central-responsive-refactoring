@@ -1,18 +1,16 @@
 <?php
-
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Layout;
-use App\Models\Device;
 use Livewire\WithPagination;
+use App\Models\Device;
+use Livewire\Attributes\Layout;
 
 class Inventory extends Component
 {
     use WithPagination;
 
     public $search = '';
-
     protected $queryString = ['search'];
 
     public function updatingSearch()

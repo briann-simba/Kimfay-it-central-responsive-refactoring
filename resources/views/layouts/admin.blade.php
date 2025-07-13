@@ -16,12 +16,5 @@
 
     @livewireScripts
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log("Is Livewire loaded?", window.Livewire);
-    });
-</script>
-
-
 </body>
 </html>
