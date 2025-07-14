@@ -21,7 +21,7 @@ class Users extends Component
 
     public function render()
     {
-        logger('Search term is: ' . $this->search);
+    
 
         return view('livewire.users', [
             'devices' => Device::where('name', 'like', '%' . $this->search . '%')

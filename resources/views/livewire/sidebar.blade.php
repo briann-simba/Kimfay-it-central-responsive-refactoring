@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<div>
+    
 
-         <title>{{config('app.name')}}</title>
-         <link rel="icon" href="{{ asset('images/kimfay.png') }}" type="image/png">
-
-        <!-- Styles / Scripts -->
-       @livewireStyles
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-
-<body>
-
-
-<div class="flex min-h-screen container mx-auto mt-10">
-  <!-- Sidebar -->
-<aside id="sidebar"
-  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0 bg-gray-100 border-r border-gray-200 dark:bg-gray-100 dark:border-gray-700"
-  aria-label="Sidebar">
-  <img src="{{asset('images/kimfay.png')}}" alt="Sidebar Top Image" class="w-full h-35 p-8">
-  <div class="h-full px-3 py-4 overflow-y-auto">
+ 
       <ul class="space-y-2 font-medium">
 
           <li>
@@ -89,95 +69,6 @@
       </li>
 
       </ul>
-    </div>
 
-  </aside>
-
-  <!-- Main Content Area -->
-<div class="ml-[280px] p-4 w-full">
-
-  <div class="sticky top-0 z-40 bg-gray-300 p-4 mb-4 flex justify-between items-center">
-  <div class="text-lg font-semibold text-gray-800">
-    Hello {{ auth()->user()->name }}
-  </div>
- 
-      <nav class="flex" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-          <li class="inline-flex items-center">
-            <a href="{{route('home')}}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-              <svg class="w-3 h-3 me-2.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-              </svg>
-              Home
-            </a>
-          </li>
-
-          <li>
-            <div class="flex items-center">
-              <!-- Arrow Icon -->
-              <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-              </svg>
-
-              <!-- Logout Link -->
-              <a href="#"
-                onclick="window.dispatchEvent(new CustomEvent('open-logout-modal'))"
-                class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                Logout
-              </a>
-            </div>
-          </li>
-
-          <li aria-current="page">
-            <div class="flex items-center">
-              <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-              </svg>
-              <span class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">IT Central</span>
-            </div>
-          </li>
-        </ol>
-      </nav>
-    </div><hr><br>
-
-<!--! navigation -->
-
-    <div>
-      @isset($navguide)
-      {{$navguide}}
-      @endisset
-    </div>
-
-
-
-
-
-        <div class="flex flex-col md:flex-row gap-2 mb-4">
-              @isset($header1)
-              {{$header1}}
-              @endisset
-        </div>
 
 </div>
-
-</div>
-</div>
-</div>
-
-
-{{$slot}}
-
- 
-  @livewire('logout')
-  @livewireScripts
-</body>
-</html>
-
-
-
-
-
-
-
-
-
