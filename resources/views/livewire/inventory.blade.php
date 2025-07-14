@@ -67,12 +67,6 @@
             <!-- HQ -->
         <div id="hq" role="tabpanel" aria-labelledby="hq-tab" class="p-6 md:p-8">
         <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-gray-900 dark:text-white">
-                    
-            
-                        
-
-                <!-- Modal toggle -->
-                
 
                 <!-- Main modal -->
                 <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -151,31 +145,12 @@
                     </div>
             </dl>
 
-            <div class="overflow-x-auto rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 mt-4">
-            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
-                <thead class="text-xs uppercase bg-gray-100 dark:bg-gray-700">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Device</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3 text-right">Value</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
-                    <!-- Example row -->
-                    <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white">
-                            Apple&nbsp;MacBook&nbsp;Pro&nbsp;17″
-                        </th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4 text-right">$2,999</td>
-                    </tr>
-                    <!-- Repeat rows dynamically here -->
-                </tbody>
-            </table>
+                    <div class="overflow-x-auto rounded-lg  ring-gray-200 dark:ring-gray-700 mt-4">
+
+                        @livewire('devices')
+                    </div>
             </div>
-            </div>
+        </div>
 
             <!-- Tatu City -->
             <div id="tatu" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="tatu-tab">

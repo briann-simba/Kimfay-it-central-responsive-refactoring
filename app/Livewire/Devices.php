@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire;
 
 use Livewire\Component;
@@ -6,9 +7,10 @@ use Livewire\WithPagination;
 use App\Models\Device;
 use Livewire\Attributes\Layout;
 
-class Inventory extends Component
+
+class Devices extends Component
 {
-   use WithPagination;
+    use WithPagination;
 
     public string $search = '';
 
@@ -17,16 +19,11 @@ class Inventory extends Component
         $this->resetPage();
     }
 
-    public function delete($id)
-    {
-        Device::findOrFail($id)->delete();
-        session()->flash('message', 'Device deleted successfully.');
-    }
-
-    #[Layout('layouts.dashboard')]
     public function render()
     {
-         return view('livewire.inventory', [
+    
+
+        return view('livewire.devices', [
             'devices' => Device::where('name', 'like', '%' . $this->search . '%')
                                ->orWhere('category', 'like', '%' . $this->search . '%')
                                ->paginate(4),
