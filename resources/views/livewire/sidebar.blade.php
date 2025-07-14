@@ -1,6 +1,8 @@
 <div>
-    
-
+<aside id="sidebar"
+     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0 bg-gray-100 border-r border-gray-200 dark:bg-gray-100 dark:border-gray-700"
+    aria-label="Sidebar">
+        <img src="{{asset('images/kimfay.png')}}" alt="Sidebar Top Image" class="w-full h-35 p-8">
  
       <ul class="space-y-2 font-medium">
 
@@ -70,5 +72,5 @@
 
       </ul>
 
-
+</aside>
 </div>

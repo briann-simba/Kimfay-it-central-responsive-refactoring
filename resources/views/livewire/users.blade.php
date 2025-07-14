@@ -70,4 +70,6 @@
         {{ $devices->links() }}
     </div>
 
+            
+
 </div>

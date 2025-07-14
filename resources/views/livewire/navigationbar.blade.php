@@ -1,8 +1,8 @@
 <div>
 
-<div class="ml-[280px] p-4 w-full">
 
-  <div class="sticky top-0 z-40 bg-gray-300 p-4 mb-4 flex justify-between items-center">
+
+  <div class="bg-gray-300 p-4 mb-4 flex justify-between items-center">
   <div class="text-lg font-semibold text-gray-800">
     Hello {{ auth()->user()->name }}
   </div>
@@ -44,7 +44,7 @@
           </li>
         </ol>
       </nav>
-    </div><hr><br>
+    </div>
 
-@livewire('logout')
+
 </div>

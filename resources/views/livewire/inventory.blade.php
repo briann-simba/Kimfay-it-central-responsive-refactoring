@@ -1,12 +1,10 @@
 <div>
 
-    
-
 <x-slot name="navguide">
     <div class="flex items-center justify-between mb-6">
         <!-- Breadcrumb -->
-        <nav aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+        <nav class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-2">
                 <li class="inline-flex items-center">
                     <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
@@ -27,9 +25,6 @@
     </div>
 </x-slot>
 
-
-
-
 <x-slot name="header1">
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <!-- Mobile: dropdown (Flowbite not required) -->
@@ -48,31 +43,36 @@
         <!-- Desktop: Flowbite full‑width tabs -->
         <ul id="inventoryTab" class="hidden sm:flex text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-t-lg dark:divide-gray-600 dark:text-gray-400" data-tabs-toggle="#inventoryTabContent" role="tablist">
             <li class="w-full">
-                <button id="hq-tab" data-tabs-target="#hq" type="button" role="tab" aria-controls="hq" aria-selected="true" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">HQ Inventory</button>
+                <button id="hq-tab" data-tabs-target="#hq" type="button" role="tab" aria-controls="hq" aria-selected="true" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">HQ Inventory</button>
             </li>
             <li class="w-full">
-                <button id="tatu-tab" data-tabs-target="#tatu" type="button" role="tab" aria-controls="tatu" aria-selected="false" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Tatu City Inventory</button>
+                <button id="tatu-tab" data-tabs-target="#tatu" type="button" role="tab" aria-controls="tatu" aria-selected="false" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Tatu City Inventory</button>
             </li>
             <li class="w-full">
-                <button id="fgs2-tab" data-tabs-target="#fgs2" type="button" role="tab" aria-controls="fgs2" aria-selected="false" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">FGS2 Inventory</button>
+                <button id="fgs2-tab" data-tabs-target="#fgs2" type="button" role="tab" aria-controls="fgs2" aria-selected="false" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">FGS2 Inventory</button>
             </li>
             <li class="w-full">
-                <button id="wall-tab" data-tabs-target="#wall" type="button" role="tab" aria-controls="wall" aria-selected="false" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Wall Street Inventory</button>
+                <button id="wall-tab" data-tabs-target="#wall" type="button" role="tab" aria-controls="wall" aria-selected="false" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Wall Street Inventory</button>
             </li>
             <li class="w-full">
-                <button id="mombasa-tab" data-tabs-target="#mombasa" type="button" role="tab" aria-controls="mombasa" aria-selected="false" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Mombasa Inventory</button>
+                <button id="mombasa-tab" data-tabs-target="#mombasa" type="button" role="tab" aria-controls="mombasa" aria-selected="false" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Mombasa Inventory</button>
             </li>
             <li class="w-full">
-                <button id="tonners-tab" data-tabs-target="#tonners" type="button" role="tab" aria-controls="tonners" aria-selected="false" class="inline-block w-full p-4 hover:bg-indigo-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Toner Stock</button>
+                <button id="tonners-tab" data-tabs-target="#tonners" type="button" role="tab" aria-controls="tonners" aria-selected="false" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">Toner Stock</button>
             </li>
         </ul>
 
         <!-- Tab content -->
         <div id="inventoryTabContent" class="border-t border-gray-200 dark:border-gray-600">
             <!-- HQ -->
-            <div id="hq" role="tabpanel" aria-labelledby="hq-tab" class="p-6 md:p-8">
-                <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-gray-900 dark:text-white">
+        <div id="hq" role="tabpanel" aria-labelledby="hq-tab" class="p-6 md:p-8">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-gray-900 dark:text-white">
                     
+            
+                        
+
+                <!-- Modal toggle -->
+                
 
                 <!-- Main modal -->
                 <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -124,9 +124,9 @@
                             </form>
                         </div>
                     </div>
-                 
+                </div> 
 
-                </div>
+                
 
 
                     <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
@@ -149,18 +149,33 @@
                         <dt class="text-2xl font-bold">40</dt>
                         <dd class="text-sm text-gray-600 dark:text-gray-300">Television Sets</dd>
                     </div>
-                </dl>
+            </dl>
 
-                
-   <div class="overflow-x-auto ring-1 ring-gray-200 dark:ring-gray-700 rounded-2xl shadow-md mt-8">
-    <div class="space-y-6 p-6 bg-white dark:bg-gray-900 rounded-2xl">
-
-    <div class="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 md:p-8 space-y-6">
-        @livewire('users')
-</div>
-
-        
-</div>
+            <div class="overflow-x-auto rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 mt-4">
+            <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                <thead class="text-xs uppercase bg-gray-100 dark:bg-gray-700">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Device</th>
+                        <th scope="col" class="px-6 py-3">Color</th>
+                        <th scope="col" class="px-6 py-3">Category</th>
+                        <th scope="col" class="px-6 py-3 text-right">Value</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                    <!-- Example row -->
+                    <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900 dark:text-white">
+                            Apple&nbsp;MacBook&nbsp;Pro&nbsp;17″
+                        </th>
+                        <td class="px-6 py-4">Silver</td>
+                        <td class="px-6 py-4">Laptop</td>
+                        <td class="px-6 py-4 text-right">$2,999</td>
+                    </tr>
+                    <!-- Repeat rows dynamically here -->
+                </tbody>
+            </table>
+            </div>
+            </div>
 
             <!-- Tatu City -->
             <div id="tatu" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="tatu-tab">
@@ -201,13 +216,11 @@
                         <dt class="text-2xl font-bold">40</dt>
                         <dd class="text-sm text-gray-600 dark:text-gray-300">Yellow Toners</dd>
                     </div>
-                </dl>
+        </dl>
             </div>
         </div>
     </div>
 
 </x-slot>
-
-
 
 </div>
