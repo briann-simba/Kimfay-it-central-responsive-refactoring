@@ -44,7 +44,7 @@ class ManageUser extends Component
         $this->reset();
 
         // Close the modal
-        $this->dispatch('close-modal', 'add-user-modal');
+        $this->dispatch('close-modal', id: 'add-user-modal');
     }
 
     #[layout('layouts.dashboard')]
