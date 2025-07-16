@@ -55,7 +55,7 @@
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
                     <!-- Example row -->
 
-                    @foreach(auth()->user()->devices as $device)
+                    @forelse(auth()->user()->devices as $device)
                     
                     <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
                         <td class="px-6 py-4">{{ $device->name }}</td>
@@ -63,7 +63,15 @@
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
                     </tr>
-                    @endforeach
+                     @empty
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
+                            You have no devices assigned.
+                        </td>
+                    </tr>
+                    
+                    @endforelse
+                    
                     <!-- Repeat rows dynamically here -->
                 </tbody>
             </table>

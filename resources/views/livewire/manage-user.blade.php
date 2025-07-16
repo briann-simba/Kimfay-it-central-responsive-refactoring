@@ -75,47 +75,6 @@
 
     <!-- modals for Add User, Manage Roles, and Disable User will be implemented here -->
      {{-- 🔸 1. ADD USER MODAL --}}
-<div id="add-user-modal" tabindex="-1" aria-hidden="true"
-     class="hidden fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex items-center justify-center w-full p-4 md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-md max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                    Add New User
-                </h3>
-                <button type="button" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                        data-modal-hide="add-user-modal">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24"><path stroke-linecap="round"
-                         stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                    <span class="sr-only">Close</span>
-                </button>
-            </div>
-            <!-- Body -->
-            <form class="p-4 space-y-4">
-                <div>
-                    <label for="add-name" class="block text-sm font-medium text-gray-700 dark:text-white">Name</label>
-                    <input id="add-name" type="text" required
-                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
-                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                </div>
-                <div>
-                    <label for="add-email" class="block text-sm font-medium text-gray-700 dark:text-white">Email</label>
-                    <input id="add-email" type="email" required
-                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
-                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                </div>
-                <button type="submit"
-                        class="w-full px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg
-                               hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
-                               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Save User
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
 
 {{-- 🔸 2. MANAGE ROLES MODAL --}}
 <div id="manage-roles-modal" tabindex="-1" aria-hidden="true"
@@ -204,4 +163,119 @@
 </div>
 </x-slot>
 
+
+<div id="add-user-modal" tabindex="-1" aria-hidden="true"
+     class="hidden fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex items-center justify-center w-full p-4 md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Header -->
+            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Add New User
+                </h3>
+                <button type="button" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        data-modal-hide="add-user-modal">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24"><path stroke-linecap="round"
+                         stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <form wire:submit.prevent="addUser" class="p-4 space-y-4">
+                <div>
+                    <label for="add-name"  wire:model="name" class="block text-sm font-medium text-gray-700 dark:text-white">Name</label>
+                    <input id="add-name" type="text"
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="add-email"  wire:model="email" class="block text-sm font-medium text-gray-700 dark:text-white">Email</label>
+                    <input id="add-email" type="email"
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="add-dep_id"  wire:model="dep_id" class="block text-sm font-medium text-gray-700 dark:text-white">Department ID</label>
+                    <input id="add-dep_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="add-division_id"  wire:model="division_id" class="block text-sm font-medium text-gray-700 dark:text-white">Division ID</label>
+                    <input id="add-division_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="add-designation_id"  wire:model="designation_id" class="block text-sm font-medium text-gray-700 dark:text-white">Designation ID</label>
+                    <input id="add-designation_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="add-password"  wire:model="password" class="block text-sm font-medium text-gray-700 dark:text-white">Password</label>
+                    <input id="add-password" type="password" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <button type="submit"
+                        class="w-full px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg
+                               hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
+                               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Save User
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<form wire:submit.prevent="addUser" class="p-4 space-y-4">
+                <div>
+                    <label for="name"  wire:model="name" class="block text-sm font-medium text-gray-700 dark:text-white">Name</label>
+                    <input id="name" type="text"
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="email"  wire:model="email" class="block text-sm font-medium text-gray-700 dark:text-white">Email</label>
+                    <input id="email" type="email"
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="dep_id"  wire:model="dep_id" class="block text-sm font-medium text-gray-700 dark:text-white">Department ID</label>
+                    <input id="dep_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="division_id"  wire:model="division_id" class="block text-sm font-medium text-gray-700 dark:text-white">Division ID</label>
+                    <input id="division_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="designation_id"  wire:model="designation_id" class="block text-sm font-medium text-gray-700 dark:text-white">Designation ID</label>
+                    <input id="designation_id" type="text" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <div>
+                    <label for="password"  wire:model="password" class="block text-sm font-medium text-gray-700 dark:text-white">Password</label>
+                    <input id="password" type="password" 
+                           class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                </div>
+                <button type="submit"
+                        class="w-full px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg
+                               hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
+                               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Save User
+                </button>
+            </form>
 </div>
