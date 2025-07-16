@@ -6,6 +6,12 @@
             📦 Device Inventory
         </h2>
 
+        @if (session()->has('message'))
+    <div class="mb-4 p-4 text-sm text-green-800 bg-green-100 border border-green-300 rounded-lg dark:bg-green-900 dark:text-green-200 dark:border-green-800">
+        {{ session('message') }}
+    </div>
+@endif
+
         <!-- Search Box -->
         <div class="relative w-full sm:w-72">
             <input

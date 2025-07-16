@@ -11,6 +11,20 @@ class Device extends Model
     /** @use HasFactory<\Database\Factories\DeviceFactory> */
     use HasFactory;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+  protected $fillable = [
+        'user_id',
+        'name',
+        'color',
+        'category',
+        'value',
+    ];
+
     //this device belongs to one user
     public function user():BelongsTo
     {

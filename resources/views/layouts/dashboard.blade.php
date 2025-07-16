@@ -56,5 +56,9 @@
 @livewire('logout')
 @livewireScripts
 
+
+
+
+
 </body>
 </html>
