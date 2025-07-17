@@ -57,6 +57,23 @@
 @livewireScripts
 
 
+<script>
+    document.addEventListener('livewire:load', () => {
+        const modalEl = document.getElementById('crud-modal');
+
+        if (modalEl) {
+            // Initialize the modal from Flowbite
+            const modal = new Modal(modalEl);
+
+            // Listen for Livewire browser event
+            window.addEventListener('closeModal', () => {
+                console.log('closeModal event received');
+                modal.hide();
+            });
+        }
+    });
+</script>
+
 
 
 

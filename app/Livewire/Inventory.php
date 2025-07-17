@@ -10,6 +10,13 @@ class Inventory extends Component
 {
    use WithPagination;
 
+   public function resetForm()
+{
+    $this->resetErrorBag();
+    $this->resetValidation();
+    $this->reset(['user_id', 'name', 'color', 'category', 'value']);
+}
+
     public string $search = '';
 
     public $user_id;
