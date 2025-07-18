@@ -21,6 +21,10 @@
                 </li>
             </ol>
         </nav>
+        
+            <div>
+
+
 
         <!-- Add Inventory Button -->
         <button data-modal-target="crud-modal"  wire:click="resetForm" data-modal-toggle="crud-modal"
@@ -229,7 +233,15 @@
                 </div>
             </div> 
 
+          
+     <button
+        type="button"
+        wire:click="$dispatch('openModal', { component: 'modals.create-device-modal' })"
+        class="bg-blue-600 text-white px-4 py-2 rounded"
+    >
+        Launch Modal
+    </button>
+</div>
 
-        
 
 </div>
