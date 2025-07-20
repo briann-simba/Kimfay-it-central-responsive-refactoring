@@ -27,7 +27,7 @@
 
 
         <!-- Add Inventory Button -->
-        <button data-modal-target="crud-modal"  wire:click="resetForm" data-modal-toggle="crud-modal"
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
             class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -241,7 +241,73 @@
     >
         Launch Modal
     </button>
+
+     <button wire:click="$dispatch('openModal', { component: 'modals.create-device-modal' })"
+            class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Add Inventory
+        </button>
+
 </div>
+
+@script
+<script>
+
+
+
+
+    $wire.on('close-crud-modal', () => {
+        //
+        const modalEl = document.getElementById('crud-modal');
+        if (modalEl) {
+            modalEl.classList.remove('show');
+            modalEl.setAttribute('aria-hidden', 'true');
+            modalEl.style.display = 'none';
+        }
+    });
+</script>
+@endscript
+
+
+<script>
+    
+    document.addEventListener('livewire:load', () => {
+        const modalEl = document.getElementById('crud-modal');
+        if (modalEl) {
+            // Manually initialize the modal if it hasn't been
+            if (!window.Flowbite?.instances?.getInstance(modalEl)) {
+                new window.Flowbite.Modal(modalEl);
+            }
+        }
+    });
+
+
+    window.addEventListener('close-crud-modal', () => {
+        const modal = document.getElementById('crud-modal');
+        const instance = window.Flowbite?.instances.getInstance(modal);
+        instance?.hide();
+
+        // ✅ Show toast
+        const toast = document.createElement('div');
+        toast.className = 'fixed top-6 right-6 z-[10000] bg-green-500 text-white px-4 py-2 rounded shadow';
+        toast.innerText = '✅ Device added successfully';
+        document.body.appendChild(toast);
+
+        // Fade out after 3s
+        setTimeout(() => {
+            toast.classList.add('opacity-0');
+        }, 3000);
+
+        // Remove after 3.5s
+        setTimeout(() => {
+            toast.remove();
+            // ✅ Optional redirect after close
+            // window.location.href = "/devices"; // adjust to your desired route
+        }, 3500);
+    });
+</script>
 
 
 </div>

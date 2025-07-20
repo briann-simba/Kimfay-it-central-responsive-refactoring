@@ -16,5 +16,18 @@
         {{ $slot }}
 
     @livewireScripts
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // Close modal when 'close-crud-modal' event is dispatched
+        window.livewire.on('close-crud-modal', () => {
+            const modalEl = document.getElementById('crud-modal');
+            if (modalEl) {
+                modalEl.classList.remove('show');
+                modalEl.setAttribute('aria-hidden', 'true');
+                modalEl.style.display = 'none';
+            }
+        });
+    });
+</script>
     </body>
 </html>

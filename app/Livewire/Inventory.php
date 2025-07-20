@@ -50,7 +50,14 @@ class Inventory extends Component
         // Reset the form fields
         $this->reset(['user_id', 'name', 'color', 'category', 'value']);
 
-         $this->dispatch('closeModal');
+             // Send browser event
+      $this->dispatch('close-crud-modal'); // ✅ important name match
+
+$this->dispatch('reload-page');
+
+    // Flash message for Livewire UI
+    session()->flash('message', 'Device created successfully.');
+
         
     }
 
@@ -62,7 +69,7 @@ class Inventory extends Component
     public function delete($id)
     {
         Device::findOrFail($id)->delete();
-        session()->flash('message', 'Device deleted successfully.');
+        session()->flash('delete', 'Device deleted successfully.');
     }
 
     #[Layout('layouts.dashboard')]
