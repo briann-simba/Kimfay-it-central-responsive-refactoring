@@ -17,19 +17,5 @@
 
     @livewireScripts
 
-    @script
-<script>
-
-    $wire.on('close-crud-modal', () => {
-        //
-        const modalEl = document.getElementById('crud-modal');
-        if (modalEl) {
-            modalEl.classList.remove('show');
-            modalEl.setAttribute('aria-hidden', 'true');
-            modalEl.style.display = 'none';
-        }
-    });
-</script>
-@endscript
     </body>
 </html>

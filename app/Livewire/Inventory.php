@@ -53,7 +53,7 @@ class Inventory extends Component
              // Send browser event
       $this->dispatch('close-crud-modal'); // ✅ important name match
 
-$this->dispatch('refresh-Devices'); // Notify the parent component to refresh the inventory list
+      $this->dispatch('refresh-devices');
 
     // Flash message for Livewire UI
     session()->flash('message', 'Device created successfully.');
