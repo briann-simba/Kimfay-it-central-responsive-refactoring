@@ -58,7 +58,7 @@ class Devices extends Component
         Device::findOrFail($id)->delete();
         session()->flash('message', 'Device deleted successfully.');
 
-        $this->resetPage();
+        $this->dispatch('refresh-Devices');
     }
 
     public function render()

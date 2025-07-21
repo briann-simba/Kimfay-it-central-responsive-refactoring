@@ -53,7 +53,7 @@ class Inventory extends Component
              // Send browser event
       $this->dispatch('close-crud-modal'); // ✅ important name match
 
-$this->dispatch('reload-page');
+$this->dispatch('refresh-Devices'); // Notify the parent component to refresh the inventory list
 
     // Flash message for Livewire UI
     session()->flash('message', 'Device created successfully.');
@@ -66,11 +66,7 @@ $this->dispatch('reload-page');
         $this->resetPage();
     }
 
-    public function delete($id)
-    {
-        Device::findOrFail($id)->delete();
-        session()->flash('delete', 'Device deleted successfully.');
-    }
+ 
 
     #[Layout('layouts.dashboard')]
     public function render()

@@ -231,6 +231,7 @@
 
                     </div>
                 </div>
+                <button data-modal-hide="crud-modal" id="hiddenCloseBtn" class="hidden"></button>
             </div> 
 
           
@@ -254,18 +255,15 @@
 
 @script
 <script>
-
-
-
-
     $wire.on('close-crud-modal', () => {
-        //
-        const modalEl = document.getElementById('crud-modal');
-        if (modalEl) {
-            modalEl.classList.remove('show');
-            modalEl.setAttribute('aria-hidden', 'true');
-            modalEl.style.display = 'none';
+        // Trigger Flowbite's built-in close by clicking the hidden button
+        const closeBtn = document.getElementById('hiddenCloseBtn');
+        if (closeBtn) {
+            closeBtn.click(); // ✅ This will trigger Flowbite's full close behavior
         }
+
+        // Optional safety fallback (in case Flowbite fails to clean up)
+        document.body.classList.remove('overflow-hidden');
     });
 </script>
 @endscript
