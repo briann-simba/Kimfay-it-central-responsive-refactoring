@@ -59,8 +59,8 @@
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
                         <td class="px-6 py-4 text-right space-x-2">
-                            <a href="#"
-                               class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-150">
+                             <a href="#" wire:click="$dispatch('openModal', { component: 'modals.edit-device', device: {{ $device->id }} })"
+                               class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white">
                                 ✏️ Edit
                             </a>
                             <button
@@ -86,5 +86,6 @@
     <div class="pt-2 flex justify-end">
         {{ $devices->links() }}
     </div>
+    
 
 </div>
