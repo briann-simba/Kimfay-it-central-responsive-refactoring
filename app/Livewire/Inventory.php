@@ -28,7 +28,7 @@ class Inventory extends Component
     protected $rules = [
         'user_id' => 'required|exists:users,id',
         'name' => 'required|string|max:255',
-        'color' => 'required|string|max:50',
+        'color' => 'required|numeric|min:2',
         'category' => 'required|string|max:50',
         'value' => 'required|numeric|min:0',
     ];

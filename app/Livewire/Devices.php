@@ -14,6 +14,57 @@ class Devices extends Component
 
     public string $search = '';
 
+    public $showEditModal = false;
+
+    public $user_id;
+    public $name;
+    public $color;
+    public $category;
+    public $value;
+    public $deviceId;
+
+ 
+    protected $listeners = ['refresh-devices' => '$refresh', 
+    'editDevice' => 'loadDevice'];
+
+    public function loadDevice($id)
+    {
+        $device = Device::findOrFail($id);
+
+
+        $this->deviceId = $device->id;
+        $this->user_id = $device->user_id;
+        $this->name = $device->name;
+        $this->color = $device->color;
+        $this->category = $device->category;
+        $this->value = $device->value;
+
+        $this->showEditModal = true;
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'user_id' => 'required|exists:users,id',
+            'color' => 'required|numeric|min:2',
+            'name' => 'required',
+            'category' => 'required',
+            'value' => 'required|numeric|min:0',
+        ]);
+
+        Device::find($this->deviceId)->update([
+            'user_id' => $this->user_id,
+            'name' => $this->name,
+            'color' => $this->color,
+            'category' => $this->category,
+            'value' => $this->value,
+        ]);
+
+        session()->flash('message', 'Device updated successfully.');
+
+        $this->showEditModal = false;
+    }
+
    
    
     public function updatingSearch()
@@ -29,7 +80,7 @@ class Devices extends Component
         $this->dispatch('refresh-Devices');
     }
 
-    protected $listeners = ['refresh-devices' => '$refresh'];
+   
 
     public function render()
     {

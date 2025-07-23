@@ -25,6 +25,9 @@
 @endif
 
 
+
+     
+
         <!-- Search Box -->
         <div class="relative w-full sm:w-72">
             <input
@@ -59,10 +62,11 @@
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
                         <td class="px-6 py-4 text-right space-x-2">
-                             <a href="#" wire:click="$dispatch('openModal', { component: 'modals.edit-device', device: {{ $device->id }} })"
-                               class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white">
-                                ✏️ Edit
-                            </a>
+                          <!-- Button that triggers edit -->
+                       <button wire:click="loadDevice({{ $device->id }})"
+                                class="text-blue-600 hover:underline">
+                            Edit
+                        </button>
                             <button
                                 wire:click="delete({{ $device->id }})"
                                 onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
@@ -86,6 +90,61 @@
     <div class="pt-2 flex justify-end">
         {{ $devices->links() }}
     </div>
+
+    
+<!-- Modal with Alpine entangled to Livewire -->
+<div x-data="{ show: @entangle('showEditModal') }" x-show="show"
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+     x-transition>
+    <div @click.away="show = false"
+         class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
+         x-transition.scale>
+        <h2 class="text-lg font-semibold mb-4">Edit Device</h2>
+
+        <form wire:submit.prevent="update">
+
+            <div class="mb-4">
+                <label>user_id</label>
+                <input type="text" wire:model.defer="user_id"
+                       class="w-full px-3 py-2 border rounded" />
+                @error('user_id') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label>Name</label>
+                <input type="text" wire:model.defer="name"
+                       class="w-full px-3 py-2 border rounded" />
+                @error('name') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label>color</label>
+                <input type="text" wire:model.defer="color"
+                       class="w-full px-3 py-2 border rounded" />
+                @error('color') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label>category</label>
+                <input type="text" wire:model.defer="category"
+                       class="w-full px-3 py-2 border rounded" />
+                @error('category') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="mb-4">
+                <label>value</label>
+                <input type="text" wire:model.defer="value"
+                       class="w-full px-3 py-2 border rounded" />
+                @error('value') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="flex justify-end">
+                <button type="button" @click="show = false" class="mr-2 px-4 py-2 border rounded">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
     
 
 </div>
