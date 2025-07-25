@@ -63,10 +63,11 @@
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
                         <td class="px-6 py-4 text-right space-x-2">
                           <!-- Button that triggers edit -->
-                       <button wire:click="loadDevice({{ $device->id }})"
-                                class="text-blue-600 hover:underline">
-                            Edit
-                        </button>
+                            <button
+                                wire:click="loadDevice({{ $device->id }})"
+                                class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-150">
+                                ✏️ Edit
+                            </button>
                             <button
                                 wire:click="delete({{ $device->id }})"
                                 onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
@@ -93,56 +94,76 @@
 
     
 <!-- Modal with Alpine entangled to Livewire -->
-<div x-data="{ show: @entangle('showEditModal') }" x-show="show"
-     class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+<div x-data="{ show: @entangle('showEditModal') }"
+     x-show="show"
+     x-cloak
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
      x-transition>
+
+    <!-- Modal Box -->
     <div @click.away="show = false"
-         class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
+         class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-full max-w-md p-6"
          x-transition.scale>
-        <h2 class="text-lg font-semibold mb-4">Edit Device</h2>
+        <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Edit Device</h2>
 
-        <form wire:submit.prevent="update">
+       <form wire:submit.prevent="update" class="p-4 space-y-4">
 
-            <div class="mb-4">
-                <label>user_id</label>
-                <input type="text" wire:model.defer="user_id"
-                       class="w-full px-3 py-2 border rounded" />
-                @error('user_id') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            <div>
+                <label for="edit-user-id" class="block text-sm font-medium text-gray-700 dark:text-white">User ID</label>
+                <input id="edit-user-id" type="text" wire:model.defer="user_id"
+                    class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white" />
+                @error('user_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="mb-4">
-                <label>Name</label>
-                <input type="text" wire:model.defer="name"
-                       class="w-full px-3 py-2 border rounded" />
-                @error('name') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            <div>
+                <label for="edit-name" class="block text-sm font-medium text-gray-700 dark:text-white">Name</label>
+                <input id="edit-name" type="text" wire:model.defer="name"
+                    class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white" />
+                @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="mb-4">
-                <label>color</label>
-                <input type="text" wire:model.defer="color"
-                       class="w-full px-3 py-2 border rounded" />
-                @error('color') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            <div>
+                <label for="edit-color" class="block text-sm font-medium text-gray-700 dark:text-white">Color</label>
+                <input id="edit-color" type="text" wire:model.defer="color"
+                    class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white" />
+                @error('color') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="mb-4">
-                <label>category</label>
-                <input type="text" wire:model.defer="category"
-                       class="w-full px-3 py-2 border rounded" />
-                @error('category') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            <div>
+                <label for="edit-category" class="block text-sm font-medium text-gray-700 dark:text-white">Category</label>
+                <input id="edit-category" type="text" wire:model.defer="category"
+                    class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white" />
+                @error('category') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="mb-4">
-                <label>value</label>
-                <input type="text" wire:model.defer="value"
-                       class="w-full px-3 py-2 border rounded" />
-                @error('value') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            <div>
+                <label for="edit-value" class="block text-sm font-medium text-gray-700 dark:text-white">Value</label>
+                <input id="edit-value" type="text" wire:model.defer="value"
+                    class="w-full p-2.5 mt-1 text-sm bg-gray-50 border border-gray-300 rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white" />
+                @error('value') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="flex justify-end">
-                <button type="button" @click="show = false" class="mr-2 px-4 py-2 border rounded">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Update</button>
+            <div class="flex justify-end space-x-2 pt-2">
+                <button type="button"
+                        @click="show = false"
+                        class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg
+                            hover:bg-gray-100 dark:text-white dark:border-gray-500 dark:hover:bg-gray-600">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
+                            hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+                            dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                    Update
+                </button>
             </div>
         </form>
+
     </div>
 </div>
     

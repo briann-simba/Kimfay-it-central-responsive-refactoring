@@ -12,6 +12,10 @@
     </head>
 
     <body  >
+
+    <style>
+    [x-cloak] { display: none !important; }
+</style>
         
         {{ $slot }}
 
