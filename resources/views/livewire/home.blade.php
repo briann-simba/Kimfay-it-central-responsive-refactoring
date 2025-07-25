@@ -52,6 +52,7 @@
                         <th scope="col" class="px-6 py-3 text-right">Value</th>
                         <th scope="col" class="px-6 py-3 text-right">Status</th>
                         <th scope="col" class="px-6 py-3 text-right">Comment</th>
+                        <th scope="col" class="px-6 py-3 text-right"></th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
@@ -98,6 +99,16 @@
         </span>
     @endif
 </td>
+
+<td class="px-6 py-4 text-right">
+    <button
+        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        @disabled($device->Line_Manager_Approval && $device->User_Accepted)
+    >
+        Accept Device
+    </button>
+</td>
+
 
     </tr>
 @empty
