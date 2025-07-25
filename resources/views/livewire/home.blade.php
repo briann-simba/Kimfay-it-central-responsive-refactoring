@@ -50,27 +50,65 @@
                         <th scope="col" class="px-6 py-3">Color</th>
                         <th scope="col" class="px-6 py-3">Category</th>
                         <th scope="col" class="px-6 py-3 text-right">Value</th>
+                        <th scope="col" class="px-6 py-3 text-right">Status</th>
+                        <th scope="col" class="px-6 py-3 text-right">Comment</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
-                    <!-- Example row -->
 
-                    @forelse(auth()->user()->devices as $device)
+
+
+
+                    <!-- Example row -->
+                     <!-- logic for item issue  -->
+
+@forelse(auth()->user()->devices as $device)
+    <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
+        <td class="px-6 py-4">{{ $device->name }}</td>
+        <td class="px-6 py-4">{{ $device->color }}</td>
+        <td class="px-6 py-4">{{ $device->category }}</td>
+        <td class="px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
+
+        {{-- Active / Inactive Badge --}}
+        <td class="px-6 py-4 text-right">
+            @if(!$device->Line_Manager_Approval || !$device->User_Accepted)
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">
+                    Inactive
+                </span>
+            @else
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">
+                    Active
+                </span>
+            @endif
+        </td>
+
+        {{-- Status Message --}}
+       <td class="px-6 py-4 text-right">
+    @if (!$device->Line_Manager_Approval)
+        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded-full">
+            {{ __('Waiting for line manager approval') }}
+        </span>
+    @elseif (!$device->User_Accepted)
+        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-orange-800 bg-orange-100 rounded-full">
+            {{ __('Waiting for user acceptance') }}
+        </span>
+    @else
+        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">
+            {{ __('In use') }}
+        </span>
+    @endif
+</td>
+
+    </tr>
+@empty
+    <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
+            You have no devices assigned.
+        </td>
+    </tr>
+@endforelse
+
                     
-                    <tr class="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4">{{ $device->name }}</td>
-                        <td class="px-6 py-4">{{ $device->color }}</td>
-                        <td class="px-6 py-4">{{ $device->category }}</td>
-                        <td class="px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
-                    </tr>
-                     @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
-                            You have no devices assigned.
-                        </td>
-                    </tr>
-                    
-                    @endforelse
                     
                     <!-- Repeat rows dynamically here -->
                 </tbody>
