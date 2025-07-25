@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('category');
             $table->integer('value');
+            $table->boolean('Line_Manager_Approval')->default(false);
+            $table->boolean('User_Accepted')->default(false);
             $table->timestamps();
         });
     }
