@@ -101,13 +101,49 @@
 </td>
 
 <td class="px-6 py-4 text-right">
-    <button
-        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        @disabled($device->Line_Manager_Approval && $device->User_Accepted)
-    >
-        Accept Device
-    </button>
+    <div x-data="{ open: false }">
+        <button
+            @click="open = true"
+            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            :disabled="{{ $device->Line_Manager_Approval && $device->User_Accepted ? 'true' : 'false' }}"
+        >
+            Accept Device
+        </button>
+
+        <!-- Transparent Modal Overlay -->
+        <div
+            x-show="open"
+            x-cloak
+            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/30  dark:bg-gray-900/30"
+        >
+            <!-- Modal Content -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Confirm Action</h2>
+                <p class="mb-6 text-sm text-gray-600 dark:text-gray-300">
+                    Are you sure you want to accept this device?
+                </p>
+
+                <div class="flex justify-end space-x-2">
+                    <button
+                        @click="open = false"
+                        class="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 rounded"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        @click="open = false; $nextTick(() => { @this.acceptDevice({{ $device->id }}) })"
+
+                        class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded"
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </td>
+
+
 
 
     </tr>
