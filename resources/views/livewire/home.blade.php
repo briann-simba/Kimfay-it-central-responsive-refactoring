@@ -105,9 +105,9 @@
         <button
             @click="open = true"
             class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            :disabled="{{ $device->Line_Manager_Approval && $device->User_Accepted ? 'true' : 'false' }}"
+            :disabled="{{ !$device->Line_Manager_Approval || $device->Line_Manager_Approval && $device->User_Accepted ? 'true' : 'false' }}"
         >
-            Accept Device
+            Accept
         </button>
 
         <!-- Transparent Modal Overlay -->
