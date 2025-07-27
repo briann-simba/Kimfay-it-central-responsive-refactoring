@@ -18,7 +18,12 @@ class PendingApproval extends Component
         $this->devices = $deviceId;
         Device::where('id', $this->devices)->update(['Line_Manager_approval' => 1]);
 
-            session()->flash('message', 'Device approved successfully.');
+            $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Approved',
+                message: "Device Approved successfully."
+            );
+
             $this->dispatch('$refresh'); // Refresh the devices list
        
     }

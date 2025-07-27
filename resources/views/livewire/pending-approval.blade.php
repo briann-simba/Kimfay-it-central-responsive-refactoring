@@ -100,7 +100,11 @@
             @endforelse
         </tbody>
     </table>
+<div class="flex justify-center py-4">
+    {{ $pendingDevices->links('pagination::tailwind') }}
 </div>
 
+</div>
+ 
 
    </div>

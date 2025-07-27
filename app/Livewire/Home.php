@@ -18,7 +18,12 @@ public function acceptDevice($deviceId)
     Device::where('id', $this->deviceId)->update(['User_Accepted' => 1]);
 
 
-    session()->flash('message', 'Device accepted successfully.');
+      session()->flash('notify', [
+        'type' => 'success',
+        'title' => 'Device Accepted',
+        'message' => 'Device accepted successfully.'
+    ]);
+
 
     return redirect()->route('home');
 }
