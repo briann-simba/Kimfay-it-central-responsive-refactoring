@@ -7,6 +7,7 @@ use App\livewire\ManageUser;
 use App\livewire\OffboardUser;
 use App\livewire\initiateoffboarding;
 use App\livewire\Inventory;
+use App\livewire\PendingApproval;
 
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -23,6 +24,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/offboarduser', OffboardUser::class)->name('offboarduser');
     Route::get('/initiateoffboarding', initiateoffboarding::class)->name('initiateoffboarding');
     Route::get('/inventory', Inventory::class)->name('inventory');
+    Route::get('/pendingapproval', PendingApproval::class)->name('pendingapproval');
 
     //it routes
     Route::middleware('role:It')->group(function(){

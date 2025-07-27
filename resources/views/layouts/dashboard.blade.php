@@ -56,7 +56,7 @@
 @livewire('logout')
 @livewireScripts
 @livewire('wire-elements-modal')
-<livewire:modals.edit-device />
+
 
 
 </body>
