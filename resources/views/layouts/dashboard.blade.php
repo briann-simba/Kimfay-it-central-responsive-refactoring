@@ -11,7 +11,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-<body class="bg-gray-50 dark:bg-gray-900">
+<body class="bg-color dark:bg-gray-900">
 
 <style>
     [x-cloak] { display: none !important; }
