@@ -43,7 +43,7 @@
     </div>
 
     <!-- Devices Table -->
-    <div class="overflow-x-auto mt-4 rounded-lg border border-gray-200 dark:border-gray-700">
+<div class="overflow-x-auto mt-4 rounded-lg border border-gray-200 dark:border-gray-700 overflow-visible">
         <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
             <thead class="text-xs uppercase bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 sticky top-0 z-10">
                 <tr>
@@ -61,60 +61,57 @@
                         <td class="px-6 py-4">{{ $device->color }}</td>
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
-     <td class="px-6 py-4 text-right relative">
-    <div x-data="dropdownMenu($refs.button)"
-         x-init="init"
-         class="inline-block relative"
-    >
-        <!-- Trigger Button -->
-        <button x-ref="button" @click="toggle" type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+   <td class="px-6 py-4 text-right">
+    <div x-data="dropdownMenu()" x-init="init()" class="relative inline-block text-left w-full sm:w-auto">
+        <!-- Action Button -->
+        <button
+            x-ref="button"
+            @click="toggle"
+            @keydown.escape.window="open = false"
+            type="button"
+            class="w-full sm:w-auto justify-between text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
             Actions
             <svg class="w-2.5 h-2.5 ml-2" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-width="2" d="M1 1l4 4 4-4" />
             </svg>
         </button>
 
-        <!-- Dropdown Menu -->
-        <div x-show="open"
-             x-transition
-             x-cloak
-             x-ref="dropdown"
-             @click.away="open = false"
-             class="fixed z-50 w-48 bg-white dark:bg-gray-700 divide-y divide-gray-100 rounded-lg shadow-lg text-sm text-gray-700 dark:text-gray-200"
-             :style="dropdownStyles"
-        >
-            <ul class="py-2">
-                <li>
-                    <button wire:click="loadDevice({{ $device->id }})"
-                        @click="open = false"
-                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                        ✏️ Edit
-                    </button>
-                </li>
-                <li>
-                    <button
-                        wire:click="delete({{ $device->id }})"
-                        onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
-                        @click="open = false"
-                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-600 dark:text-red-400">
-                        🗑️ Delete
-                    </button>
-                </li>
-                <li>
-                    <button
-                        wire:click="reassign({{ $device->id }})"
-                        @click="open = false"
-                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-yellow-600 dark:text-yellow-400">
-                        🔁 Unassign / Reassign
-                    </button>
-                </li>
-            </ul>
+        <!-- Dropdown -->
+       <!-- Dropdown -->
+<div
+    x-show="open"
+    x-ref="dropdown"
+    x-transition
+    @click.away="open = false"
+    x-cloak
+    :style="style"
+    class="fixed z-50 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg ring-1 ring-black/10 focus:outline-none"
+>
+
+            <div class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                <button
+                    wire:click="loadDevice({{ $device->id }})"
+                    @click="open = false"
+                    class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >✏️ Edit</button>
+
+                <button
+                    wire:click="delete({{ $device->id }})"
+                    onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
+                    @click="open = false"
+                    class="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >🗑️ Delete</button>
+
+                <button
+                    wire:click="reassign({{ $device->id }})"
+                    @click="open = false"
+                    class="block w-full text-left px-4 py-2 text-yellow-600 dark:text-yellow-400 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >🔁 Reassign</button>
+            </div>
         </div>
     </div>
 </td>
-
-
 
                     </tr>
                 @empty
@@ -209,41 +206,50 @@
 </div>
     
 <script>
-function dropdownMenu(buttonEl) {
+function dropdownMenu() {
     return {
         open: false,
-        dropdownStyles: '',
+        style: '',
+
         toggle() {
             this.open = !this.open;
-            if (this.open) this.positionDropdown();
+            if (this.open) this.setPosition();
         },
-        positionDropdown() {
+
+        setPosition() {
             this.$nextTick(() => {
-                const button = buttonEl;
+                const button = this.$refs.button;
                 const dropdown = this.$refs.dropdown;
-                const rect = button.getBoundingClientRect();
+
+                const buttonRect = button.getBoundingClientRect();
                 const dropdownHeight = dropdown.offsetHeight;
-                const windowHeight = window.innerHeight;
 
-                // Determine space direction
-                const direction = (rect.bottom + dropdownHeight > windowHeight) ? 'up' : 'down';
+                const spaceBelow = window.innerHeight - buttonRect.bottom;
+                const spaceAbove = buttonRect.top;
 
-                const top = direction === 'down'
-                    ? rect.bottom + window.scrollY + 4
-                    : rect.top + window.scrollY - dropdownHeight - 4;
+                let top = buttonRect.bottom;
+                let left = buttonRect.right - dropdown.offsetWidth;
 
-                const left = rect.right + window.scrollX - dropdown.offsetWidth;
+                // Flip up if there's not enough space below
+                if (spaceBelow < dropdownHeight && spaceAbove >= dropdownHeight) {
+                    top = buttonRect.top - dropdownHeight;
+                }
 
-                this.dropdownStyles = `top: ${top}px; left: ${left}px`;
+                // Set the style string
+                this.style = `top:${top}px; left:${left}px;`;
             });
         },
+
         init() {
             window.addEventListener('scroll', () => { this.open = false });
             window.addEventListener('resize', () => { this.open = false });
         }
-    }
+    };
 }
 </script>
+
+
+
 
 
 </div>
