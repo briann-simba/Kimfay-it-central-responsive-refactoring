@@ -15,6 +15,7 @@ class Devices extends Component
     public string $search = '';
 
     public $showEditModal = false;
+    public $reassignDeviceModal = false;
 
     public $user_id;
     public $name;
@@ -40,6 +41,18 @@ class Devices extends Component
         $this->value = $device->value;
 
         $this->showEditModal = true;
+    }
+
+    public function reassignDevice($deviceId)
+    {
+        $device = Device::findOrFail($deviceId);
+        $this->deviceId = $device->id;
+        $this->user_id = $device->user_id;
+        $this->name = $device->name;
+        $this->color = $device->color;
+        $this->category = $device->category;
+        $this->value = $device->value;
+        $this->reassignDeviceModal = true;
     }
 
     public function update()

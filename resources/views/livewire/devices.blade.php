@@ -98,7 +98,7 @@
         @click="close"
         class="block w-full text-left px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-600 hover:text-blue-700 dark:hover:text-white transition-colors"
     >
-        ✏️ Edit
+        <b>    ✏️ Edit</b>
     </button>
 
     <button
@@ -107,15 +107,15 @@
         @click="close"
         class="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-600 hover:text-red-700 dark:hover:text-white transition-colors"
     >
-        🗑️ Delete
+        <b>    🗑️ Delete </b>
     </button>
 
     <button
-        wire:click="reassign({{ $device->id }})"
+        wire:click="reassignDevice({{ $device->id }})"
         @click="close"
         class="block w-full text-left px-4 py-2 text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-600 hover:text-yellow-700 dark:hover:text-white transition-colors"
     >
-        🔁 Assign/Reassign
+        <b>    🔁 Assign/Reassign</b>
     </button>
 </div>
 
@@ -139,6 +139,77 @@
     <div class="pt-2 flex justify-end">
         {{ $devices->links() }}
     </div>
+<div x-data="{ show: @entangle('reassignDeviceModal') }"
+     x-show="show"
+     x-cloak
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+     x-transition>
+
+    <!-- Modal Box -->
+<div @click.away="show = false"
+     class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-xl p-6 sm:p-8"
+     x-transition.scale>
+    <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Assign or Reassign Device</h2>
+
+    <form wire:submit.prevent="assign" class="space-y-5">
+
+        <!-- New User Dropdown -->
+        <div>
+            <label for="new_user_id" class="block text-sm font-medium text-gray-700 dark:text-white">Select User</label>
+            <select id="new_user_id" wire:model.defer="new_user_id"
+                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
+                           focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <option value="">-- Select user --</option>
+                <option value="1">John Doe</option>
+                <option value="2">Jane Smith</option>
+            </select>
+            @error('new_user_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Reason Dropdown -->
+        <div>
+            <label for="reason" class="block text-sm font-medium text-gray-700 dark:text-white">Reason</label>
+            <select id="reason" wire:model.defer="reason"
+                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
+                           focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <option value="">-- Select reason --</option>
+                <option value="termination">Termination</option>
+                <option value="replacement">Replacement</option>
+                <option value="faulty computer">Faulty Computer</option>
+            </select>
+            @error('reason') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Comment -->
+        <div>
+            <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-white">Comment</label>
+            <textarea id="comment" wire:model.defer="comment" rows="3"
+                      class="mt-1 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm
+                             focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+            @error('comment') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-end gap-2 pt-4">
+            <button type="button"
+                    @click="show = false"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg
+                           hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
+                Cancel
+            </button>
+            <button type="submit"
+                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
+                           hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+                           dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                Assign
+            </button>
+        </div>
+    </form>
+</div>
+
+</div>
+
+
 
     
 <!-- Modal with Alpine entangled to Livewire -->
