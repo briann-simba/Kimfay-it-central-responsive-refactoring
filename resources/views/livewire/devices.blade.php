@@ -61,20 +61,61 @@
                         <td class="px-6 py-4">{{ $device->color }}</td>
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
-                        <td class="px-6 py-4 text-right space-x-2">
-                          <!-- Button that triggers edit -->
-                            <button
-                                wire:click="loadDevice({{ $device->id }})"
-                                class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-150">
-                                ✏️ Edit
-                            </button>
-                            <button
-                                wire:click="delete({{ $device->id }})"
-                                onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
-                                class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 border border-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-150">
-                                🗑️ Delete
-                            </button>
-                        </td>
+     <td class="px-6 py-4 text-right relative">
+    <div x-data="dropdownMenu($refs.button)"
+         x-init="init"
+         class="inline-block relative"
+    >
+        <!-- Trigger Button -->
+        <button x-ref="button" @click="toggle" type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Actions
+            <svg class="w-2.5 h-2.5 ml-2" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-width="2" d="M1 1l4 4 4-4" />
+            </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div x-show="open"
+             x-transition
+             x-cloak
+             x-ref="dropdown"
+             @click.away="open = false"
+             class="fixed z-50 w-48 bg-white dark:bg-gray-700 divide-y divide-gray-100 rounded-lg shadow-lg text-sm text-gray-700 dark:text-gray-200"
+             :style="dropdownStyles"
+        >
+            <ul class="py-2">
+                <li>
+                    <button wire:click="loadDevice({{ $device->id }})"
+                        @click="open = false"
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        ✏️ Edit
+                    </button>
+                </li>
+                <li>
+                    <button
+                        wire:click="delete({{ $device->id }})"
+                        onclick="confirm('Are you sure you want to delete this device?') || event.stopImmediatePropagation()"
+                        @click="open = false"
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-600 dark:text-red-400">
+                        🗑️ Delete
+                    </button>
+                </li>
+                <li>
+                    <button
+                        wire:click="reassign({{ $device->id }})"
+                        @click="open = false"
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-yellow-600 dark:text-yellow-400">
+                        🔁 Unassign / Reassign
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</td>
+
+
+
                     </tr>
                 @empty
                     <tr>
@@ -167,5 +208,42 @@
     </div>
 </div>
     
+<script>
+function dropdownMenu(buttonEl) {
+    return {
+        open: false,
+        dropdownStyles: '',
+        toggle() {
+            this.open = !this.open;
+            if (this.open) this.positionDropdown();
+        },
+        positionDropdown() {
+            this.$nextTick(() => {
+                const button = buttonEl;
+                const dropdown = this.$refs.dropdown;
+                const rect = button.getBoundingClientRect();
+                const dropdownHeight = dropdown.offsetHeight;
+                const windowHeight = window.innerHeight;
+
+                // Determine space direction
+                const direction = (rect.bottom + dropdownHeight > windowHeight) ? 'up' : 'down';
+
+                const top = direction === 'down'
+                    ? rect.bottom + window.scrollY + 4
+                    : rect.top + window.scrollY - dropdownHeight - 4;
+
+                const left = rect.right + window.scrollX - dropdown.offsetWidth;
+
+                this.dropdownStyles = `top: ${top}px; left: ${left}px`;
+            });
+        },
+        init() {
+            window.addEventListener('scroll', () => { this.open = false });
+            window.addEventListener('resize', () => { this.open = false });
+        }
+    }
+}
+</script>
+
 
 </div>
