@@ -24,12 +24,18 @@
 
 
         <div>
-            <a href="{{ route('pendingapproval') }}"
-                class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-yellow-900 bg-yellow-200 rounded-lg hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-400 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                Pending Approval
-            </a>
-        </div>   
+    <a href="{{ route('pendingapproval') }}"
+        class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-yellow-900 bg-yellow-200 rounded-lg hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-400 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+        ⏳ Pending Approval
+    </a>
+</div>
   
+  <div>
+    <a href="#"
+        class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 rounded-lg hover:bg-blue-300 focus:ring-4 focus:outline-none focus:ring-blue-400 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        📜 Device History
+    </a>
+</div>
        
     <div>
         <!-- Add Inventory Button -->
