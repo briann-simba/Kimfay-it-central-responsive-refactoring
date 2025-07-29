@@ -139,74 +139,129 @@
     <div class="pt-2 flex justify-end">
         {{ $devices->links() }}
     </div>
-<div x-data="{ show: @entangle('reassignDeviceModal') }"
-     x-show="show"
-     x-cloak
-     class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
-     x-transition>
+
+<div 
+    x-data="{
+        show: @entangle('reassignDeviceModal'),
+        mode: @entangle('assignMode')
+    }"
+    x-init="$watch('show', value => { if (value && !mode) mode = 'assign' })"
+    x-show="show"
+    x-cloak
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+    x-transition
+>
+
+
 
     <!-- Modal Box -->
-<div @click.away="show = false"
-     class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-xl p-6 sm:p-8"
-     x-transition.scale>
-    <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Assign or Reassign Device</h2>
+    <div 
+        @click.away="show = false"
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-xl p-6 sm:p-8"
+        x-transition.scale
+    >
 
-    <form wire:submit.prevent="assign" class="space-y-5">
+        <!-- Heading -->
+        <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white" 
+            x-text="mode === 'assign' ? 'Assign Device' : 'Reassign Device'">
+        </h2>
 
-        <!-- New User Dropdown -->
-        <div>
-            <label for="new_user_id" class="block text-sm font-medium text-gray-700 dark:text-white">Select User</label>
-            <select id="new_user_id" wire:model.defer="new_user_id"
-                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
-                           focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <option value="">-- Select user --</option>
-                <option value="1">John Doe</option>
-                <option value="2">Jane Smith</option>
-            </select>
-            @error('new_user_id') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-        </div>
+        <!-- Form -->
+        <form wire:submit.prevent="assign" class="space-y-5">
 
-        <!-- Reason Dropdown -->
-        <div>
-            <label for="reason" class="block text-sm font-medium text-gray-700 dark:text-white">Reason</label>
-            <select id="reason" wire:model.defer="reason"
-                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
-                           focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <option value="">-- Select reason --</option>
-                <option value="termination">Termination</option>
-                <option value="replacement">Replacement</option>
-                <option value="faulty computer">Faulty Computer</option>
-            </select>
-            @error('reason') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-        </div>
+            <!-- Previous User (Reassign Mode Only) -->
+            <div x-show="mode === 'reassign'" x-transition>
+                <label for="previous_user" class="block text-sm font-medium text-gray-700 dark:text-white">
+                    Previous User
+                </label>
+                <input type="text" id="previous_user" readonly
+                    value="{{ _('Dennis Kememwa') }}"
+                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-100 p-2.5 text-sm
+                           dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+            </div>
 
-        <!-- Comment -->
-        <div>
-            <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-white">Comment</label>
-            <textarea id="comment" wire:model.defer="comment" rows="3"
-                      class="mt-1 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm
-                             focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
-            @error('comment') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-        </div>
+            <!-- New User Dropdown -->
+            <div>
+                <label for="new_user_id" class="block text-sm font-medium text-gray-700 dark:text-white">Select User</label>
+                <select id="new_user_id" wire:model.defer="new_user_id"
+                        class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
+                               focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="">-- Select user --</option>
+                    <option value="1">John Doe</option>
+                    <option value="2">Jane Smith</option>
+                </select>
+                @error('new_user_id') 
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
+                @enderror
+            </div>
 
-        <!-- Action Buttons -->
-        <div class="flex justify-end gap-2 pt-4">
-            <button type="button"
-                    @click="show = false"
-                    class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg
-                           hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
-                Cancel
-            </button>
-            <button type="submit"
-                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
-                           hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
-                           dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
-                Assign
-            </button>
-        </div>
-    </form>
-</div>
+            <!-- Reason -->
+            <div>
+                <label for="reason" class="block text-sm font-medium text-gray-700 dark:text-white">Reason</label>
+                <select id="reason" wire:model.defer="reason"
+                        class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
+                               focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="">-- Select reason --</option>
+                    <option value="termination">Termination</option>
+                    <option value="replacement">Replacement</option>
+                    <option value="faulty computer">Faulty Computer</option>
+                </select>
+                @error('reason') 
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
+                @enderror
+            </div>
 
+            <!-- Comment -->
+            <div>
+                <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-white">Comment</label>
+                <textarea id="comment" wire:model.defer="comment" rows="3"
+                          class="mt-1 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm
+                                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+                @error('comment') 
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
+                @enderror
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="flex justify-between items-center pt-4">
+                <!-- Toggle Button -->
+                <button type="button"
+                        @click="mode = mode === 'assign' ? 'reassign' : 'assign'"
+                        class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                               border border-blue-600 text-blue-600 hover:bg-blue-50
+                               dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-900/20 transition">
+                    <svg x-show="mode === 'assign'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M17 16l4-4m0 0l-4-4m4 4H7" />
+                    </svg>
+                    <svg x-show="mode === 'reassign'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M7 8l-4 4m0 0l4 4m-4-4h14" />
+                    </svg>
+                    <span x-text="mode === 'assign' ? 'Switch to Reassign' : 'Switch to Assign'"></span>
+                </button>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-2">
+                    <button type="button"
+                            @click="show = false"
+                            class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg
+                                   hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
+                                   hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+                                   dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                        <span x-text="mode === 'assign' ? 'Assign' : 'Reassign'"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 

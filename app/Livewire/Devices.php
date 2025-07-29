@@ -16,6 +16,8 @@ class Devices extends Component
 
     public $showEditModal = false;
     public $reassignDeviceModal = false;
+    public $assignMode = 'assign'; // default mode
+
 
     public $user_id;
     public $name;
