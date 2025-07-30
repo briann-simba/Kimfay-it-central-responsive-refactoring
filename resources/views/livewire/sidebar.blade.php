@@ -51,7 +51,7 @@
       </a>
     </li>
     <li>
-      <a href="#"
+      <a href="{{route('devicehistory')}}"
         class="flex items-center w-full p-2 text-sm text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100 dark:text-white dark:hover:bg-gray-700">
         📜 Device History
       </a>
