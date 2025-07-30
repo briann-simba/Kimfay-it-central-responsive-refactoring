@@ -13,6 +13,20 @@ class AssignDeviceLog extends Model
     /** @use HasFactory<\Database\Factories\AssignDeviceLogFactory> */
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */protected $fillable = [
+        'device_id',
+        'user_id',
+        'action_by',
+        'action_type',
+        'action_date',
+        'reason',
+        'comment',
+    ];
+
     public function device(): BelongsTo
     {
         return $this->belongsTo(Device::class);

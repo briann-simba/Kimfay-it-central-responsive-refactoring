@@ -59,53 +59,48 @@ class Devices extends Component
         $this->showEditModal = true;
     }
 
-
-    public function unassignDevice($deviceId)
+    // when unassign button is clicked, this function will be called the modal part
+    public function unassignDevice()
     {
-
-        $device = Device::findOrFail($deviceId);
-
-        $this->deviceId = $device->id;
-        $this->user_id = $device->user_id;
-        $this->name = $device->name;
-        $this->color = $device->color;
-        $this->category = $device->category;
-        $this->value = $device->value;
+        $device = Device::findOrFail($this->deviceId);
 
         $this->validate([
             'reason' => 'required|string|max:255',
             'comment' => 'required|string|max:500',
         ]);
-        // Unassign the device
-       
+
         $device->update([
             'user_id' => null,
         ]);
 
-        // create a log entry for unassignment
         AssignDeviceLog::create([
             'device_id' => $device->id,
-            'user_id' => $this->currentUser,
+            'user_id' => $this->user_id,
             'action_by' => auth()->id(),
             'action_type' => 'unassign',
             'action_date' => now(),
             'reason' => $this->reason,
             'comment' => $this->comment,
         ]);
-       
 
-        session()->flash('message', 'Device unassigned successfully.');
-
-       
+        $this->dispatch('notify', [
+            'type' => 'success',
+            'title' => 'Done',
+            'message' => 'Device reassigned!'
+        ]);
 
         $this->reassignDeviceModal = false;
+
+        $this->reset(['reason', 'comment', 'deviceId', 'user_id']); // optional cleanup
     }
 
 
 
+// when unassign buttton is clicked, this function will be called and modal will be opened
     public function reassignDevice($deviceId)
     {
         $device = Device::findOrFail($deviceId);
+        $this->currentUser = $device->user?->name;
         $this->deviceId = $device->id;
         $this->user_id = $device->user_id;
         $this->name = $device->name;
