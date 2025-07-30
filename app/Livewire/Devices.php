@@ -16,8 +16,7 @@ class Devices extends Component
 
     public $showEditModal = false;
     public $reassignDeviceModal = false;
-    public $assignMode = 'assign'; // default mode
-
+    public $showAssignModal = false;
 
     public $user_id;
     public $name;
@@ -29,6 +28,14 @@ class Devices extends Component
  
     protected $listeners = ['refresh-devices' => '$refresh', 
     'editDevice' => 'loadDevice'];
+
+    public function openAssignModal($deviceId)
+{
+    // $this->assignDeviceId = $deviceId;
+    // $this->reset(['newUser', 'assignReason', 'assignComment']);
+    $this->showAssignModal = true;
+}
+
 
     public function loadDevice($id)
     {

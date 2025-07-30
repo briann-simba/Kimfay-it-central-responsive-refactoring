@@ -111,11 +111,10 @@
 
             <!-- Assign Button -->
             <button
-                wire:click="reassignDevice({{ $device->id }}, 'assign')"
-                @click="close"
-                class="block w-full text-left px-4 py-2 text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-600 hover:text-yellow-700 dark:hover:text-white transition-colors"
+                wire:click="openAssignModal({{ $device->id }})"
+                class="block w-full text-left px-4 py-2 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-600 hover:text-green-700 dark:hover:text-white transition-colors"
             >
-                🔁 <strong>Assign</strong>
+                ✅ <strong>Assign</strong>
             </button>
 
             <!-- Unassign Button -->
@@ -149,6 +148,77 @@
     <div class="pt-2 flex justify-end">
         {{ $devices->links() }}
     </div>
+
+
+    <!-- Assign Device Modal -->
+    <div 
+    x-data="{ show: @entangle('showAssignModal') }"
+    x-show="show"
+    x-cloak
+    x-trap.noscroll="show"
+    x-transition
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+    @keydown.escape.window="show = false"
+>
+    <div 
+        class="relative w-full max-w-3xl mx-4 sm:mx-6 md:mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden text-sm"
+        @click.away="show = false"
+    >
+        <div class="px-5 py-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 class="text-base font-semibold text-gray-800 dark:text-white text-center">
+                Assign Device
+            </h2>
+        </div>
+
+        <form wire:submit.prevent="assignDevice" class="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 py-6">
+            <div>
+                <label class="block text-gray-600 dark:text-white mb-1">New User</label>
+                <select wire:model.defer="newUser"
+                    class="w-full border rounded-md px-3 py-2 bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                    <option value="">-- Select User --</option>
+                    <option value="dennis">Dennis Kememwa</option>
+                    <option value="susan">Susan Wanjiru</option>
+                    <option value="brian">Brian Ochieng</option>
+                    <option value="anita">Anita Mwikali</option>
+                    <option value="james">James Otieno</option>
+                </select>
+                @error('newUser')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-600 dark:text-white mb-1">Reason for Assignment</label>
+                <select wire:model.defer="assignReason"
+                    class="w-full border rounded-md px-3 py-2 bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                    <option value="">-- Select Reason --</option>
+                    <option value="new-hire">New Hire</option>
+                    <option value="replacement">Replacement</option>
+                    <option value="relocation">Relocation</option>
+                </select>
+                @error('assignReason')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-gray-600 dark:text-white mb-1">Comment</label>
+                <textarea wire:model.defer="assignComment" rows="4"
+                    class="w-full border rounded-md px-3 py-2 bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                    placeholder="Optional notes..."></textarea>
+                @error('assignComment')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <div class="col-span-1 md:col-span-2 flex justify-end gap-3 pt-2">
+                <button type="button" @click="show = false"
+                    class="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
+                    Cancel
+                </button>
+                <button type="submit"
+                    class="px-4 py-2 text-sm text-white bg-green-600 rounded-md hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
+                    Assign Device
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <div 
     x-data="{ show: @entangle('reassignDeviceModal') }"
