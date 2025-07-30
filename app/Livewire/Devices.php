@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Device;
+use App\Models\AssignDeviceLog;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 
 
@@ -25,6 +27,9 @@ class Devices extends Component
     public $category;
     public $value;
     public $deviceId;
+    public $currentUser;
+    public $reason;
+    public $comment;
 
  
     protected $listeners = ['refresh-devices' => '$refresh', 
@@ -44,6 +49,7 @@ class Devices extends Component
 
 
         $this->deviceId = $device->id;
+        $this->currentUser = $device->user_id;
         $this->user_id = $device->user_id;
         $this->name = $device->name;
         $this->color = $device->color;
@@ -52,6 +58,50 @@ class Devices extends Component
 
         $this->showEditModal = true;
     }
+
+
+    public function unassignDevice($deviceId)
+    {
+
+        $device = Device::findOrFail($deviceId);
+
+        $this->deviceId = $device->id;
+        $this->user_id = $device->user_id;
+        $this->name = $device->name;
+        $this->color = $device->color;
+        $this->category = $device->category;
+        $this->value = $device->value;
+
+        $this->validate([
+            'reason' => 'required|string|max:255',
+            'comment' => 'required|string|max:500',
+        ]);
+        // Unassign the device
+       
+        $device->update([
+            'user_id' => null,
+        ]);
+
+        // create a log entry for unassignment
+        AssignDeviceLog::create([
+            'device_id' => $device->id,
+            'user_id' => $this->currentUser,
+            'action_by' => auth()->id(),
+            'action_type' => 'unassign',
+            'action_date' => now(),
+            'reason' => $this->reason,
+            'comment' => $this->comment,
+        ]);
+       
+
+        session()->flash('message', 'Device unassigned successfully.');
+
+       
+
+        $this->reassignDeviceModal = false;
+    }
+
+
 
     public function reassignDevice($deviceId)
     {

@@ -259,30 +259,36 @@
         </div>
 
         <!-- Form Content -->
-        <form wire:submit.prevent="reassignDevice" class="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 py-6">
+        <form wire:submit.prevent="unassignDevice" class="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 py-6">
             <!-- Left: Device Info -->
             <div>
                 <h3 class="text-base font-semibold mb-4 text-gray-700 dark:text-white">Device Details</h3>
                 <div class="space-y-3 text-sm">
                     <div>
+                        <label class="block text-gray-600 dark:text-white">Current User</label>
+                        <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md border border-gray-200 dark:border-gray-600">
+                            {{$device->user->name}}
+                        </div>
+                    </div>
+                    <div>
                         <label class="block text-gray-600 dark:text-white">Device Name</label>
-                        <input type="text" value="HP EliteBook 840" readonly
-                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                        <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md border border-gray-200 dark:border-gray-600">
+                            {{$device->name}}
+                        </div>
                     </div>
+
                     <div>
-                        <label class="block text-gray-600 dark:text-white">Serial Number</label>
-                        <input type="text" value="SN-123456" readonly
-                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                        <label class="block text-gray-600 dark:text-white">Color</label>
+                        <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md border border-gray-200 dark:border-gray-600">
+                            {{$device->color}}
+                        </div>
                     </div>
+                    
                     <div>
-                        <label class="block text-gray-600 dark:text-white">Assigned User</label>
-                        <input type="text" value="Dennis Kememwa" readonly
-                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-                    </div>
-                    <div>
-                        <label class="block text-gray-600 dark:text-white">Location</label>
-                        <input type="text" value="Nairobi HQ" readonly
-                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                        <label class="block text-gray-600 dark:text-white">Device Category</label>
+                        <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md border border-gray-200 dark:border-gray-600">
+                            {{$device->category}}
+                        </div>
                     </div>
                 </div>
             </div>
