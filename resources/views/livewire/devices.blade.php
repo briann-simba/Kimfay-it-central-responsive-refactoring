@@ -51,6 +51,7 @@
                     <th class="px-6 py-3">Color</th>
                     <th class="px-6 py-3">Category</th>
                     <th class="px-6 py-3 text-right">Value</th>
+                    <th class="px-6 py-3 text-right">Status</th>
                     <th class="px-6 py-3 text-right">Actions</th>
                 </tr>
             </thead>
@@ -61,6 +62,18 @@
                         <td class="px-6 py-4">{{ $device->color }}</td>
                         <td class="px-6 py-4">{{ $device->category }}</td>
                         <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
+                        <td class="px-6 py-4">
+    @if($device->user_id)
+        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-200">
+            Assigned
+        </span>
+    @else
+        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full dark:bg-red-900 dark:text-red-200">
+            Unassigned
+        </span>
+    @endif
+</td>
+
    <td class="px-6 py-4 text-right">
     <div x-data="dropdownMenu()" x-init="init()" class="relative inline-block text-left w-full sm:w-auto">
         <!-- Action Button -->
@@ -109,15 +122,18 @@
                 🗑️ <strong>Delete</strong>
             </button>
 
-            <!-- Assign Button -->
-            <button
-                wire:click="openAssignModal({{ $device->id }})"
-                class="block w-full text-left px-4 py-2 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-600 hover:text-green-700 dark:hover:text-white transition-colors"
-            >
-                ✅ <strong>Assign</strong>
-            </button>
-
-            <!-- Unassign Button -->
+        @if (!$device->user_id)
+            <!-- Assign Button only when it is not attatched to a user-->
+                    <button
+                        wire:click="openAssignModal({{ $device->id }})"
+                        class="block w-full text-left px-4 py-2 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-600 hover:text-green-700 dark:hover:text-white transition-colors"
+                    >
+                        ✅ <strong>Assign</strong>
+                    </button>
+        @endif
+      
+    @if($device->user_id)
+     <!-- Unassign Button -->
             <button
                 wire:click="reassignDevice({{ $device->id }}, 'unassign')"
                 @click="close"
@@ -125,8 +141,9 @@
             >
                 🔁 <strong>Unassign</strong>
             </button>
-            
-        </div>
+
+    @endif
+ </div>
 
         </div>
     </div>
