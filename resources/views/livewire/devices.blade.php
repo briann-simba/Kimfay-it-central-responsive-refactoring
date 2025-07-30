@@ -151,124 +151,90 @@
     </div>
 
 <div 
-    x-data="{
-        show: @entangle('reassignDeviceModal'),
-        mode: @entangle('assignMode')
-    }"
-    x-init="$watch('show', value => { if (value && !mode) mode = 'assign' })"
+    x-data="{ show: @entangle('reassignDeviceModal') }"
     x-show="show"
     x-cloak
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+    x-trap.noscroll="show"
     x-transition
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+    @keydown.escape.window="show = false"
 >
-
-
-
     <!-- Modal Box -->
     <div 
+        class="relative w-full max-w-3xl mx-4 sm:mx-6 md:mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden"
         @click.away="show = false"
-        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-xl p-6 sm:p-8"
-        x-transition.scale
     >
+        <!-- Header -->
+        <div class="px-5 py-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white text-center">
+                Unassign Device
+            </h2>
+        </div>
 
-        <!-- Heading -->
-        <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white" 
-            x-text="mode === 'assign' ? 'Assign Device' : 'Reassign Device'">
-        </h2>
-
-        <!-- Form -->
-        <form wire:submit.prevent="assign" class="space-y-5">
-
-            <!-- Previous User (Reassign Mode Only) -->
-            <div x-show="mode === 'reassign'" x-transition>
-                <label for="previous_user" class="block text-sm font-medium text-gray-700 dark:text-white">
-                    Previous User
-                </label>
-                <input type="text" id="previous_user" readonly
-                    value="{{ _('Dennis Kememwa') }}"
-                    class="mt-1 w-full rounded-lg border-gray-300 bg-gray-100 p-2.5 text-sm
-                           dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
-            </div>
-
-            <!-- New User Dropdown -->
+        <!-- Form Content -->
+        <form wire:submit.prevent="reassignDevice" class="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 py-6">
+            <!-- Left: Device Info -->
             <div>
-                <label for="new_user_id" class="block text-sm font-medium text-gray-700 dark:text-white">Select User</label>
-                <select id="new_user_id" wire:model.defer="new_user_id"
-                        class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
-                               focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    <option value="">-- Select user --</option>
-                    <option value="1">John Doe</option>
-                    <option value="2">Jane Smith</option>
-                </select>
-                @error('new_user_id') 
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
-                @enderror
-            </div>
-
-            <!-- Reason -->
-            <div>
-                <label for="reason" class="block text-sm font-medium text-gray-700 dark:text-white">Reason</label>
-                <select id="reason" wire:model.defer="reason"
-                        class="mt-1 w-full rounded-lg border-gray-300 bg-gray-50 p-2.5 text-sm
-                               focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    <option value="">-- Select reason --</option>
-                    <option value="termination">Termination</option>
-                    <option value="replacement">Replacement</option>
-                    <option value="faulty computer">Faulty Computer</option>
-                </select>
-                @error('reason') 
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
-                @enderror
-            </div>
-
-            <!-- Comment -->
-            <div>
-                <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-white">Comment</label>
-                <textarea id="comment" wire:model.defer="comment" rows="3"
-                          class="mt-1 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm
-                                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
-                @error('comment') 
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
-                @enderror
-            </div>
-
-            <!-- Footer Buttons -->
-            <div class="flex justify-between items-center pt-4">
-                <!-- Toggle Button -->
-                <button type="button"
-                        @click="mode = mode === 'assign' ? 'reassign' : 'assign'"
-                        class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-                               border border-blue-600 text-blue-600 hover:bg-blue-50
-                               dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-900/20 transition">
-                    <svg x-show="mode === 'assign'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M17 16l4-4m0 0l-4-4m4 4H7" />
-                    </svg>
-                    <svg x-show="mode === 'reassign'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M7 8l-4 4m0 0l4 4m-4-4h14" />
-                    </svg>
-                    <span x-text="mode === 'assign' ? 'Switch to Reassign' : 'Switch to Assign'"></span>
-                </button>
-
-                <!-- Action Buttons -->
-                <div class="flex gap-2">
-                    <button type="button"
-                            @click="show = false"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg
-                                   hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
-                        Cancel
-                    </button>
-
-                    <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg
-                                   hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
-                                   dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
-                        <span x-text="mode === 'assign' ? 'Assign' : 'Reassign'"></span>
-                    </button>
+                <h3 class="text-base font-semibold mb-4 text-gray-700 dark:text-white">Device Details</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Device Name</label>
+                        <input type="text" value="HP EliteBook 840" readonly
+                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Serial Number</label>
+                        <input type="text" value="SN-123456" readonly
+                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Assigned User</label>
+                        <input type="text" value="Dennis Kememwa" readonly
+                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Location</label>
+                        <input type="text" value="Nairobi HQ" readonly
+                               class="w-full bg-gray-100 border rounded-md px-3 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600" />
+                    </div>
                 </div>
+            </div>
+
+            <!-- Right: Reason & Comment -->
+            <div>
+                <h3 class="text-base font-semibold mb-4 text-gray-700 dark:text-white">Unassignment Details</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Reason for Unassigning</label>
+                        <select wire:model.defer="reason"
+                                class="w-full border rounded-md px-3 py-2 bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                            <option value="">-- Select Reason --</option>
+                            <option value="terminated">User Terminated</option>
+                            <option value="transferred">Transferred</option>
+                            <option value="returned">Device Returned</option>
+                        </select>
+                        @error('reason')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 dark:text-white">Comment</label>
+                        <textarea wire:model.defer="comment" rows="5"
+                                  class="w-full border rounded-md px-3 py-2 bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                                  placeholder="Provide optional context for this unassignment..."></textarea>
+                        @error('comment')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="col-span-1 md:col-span-2 flex justify-end gap-3 pt-2">
+                <button type="button" @click="show = false"
+                        class="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600">
+                    Unassign Device
+                </button>
             </div>
         </form>
     </div>
