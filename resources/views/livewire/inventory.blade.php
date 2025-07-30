@@ -215,10 +215,24 @@
 
                                     <!-- User ID -->
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assigned User ID</label>
-                                        <input type="number" wire:model="user_id" id="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="e.g., 12">
-                                        @error('user_id') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                                    </div>
+                                    <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        Assigned User ID
+                                    </label>
+                                    
+                                    <select wire:model="user_id" id="user_id"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        
+                                        <option value="">-- None --</option>
+                                        <option value="1">User One</option>
+                                        <option value="2">User Two</option>
+                                        <option value="3">User Three</option>
+                                    </select>
+
+                                    @error('user_id')
+                                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
 
                                 </div>
 
