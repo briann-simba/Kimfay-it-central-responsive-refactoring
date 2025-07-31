@@ -79,36 +79,48 @@
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 dark:bg-green-200 dark:text-green-900 rounded-full">In use</span>
                                 @endif
                             </td>
-                            <td class="px-4 sm:px-6 py-4 text-right">
-                                <div x-data="{ open: false }">
-                                    <button
-                                        @click="open = true"
-                                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-                                        :disabled="{{ !$device->Line_Manager_Approval || $device->Line_Manager_Approval && $device->User_Accepted ? 'true' : 'false' }}"
-                                    >Accept</button>
+                     <td class="px-4 sm:px-6 py-4 text-right">
+    <div x-data="{ open: false }">
+        <button
+            @click="open = true"
+            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            @if (!$device->Line_Manager_Approval || ($device->Line_Manager_Approval && $device->User_Accepted))
+                disabled
+            @endif
+        >
+            Accept
+        </button>
 
-                                    <!-- Modal -->
-                                    <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/30 dark:bg-gray-900/40 px-4">
-                                        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-                                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Confirm Action</h2>
-                                            <p class="mb-6 text-sm text-gray-600 dark:text-gray-300">
-                                                Are you sure you want to accept this device?
-                                            </p>
-                                            <div class="flex justify-end gap-2">
-                                                <button @click="open = false"
-                                                        class="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 rounded">
-                                                    Cancel
-                                                </button>
-                                                <button
-                                                    @click="open = false; $nextTick(() => { @this.acceptDevice({{ $device->id }}) })"
-                                                    class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded">
-                                                    Confirm
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+        <!-- Modal -->
+        <div 
+            x-show="open" 
+            x-cloak 
+            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/30 dark:bg-gray-900/40 px-4"
+        >
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Confirm Action</h2>
+                <p class="mb-6 text-sm text-gray-600 dark:text-gray-300">
+                    Are you sure you want to accept this device?
+                </p>
+                <div class="flex justify-end gap-2">
+                    <button 
+                        @click="open = false"
+                        class="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 rounded"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        @click="open = false; $nextTick(() => { @this.acceptDevice({{ $device->id }}) })"
+                        class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded"
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+
                         </tr>
                     @empty
                         <tr>

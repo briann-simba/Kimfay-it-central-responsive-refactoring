@@ -22,7 +22,7 @@ class PendingApproval extends Component
     {
         $this->devices = $deviceId;
         $this->DeviceToApprove = Device::find($this->devices);
-        // Device::where('id', $this->devices)->update(['Line_Manager_approval' => 1]);
+        Device::where('id', $this->devices)->update(['Line_Manager_approval' => 1]);
         $this->user = User::where('id', $this->DeviceToApprove->user_id)->first();
 
         //send email notification
