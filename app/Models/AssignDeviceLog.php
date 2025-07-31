@@ -31,4 +31,10 @@ class AssignDeviceLog extends Model
     {
         return $this->belongsTo(Device::class);
     }
+    public function user() {
+    return $this->belongsTo(User::class);
+    }
+    public function actionByUser() {
+        return $this->belongsTo(User::class, 'action_by');
+    }
 }

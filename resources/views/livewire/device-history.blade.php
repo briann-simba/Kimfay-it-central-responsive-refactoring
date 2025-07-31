@@ -1,18 +1,19 @@
 <div>
 
-
 <div class="p-6 dark:bg-gray-900 min-h-screen">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Device Logs</h2>
+     <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">Device Logs</h2>
 
         <div class="flex flex-col md:flex-row gap-2 md:items-center">
             <input 
                 type="text" 
-                placeholder="Search device, user, action..."
+                placeholder="Search..."
+                wire:model.live.debounce.500ms="search"
                 class="px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600"
             />
 
             <button 
+                wire:click="export"
                 class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
             >
                 Export Report
@@ -34,32 +35,43 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                @foreach (range(1, 10) as $i)
-                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                    <td class="px-4 py-3 text-sm text-gray-800 dark:text-gray-300">2025-07-{{ 30 - $i }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">HP ProBook {{ 450 + $i }}</td>
-                    <td class="px-4 py-3 text-sm font-medium {{ $i % 2 == 0 ? 'text-green-600' : 'text-red-600' }}">
-                        {{ $i % 2 == 0 ? 'Assigned' : 'Unassigned' }}
-                    </td>
-                    <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">User {{ $i }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">Admin {{ $i }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">{{ $i % 2 == 0 ? 'Onboarding' : 'Exit' }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
-                        {{ $i % 2 == 0 ? 'New employee allocation' : 'Device returned to inventory' }}
-                    </td>
-                </tr>
-                @endforeach
+                @forelse ($logs as $log)
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <td class="px-4 py-3 text-sm text-gray-800 dark:text-gray-300">
+                            {{ \Carbon\Carbon::parse($log->action_date)->format('Y-m-d') }}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
+                            {{ $log->device->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-4 py-3 text-sm font-medium {{ $log->action_type === 'assign' ? 'text-green-600' : 'text-red-600' }}">
+                            {{ ucfirst($log->action_type) }}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
+                            {{ $log->user->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
+                            {{ $log->actionByUser->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
+                            {{ $log->reason }}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-white">
+                            {{ $log->comment }}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
+                                No Logs Found
+                            </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
     <div class="mt-4 flex justify-end">
-        <ul class="inline-flex -space-x-px text-sm">
-            <li><a href="#" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-l hover:bg-gray-300">Prev</a></li>
-            <li><a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-white">1</a></li>
-            <li><a href="#" class="px-3 py-1 bg-white dark:bg-gray-800 text-gray-800 dark:text-white">2</a></li>
-            <li><a href="#" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-r hover:bg-gray-300">Next</a></li>
-        </ul>
+        {{ $logs->links() }}
     </div>
 </div>
 

@@ -66,6 +66,8 @@ public function assignDevice(){
         'action_by' => auth()->id(),
         'action_type' => 'assign',
         'action_date' => now(),
+        'reason' => $this->reason,
+        'comment' => $this->comment,
     ]);
 
     $this->dispatch('notify', [
