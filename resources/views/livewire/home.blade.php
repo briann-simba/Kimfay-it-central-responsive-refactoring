@@ -64,16 +64,16 @@
                             <td class="px-4 sm:px-6 py-4">{{ $device->category }}</td>
                             <td class="px-4 sm:px-6 py-4 text-right">${{ number_format($device->value, 2) }}</td>
                             <td class="px-4 sm:px-6 py-4 text-right">
-                                @if(!$device->Line_Manager_Approval || !$device->User_Accepted)
+                                @if(!$device->line_manager_approval || !$device->user_accepted)
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 dark:bg-red-200 dark:text-red-900 rounded-full">Inactive</span>
                                 @else
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 dark:bg-green-200 dark:text-green-900 rounded-full">Active</span>
                                 @endif
                             </td>
                             <td class="px-4 sm:px-6 py-4 text-right">
-                                @if (!$device->Line_Manager_Approval)
+                                @if (!$device->line_manager_approval)
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 dark:bg-yellow-200 dark:text-yellow-900 rounded-full">Waiting for line manager approval</span>
-                                @elseif (!$device->User_Accepted)
+                                @elseif (!$device->user_accepted)
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-orange-800 bg-orange-100 dark:bg-orange-200 dark:text-orange-900 rounded-full">Waiting for user acceptance</span>
                                 @else
                                     <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 dark:bg-green-200 dark:text-green-900 rounded-full">In use</span>
@@ -84,7 +84,7 @@
         <button
             @click="open = true"
             class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            @if (!$device->Line_Manager_Approval || ($device->Line_Manager_Approval && $device->User_Accepted))
+            @if (!$device->line_manager_approval || ($device->line_manager_approval && $device->user_accepted))
                 disabled
             @endif
         >

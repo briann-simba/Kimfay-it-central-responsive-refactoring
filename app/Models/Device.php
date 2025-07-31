@@ -25,6 +25,8 @@ class Device extends Model
         'color',
         'category',
         'value',
+        'line_manager_approval',
+        'user_accepted',
     ];
 
     //this device belongs to one user

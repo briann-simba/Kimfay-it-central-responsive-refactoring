@@ -35,13 +35,49 @@ class Devices extends Component
     protected $listeners = ['refresh-devices' => '$refresh', 
     'editDevice' => 'loadDevice'];
 
+    // opens the assign modal
     public function openAssignModal($deviceId)
 {
-    // $this->assignDeviceId = $deviceId;
-    // $this->reset(['newUser', 'assignReason', 'assignComment']);
+    $device = Device::findOrFail($deviceId);
+    $this->name = $device->name;
+    $this->color = $device->color;
+    $this->category = $device->category;
+    $this->value = $device->value;
+    $this->deviceId = $deviceId;
     $this->showAssignModal = true;
 }
 
+//performs the assign action
+public function assignDevice(){
+    $this->validate([
+        'user_id' => 'required|exists:users,id',
+        'reason' => 'required|string|max:255',
+        'comment' => 'required|string|max:500',
+    ]);
+
+    $device = Device::findOrFail($this->deviceId);
+    $device->update([
+        'user_id' => $this->user_id,
+    ]);
+
+    AssignDeviceLog::create([
+        'device_id' => $device->id,
+        'user_id' => $this->user_id,
+        'action_by' => auth()->id(),
+        'action_type' => 'assign',
+        'action_date' => now(),
+    ]);
+
+    $this->dispatch('notify', [
+        'type' => 'success',
+        'title' => 'Done',
+        'message' => 'Device assigned successfully!'
+    ]);
+
+    $this->showAssignModal = false;
+
+    $this->reset(['user_id', 'deviceId','reason', 'comment']); // optional cleanup
+}
 
     public function loadDevice($id)
     {
@@ -69,9 +105,12 @@ class Devices extends Component
             'comment' => 'required|string|max:500',
         ]);
 
-        $device->update([
+       $device->update([
             'user_id' => null,
+            'line_manager_approval' => 0,
+            'user_accepted' => 0,
         ]);
+
 
         AssignDeviceLog::create([
             'device_id' => $device->id,
