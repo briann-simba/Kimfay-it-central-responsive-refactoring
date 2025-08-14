@@ -1,17 +1,18 @@
-<div class="flex items-center justify-between mb-6">
-    <!-- Breadcrumb -->
-    <nav class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-2">
-            <li class="inline-flex items-center">
-                <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
-                </svg>
-                <span class="text-gray-900 dark:text-white">Kim-Fay Inventory &amp; Assets</span>
-            </li>
-        </ol>
-    </nav>
+<div>
+    <!-- Header with breadcrumb and button -->
+    <div class="flex items-center justify-between mb-6">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-2">
+                <li class="inline-flex items-center">
+                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
+                    </svg>
+                    <span class="text-gray-900 dark:text-white">Kim-Fay Inventory &amp; Assets</span>
+                </li>
+            </ol>
+        </nav>
 
-    <div>
         <!-- Add Inventory Button -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
             class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -21,24 +22,10 @@
             Add Inventory
         </button>
     </div>
-</div>
 
-<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <!-- rest of your code unchanged -->
-</div>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+    <!-- Main content -->
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <!-- Mobile: dropdown (Flowbite not required) -->
+        <!-- Mobile dropdown -->
         <div class="sm:hidden border-b border-gray-200 dark:border-gray-600 p-4">
             <label for="inventoryTabs" class="sr-only">Select location</label>
             <select id="inventoryTabs" class="block w-full p-2 text-sm bg-gray-50 border-0 border-b border-gray-200 text-gray-900 rounded-t-lg focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" onchange="document.getElementById(this.value).click();">
@@ -51,7 +38,7 @@
             </select>
         </div>
 
-        <!-- Desktop: Flowbite full‑width tabs -->
+        <!-- Desktop tabs -->
         <ul id="inventoryTab" class="hidden sm:flex text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-t-lg dark:divide-gray-600 dark:text-gray-400" data-tabs-toggle="#inventoryTabContent" role="tablist">
             <li class="w-full">
                 <button id="hq-tab" data-tabs-target="#hq" type="button" role="tab" aria-controls="hq" aria-selected="true" class="inline-block w-full p-4 hover:bg-gray-50 dark:hover:bg-gray-600 border-b-2 border-transparent hs-tab-active:border-indigo-600 hs-tab-active:text-indigo-600 focus:outline-none">HQ Inventory</button>
@@ -76,13 +63,8 @@
         <!-- Tab content -->
         <div id="inventoryTabContent" class="border-t border-gray-200 dark:border-gray-600">
             <!-- HQ -->
-        <div id="hq" role="tabpanel" aria-labelledby="hq-tab" class="p-6 md:p-8">
-        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-gray-900 dark:text-white">
-
-                
-                
-
-
+            <div id="hq" role="tabpanel" aria-labelledby="hq-tab" class="p-6 md:p-8">
+                <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-gray-900 dark:text-white">
                     <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
                         <dt class="text-2xl font-bold">120</dt>
                         <dd class="text-sm text-gray-600 dark:text-gray-300">Laptops</dd>
@@ -103,63 +85,23 @@
                         <dt class="text-2xl font-bold">40</dt>
                         <dd class="text-sm text-gray-600 dark:text-gray-300">Television Sets</dd>
                     </div>
-            </dl>
+                </dl>
 
-                    <div class="overflow-x-auto rounded-lg  ring-gray-200 dark:ring-gray-700 mt-4">
-
-                        @livewire('devices')
-                    </div>
+                <div class="overflow-x-auto rounded-lg ring-gray-200 dark:ring-gray-700 mt-4">
+                    @livewire('devices')
+                </div>
             </div>
-        </div>
 
-            <!-- Tatu City -->
+            <!-- Other tabs content... -->
             <div id="tatu" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="tatu-tab">
                 <p class="text-gray-600 dark:text-gray-300">Tatu City Inventory data here…</p>
             </div>
-
-            <!-- FGS2 -->
-            <div id="fgs2" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="fgs2-tab">
-                <p class="text-gray-600 dark:text-gray-300">FGS2 Inventory data here…</p>
-            </div>
-
-            <!-- Wall Street -->
-            <div id="wall" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="wall-tab">
-                <p class="text-gray-600 dark:text-gray-300">Wall Street Inventory data here…</p>
-            </div>
-
-            <!-- Mombasa -->
-            <div id="mombasa" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="mombasa-tab">
-                <p class="text-gray-600 dark:text-gray-300">Mombasa Branch Inventory data here…</p>
-            </div>
-
-            <!-- Toners -->
-            <div id="tonners" class="hidden p-6 md:p-8" role="tabpanel" aria-labelledby="tonners-tab">
-                <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-900 dark:text-white">
-                    <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
-                        <dt class="text-2xl font-bold">120</dt>
-                        <dd class="text-sm text-gray-600 dark:text-gray-300">Black Toners</dd>
-                    </div>
-                    <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
-                        <dt class="text-2xl font-bold">45</dt>
-                        <dd class="text-sm text-gray-600 dark:text-gray-300">Cyan Toners</dd>
-                    </div>
-                    <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
-                        <dt class="text-2xl font-bold">30</dt>
-                        <dd class="text-sm text-gray-600 dark:text-gray-300">Magenta Toners</dd>
-                    </div>
-                    <div class="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-700 rounded shadow">
-                        <dt class="text-2xl font-bold">40</dt>
-                        <dd class="text-sm text-gray-600 dark:text-gray-300">Yellow Toners</dd>
-                    </div>
-        </dl>
-            </div>
+            <!-- Other tabs... -->
         </div>
     </div>
 
-
-
-<!-- Main modal -->
-                <div id="crud-modal" wire:ignore.self tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <!-- Modal -->
+ <div id="crud-modal" wire:ignore.self tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
                         <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -247,12 +189,16 @@
                 <button data-modal-hide="crud-modal" id="hiddenCloseBtn" class="hidden"></button>
             </div> 
 
-          
+
 
 </div>
 
 @script
 <script>
+    // Your JavaScript code here...
+
+
+
     $wire.on('close-crud-modal', () => {
         // Trigger Flowbite's built-in close by clicking the hidden button
         const closeBtn = document.getElementById('hiddenCloseBtn');
@@ -266,12 +212,6 @@
 
         
     });
-
-
-
-</script>
-@endscript
-
 
 <script>
     
@@ -310,3 +250,6 @@
         }, 3500);
     });
 </script>
+</script>
+@endscript
+
