@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\Device;
 use Livewire\Component;
 use App\Models\Division;
 use App\Models\Department;
@@ -63,7 +64,6 @@ class ManageUser extends Component
 
     public function addUser()
     {
-        $this->prepareAddUser();
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -86,7 +86,7 @@ class ManageUser extends Component
         $user->syncRoles($this->selectedRoles);
         
         $this->reset(['name', 'email', 'department_id', 'division_id', 'designation_id', 'selectedRoles']);
-        $this->dispatch('close-add-user-modal');
+          $this->dispatch('close-add-user-modal');
         $this->dispatch('userUpdatedOrAdded');
 
         $this->dispatch('notify', 
@@ -96,79 +96,58 @@ class ManageUser extends Component
         );
     }
 
-    public function assignRole()
-    {
-        $this->validate([
-            'selectedUserId' => 'required|exists:users,id',
-            'selectedRole' => 'required|string|in:'.implode(',', $this->roles),
-        ]);
-
-        $user = User::find($this->selectedUserId);
-        $user->syncRoles([$this->selectedRole]);
-
-        $this->reset(['selectedUserId', 'selectedRole']);
-        $this->dispatch('userUpdatedOrAdded');
-        
-        $this->dispatch('notify', 
-            type: 'success',
-            title: 'Role Updated',
-            message: "{$user->name}'s role has been updated successfully!"
-        );
-    }
-
     public function editUser($userId)
-    {
-        $user = User::with(['roles','department', 'division', 'designation'])->find($userId);
-        
-        $this->editingUserId = $userId;
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->department_id = $user->dep_id;
-        $this->division_id = $user->division_id;
-        $this->designation_id = $user->designation_id;
-        $this->editSelectedRoles = $user->roles->pluck('name')->toArray();
-        
-        $this->dispatch('open-edit-user-modal');
+{
+    $user = User::with(['roles','department', 'division', 'designation'])->find($userId);
+    
+    $this->editingUserId = $userId;
+    $this->name = $user->name;
+    $this->email = $user->email;
+    $this->department_id = $user->dep_id;
+    $this->division_id = $user->division_id;
+    $this->designation_id = $user->designation_id;
+    $this->editSelectedRoles = $user->roles->pluck('name')->toArray();
+}
+public function updateUser()
+{
+    $validated = $this->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,'.$this->editingUserId,
+        'department_id' => 'required|exists:departments,id',
+        'division_id' => 'required|exists:divisions,id',
+        'designation_id' => 'required|exists:designations,id',
+        'editSelectedRoles' => 'required|array',
+        'editSelectedRoles.*' => 'exists:roles,name',
+    ]);
+
+    $user = User::find($this->editingUserId);
+
+    if (!$user) {
+        $this->dispatch('notify', type: 'error', title: 'Error', message: "User not found.");
+        return;
     }
 
-    public function updateUser()
-    {
-        $validated = $this->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$this->editingUserId,
-            'department_id' => 'required|exists:departments,id',
-            'division_id' => 'required|exists:divisions,id',
-            'designation_id' => 'required|exists:designations,id',
-            'editSelectedRoles' => 'required|array',
-            'editSelectedRoles.*' => 'exists:roles,name',
-        ]);
+    $user->update([
+        'name' => $this->name,
+        'email' => $this->email,
+        'dep_id' => $this->department_id,
+        'division_id' => $this->division_id,
+        'designation_id' => $this->designation_id,
+    ]);
 
-        $user = User::find($this->editingUserId);
+    $user->syncRoles($this->editSelectedRoles);
+    $this->reset(['editingUserId', 'name', 'email', 'department_id', 'division_id', 'designation_id', 'editSelectedRoles']);
 
-        if (!$user) {
-            $this->dispatch('notify', type: 'error', title: 'Error', message: "User not found.");
-            return;
-        }
+    $this->dispatch('userUpdatedOrAdded');
+    $this->dispatch('notify', 
+        type: 'success',
+        title: 'Update User',
+        message: "User has been updated successfully!"
+    );
     
-        $user->update([
-            'name' => $this->name,
-            'email' => $this->email,
-            'department_id' => $this->department_id,
-            'division_id' => $this->division_id,
-            'designation_id' => $this->designation_id,
-        ]);
-    
-        $user->syncRoles($this->editSelectedRoles);
-        $this->reset(['editingUserId', 'name', 'email', 'department_id', 'division_id', 'designation_id', 'editSelectedRoles']);
-
-        $this->dispatch('close-edit-user-modal');
-        $this->dispatch('userUpdatedOrAdded');
-        $this->dispatch('notify', 
-            type: 'success',
-            title: 'Update User',
-            message: "User has been updated successfully!"
-        );
-    }
+    // Close the modal by dispatching an event
+    $this->dispatch('close-edit-user-modal');
+}
 
     public function deleteUser($userId)
     {

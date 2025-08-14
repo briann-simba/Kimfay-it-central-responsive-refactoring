@@ -1,4 +1,7 @@
-<div x-data="{ showAddUserModal: false, showEditUserModal: false }"
+<div x-data="{
+    showAddUserModal: false,
+    showEditUserModal: false,
+}" 
 @close-add-user-modal.window="showAddUserModal = false"
  @open-edit-user-modal.window="showEditUserModal = true"
   @close-edit-user-modal.window="showEditUserModal = false">
@@ -155,12 +158,10 @@
         </div>
     </div>
 
-    <!-- Edit User Modal -->
-    <div 
-        x-show="showEditUserModal"
-        class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
-        x-transition
-    >
+    <!-- Edit User Modal - Simplified version using wire:model -->
+    <div x-show="showEditUserModal"
+         class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+         x-transition>
         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[calc(100vh-2rem)] overflow-y-auto">
             <!-- Header -->
             <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-600">
@@ -176,7 +177,7 @@
                 </button>
             </div>
             
-            <!-- Body -->
+            <!-- Body - Using wire:model like the add user form -->
             <form wire:submit.prevent="updateUser" class="p-6 space-y-6">
                 <!-- Full width fields -->
                 <div class="grid grid-cols-1 gap-6 mb-6">
