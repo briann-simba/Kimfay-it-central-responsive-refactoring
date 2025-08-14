@@ -45,6 +45,7 @@
             x-show="showLogoutModal"
             class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
             x-transition
+             x-cloak
         >
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-md p-6">
             <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Confirm Logout</h2>

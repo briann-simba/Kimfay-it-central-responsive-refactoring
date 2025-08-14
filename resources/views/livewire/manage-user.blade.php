@@ -34,6 +34,7 @@
         x-show="showAddUserModal"
         class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
         x-transition
+         x-cloak
     >
         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[calc(100vh-2rem)] overflow-y-auto">
             <!-- Header -->
@@ -161,7 +162,8 @@
     <!-- Edit User Modal - Simplified version using wire:model -->
     <div x-show="showEditUserModal"
          class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
-         x-transition>
+         x-transition
+          x-cloak>
         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[calc(100vh-2rem)] overflow-y-auto">
             <!-- Header -->
             <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-600">

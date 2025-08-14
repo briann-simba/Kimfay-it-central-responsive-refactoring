@@ -28,6 +28,7 @@
   "
   class="bg-gray-50 dark:bg-gray-900"
 >
+<style> [x-cloak] { display: none !important; }</style>
   <!-- Navbar to edit navbar go to navbar livewire component-->
     <div>
       @livewire('navigation-bar')
