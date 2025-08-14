@@ -63,6 +63,7 @@ class ManageUser extends Component
 
     public function addUser()
     {
+        $this->prepareAddUser();
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
