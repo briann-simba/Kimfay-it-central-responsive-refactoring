@@ -18,7 +18,7 @@
         <ul class="space-y-2 font-medium">
             <!-- Dashboard -->
             <li>
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <a href="{{route('home')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V5h2v6H9zm0 4v-2h2v2H9z" />
                 </svg>
@@ -46,7 +46,7 @@
 
             <ul x-show="open" x-transition class="py-2 space-y-2">
                 <li>
-                    <a href="#" 
+                    <a href="{{route('inventory')}}" 
                     class="flex items-center p-2 pl-11 sm:text-xs md:text-base lg:text-sm  text-gray-900 rounded-lg hover:bg-green-200 dark:text-white dark:hover:bg-gray-700 whitespace-nowrap">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">🗂️</span>
                         Overview

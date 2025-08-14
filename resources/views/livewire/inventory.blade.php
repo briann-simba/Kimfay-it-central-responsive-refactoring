@@ -1,29 +1,16 @@
-<div>
+<div class="flex items-center justify-between mb-6">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-2">
+            <li class="inline-flex items-center">
+                <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
+                </svg>
+                <span class="text-gray-900 dark:text-white">Kim-Fay Inventory &amp; Assets</span>
+            </li>
+        </ol>
+    </nav>
 
-
-
-<x-slot name="navguide">
-
-@if (session()->has('message'))
-    <div class="mb-4 p-4 text-sm text-green-800 bg-green-100 border border-green-300 rounded-lg dark:bg-green-900 dark:text-green-200 dark:border-green-800">
-        {{ session('message') }}
-    </div>
-@endif
-    <div class="flex items-center justify-between mb-6">
-        <!-- Breadcrumb -->
-        <nav class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-2">
-                <li class="inline-flex items-center">
-                    <svg class="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path d="M7.05 5.05a.7.7 0 011 0l4.9 4.9a.7.7 0 010 1l-4.9 4.9a.7.7 0 01-1-1l4.4-4.4-4.4-4.4a.7.7 0 010-1z" />
-                    </svg>
-                    <span class="text-gray-900 dark:text-white">Kim‑Fay Inventory &amp; Assets</span>
-                </li>
-            </ol>
-        </nav>
-
-
-        
     <div>
         <!-- Add Inventory Button -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
@@ -34,9 +21,22 @@
             Add Inventory
         </button>
     </div>
-</x-slot>
+</div>
 
-<x-slot name="header1">
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <!-- rest of your code unchanged -->
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <!-- Mobile: dropdown (Flowbite not required) -->
         <div class="sm:hidden border-b border-gray-200 dark:border-gray-600 p-4">
@@ -156,7 +156,7 @@
         </div>
     </div>
 
-</x-slot>
+
 
 <!-- Main modal -->
                 <div id="crud-modal" wire:ignore.self tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -310,6 +310,3 @@
         }, 3500);
     });
 </script>
-
-
-</div>

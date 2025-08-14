@@ -1,5 +1,5 @@
 <div>
-    <x-slot name="navguide">
+   
         <nav class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-2">
                 <li class="inline-flex items-center">
@@ -10,10 +10,9 @@
                 </li>
             </ol>
         </nav>
-    </x-slot>
-
-    <x-slot name="header1">
-        <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl shadow-lg transition-all duration-500">
+    
+    
+        <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg transition-all duration-500">
             <!-- Title row -->
             <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
                 <div class="flex items-center gap-2">
@@ -133,5 +132,5 @@
                 </table>
             </div>
         </div>
-    </x-slot>
+   
 </div>

@@ -16,8 +16,8 @@
                 </svg>
             </button>
             <span class="text-base sm:text-sm md:text-sm lg:text-lg font-semibold text-gray-800 dark:text-white">
-        Hello Dennis Kememwa
-        </span>
+                Hello {{ auth()->user()->name }}
+            </span>
 
             </div>
 
