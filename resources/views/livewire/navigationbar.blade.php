@@ -1,40 +1,73 @@
 <div>
-  <div class="bg-gray-100 dark:bg-gray-900 p-4 mb-4 flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
     
-    <div class="text-lg font-semibold text-gray-800 dark:text-white">
-    <h5 class="font-extrabold text-gray-800 dark:text-white tracking-tight">Hello {{ auth()->user()->name }}</h5>
-    </div>
+    <nav x-data="{ showLogoutModal: false }" x-cloak class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-4 py-3 sm:px-6 lg:px-8 flex items-center justify-between">
+            
+            <!-- Left: Sidebar toggle + Greeting -->
+            <div class="flex items-center">
+            <!-- Sidebar toggle button (mobile only) -->
+            <button
+                @click="sidebarOpen = !sidebarOpen"
+                class="p-2 text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" />
+                </svg>
+            </button>
+            <span class="text-base sm:text-sm md:text-sm lg:text-lg font-semibold text-gray-800 dark:text-white">
+        Hello Dennis Kememwa
+        </span>
 
-    <nav class="w-full md:w-auto" aria-label="Breadcrumb">
-      <ol class="flex flex-wrap items-center space-x-1 md:space-x-2 rtl:space-x-reverse text-sm">
-        <li class="flex items-center">
-          <a href="{{ route('home') }}" class="inline-flex items-center text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <svg class="w-4 h-4 me-1.5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-            </svg>
-            <strong>Home</strong> 
-          </a>
-        </li>
+            </div>
 
-        <li class="flex items-center">
-          <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-          </svg>
-          <a href="#"
-             onclick="window.dispatchEvent(new CustomEvent('open-logout-modal'))"
-             class="text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <strong>Logout</strong>
-          </a>
-        </li>
+            <!-- Right: Logout button -->
+            <div>
+            <button
+                @click="showLogoutModal = true"
+                class="flex items-center px-2 sm:px-4 py-1 sm:py-2 
+                    text-xs sm:text-sm font-medium text-white 
+                    bg-red-600 rounded-lg hover:bg-red-700 
+                    focus:outline-none focus:ring-2 focus:ring-red-500 
+                    transition-all"
+            >
+                <svg class="w-4 h-4 mr-0 sm:mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                </svg>
+                <span class="hidden sm:inline">Logout</span>
+            </button>
+            </div>
 
-        <li class="flex items-center">
-          <svg class="w-3 h-3 text-gray-400 mx-1" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-          </svg>
-          <span class="text-gray-500 dark:text-gray-400"><strong>IT Central</strong></span>
-        </li>
-      </ol>
+        </div>
+
+        <!-- Logout Confirmation Modal -->
+        <div 
+            x-show="showLogoutModal"
+            class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+            x-transition
+        >
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-md p-6">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Confirm Logout</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                Are you sure you want to log out? You will need to sign in again to access the application.
+            </p>
+            
+            <div class="mt-4 flex justify-end space-x-3">
+                <button 
+                @click="showLogoutModal = false" 
+                class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+                >
+                Cancel
+                </button>
+                <button 
+                @click="window.location.href='/logout'" 
+                class="px-3 py-1.5 text-sm rounded-lg bg-red-600 hover:bg-red-700 text-white"
+                >
+                Logout
+                </button>
+            </div>
+            </div>
+        </div>
     </nav>
 
-  </div>
 </div>
