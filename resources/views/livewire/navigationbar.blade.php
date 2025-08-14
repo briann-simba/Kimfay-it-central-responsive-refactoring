@@ -60,7 +60,7 @@
                 Cancel
                 </button>
                 <button 
-                @click="window.location.href='/logout'" 
+                wire:click="logout"
                 class="px-3 py-1.5 text-sm rounded-lg bg-red-600 hover:bg-red-700 text-white"
                 >
                 Logout
