@@ -70,11 +70,12 @@ public function assignDevice(){
         'comment' => $this->comment,
     ]);
 
-    $this->dispatch('notify', [
-        'type' => 'success',
-        'title' => 'Done',
-        'message' => 'Device assigned successfully!'
-    ]);
+        // Flash message for Livewire UI
+    $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Assigned',
+                message: "Device Assigned successfully."
+    );
 
     $this->showAssignModal = false;
 
@@ -124,11 +125,11 @@ public function assignDevice(){
             'comment' => $this->comment,
         ]);
 
-        $this->dispatch('notify', [
-            'type' => 'success',
-            'title' => 'Done',
-            'message' => 'Device reassigned!'
-        ]);
+        $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Unassigned',
+                message: "Device Unassigned successfully."
+        );
 
         $this->reassignDeviceModal = false;
 

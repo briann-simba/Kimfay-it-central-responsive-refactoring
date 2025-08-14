@@ -195,26 +195,15 @@
 
 @script
 <script>
-    // Your JavaScript code here...
-
-
-
     $wire.on('close-crud-modal', () => {
         // Trigger Flowbite's built-in close by clicking the hidden button
         const closeBtn = document.getElementById('hiddenCloseBtn');
         if (closeBtn) {
-            closeBtn.click(); // ✅ This will trigger Flowbite's full close behavior
+            closeBtn.click(); // This will trigger Flowbite's full close behavior
         }
-
-        // Optional safety fallback (in case Flowbite fails to clean up)
         document.body.classList.remove('overflow-hidden');
-
-
-        
     });
 
-<script>
-    
     document.addEventListener('livewire:load', () => {
         const modalEl = document.getElementById('crud-modal');
         if (modalEl) {
@@ -224,32 +213,5 @@
             }
         }
     });
-
-
-    window.addEventListener('close-crud-modal', () => {
-        const modal = document.getElementById('crud-modal');
-        const instance = window.Flowbite?.instances.getInstance(modal);
-        instance?.hide();
-
-        // ✅ Show toast
-        const toast = document.createElement('div');
-        toast.className = 'fixed top-6 right-6 z-[10000] bg-green-500 text-white px-4 py-2 rounded shadow';
-        toast.innerText = '✅ Device added successfully';
-        document.body.appendChild(toast);
-
-        // Fade out after 3s
-        setTimeout(() => {
-            toast.classList.add('opacity-0');
-        }, 3000);
-
-        // Remove after 3.5s
-        setTimeout(() => {
-            toast.remove();
-            // ✅ Optional redirect after close
-            // window.location.href = "/devices"; // adjust to your desired route
-        }, 3500);
-    });
-</script>
 </script>
 @endscript
-

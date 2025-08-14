@@ -45,20 +45,24 @@ class Inventory extends Component
             'value' => $this->value,
         ]);
 
-        session()->flash('message', 'Device created successfully.');
+       
 
         // Reset the form fields
-        $this->reset(['user_id', 'name', 'color', 'category', 'value']);
+    $this->reset(['user_id', 'name', 'color', 'category', 'value']);
 
              // Send browser event
-      $this->dispatch('close-crud-modal'); // ✅ important name match
+    $this->dispatch('close-crud-modal'); // ✅ important name match
 
-      $this->dispatch('refresh-devices');
+          // Flash message for Livewire UI
+    $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Created',
+                message: "Device Created successfully."
+    );
 
-    // Flash message for Livewire UI
-    session()->flash('message', 'Device created successfully.');
+    $this->dispatch('refresh-devices');
 
-        
+     
     }
 
     public function updatingSearch()

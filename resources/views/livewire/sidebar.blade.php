@@ -53,14 +53,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" 
+                    <a href="{{route('pendingapproval')}}" 
                     class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-yellow-200 dark:text-white dark:hover:bg-gray-700">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">⏳</span>
                         Pending Approval
                     </a>
                 </li>
                 <li>
-                    <a href="#" 
+                    <a href="{{route('devicehistory')}}" 
                     class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-blue-200 dark:text-white dark:hover:bg-gray-700 whitespace-nowrap">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">📜</span>
                         Device History
