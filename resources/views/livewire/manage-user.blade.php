@@ -1,6 +1,11 @@
 <div x-data="{
     showAddUserModal: false,
     showEditUserModal: false,
+
+resetAddForm() {
+        // Reset Livewire properties when opening add modal
+       @this.call('prepareAddUser');
+    }
 }" 
 @close-add-user-modal.window="showAddUserModal = false"
  @open-edit-user-modal.window="showEditUserModal = true"
@@ -11,7 +16,7 @@
         
         <!-- Add User Button -->
         <button
-            @click="showAddUserModal = true"
+            @click="resetAddForm(); showAddUserModal = true"
             class="flex items-center px-2 sm:px-4 py-1 sm:py-2 
                 text-xs sm:text-sm font-medium text-white 
                 bg-blue-600 rounded-lg hover:bg-blue-700 
@@ -171,7 +176,8 @@
                     Edit User
                 </h3>
                 <button type="button" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                        @click="showEditUserModal = false">
+                       @click="resetAddForm(); showEditUserModal = false"
+                        >
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                          viewBox="0 0 24 24"><path stroke-linecap="round"
                          stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -272,7 +278,7 @@
                 <!-- Action Buttons -->
                 <div class="flex justify-end space-x-3">
                     <button type="button" 
-                            @click="showEditUserModal = false"
+                             @click="resetAddForm(); showEditUserModal = false"
                             class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
                         Cancel
                     </button>

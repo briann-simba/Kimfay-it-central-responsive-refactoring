@@ -64,6 +64,7 @@ class ManageUser extends Component
 
     public function addUser()
     {
+        $this->prepareAddUser();
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -98,6 +99,7 @@ class ManageUser extends Component
 
     public function editUser($userId)
 {
+    $this->prepareAddUser();
     $user = User::with(['roles','department', 'division', 'designation'])->find($userId);
     
     $this->editingUserId = $userId;
@@ -137,7 +139,7 @@ public function updateUser()
 
     $user->syncRoles($this->editSelectedRoles);
     $this->reset(['editingUserId', 'name', 'email', 'department_id', 'division_id', 'designation_id', 'editSelectedRoles']);
-
+$this->dispatch('close-edit-user-modal');
     $this->dispatch('userUpdatedOrAdded');
     $this->dispatch('notify', 
         type: 'success',
@@ -146,7 +148,7 @@ public function updateUser()
     );
     
     // Close the modal by dispatching an event
-    $this->dispatch('close-edit-user-modal');
+    
 }
 
     public function deleteUser($userId)
