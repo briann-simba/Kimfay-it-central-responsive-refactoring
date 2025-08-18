@@ -68,6 +68,9 @@
                   if (window.innerWidth < 640) {
                       // If screen suddenly shrinks, keep user preference but often closed
                       this.sidebarOpen = saved ? JSON.parse(saved) : false;
+                  }else if (window.innerWidth >= 640 && !this.sidebarOpen) {
+                      // Automatically open when screen becomes large
+                      this.sidebarOpen = true;
                   }
               });
           }
