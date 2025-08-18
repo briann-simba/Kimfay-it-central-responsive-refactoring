@@ -12,7 +12,7 @@
         </nav>
     
     
-        <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg transition-all duration-500">
+        <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg">
             <!-- Title row -->
             <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
                 <div class="flex items-center gap-2">

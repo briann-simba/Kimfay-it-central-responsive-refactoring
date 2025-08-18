@@ -23,7 +23,7 @@
     </div>
 
     
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

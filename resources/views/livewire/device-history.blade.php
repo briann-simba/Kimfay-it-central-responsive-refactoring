@@ -11,7 +11,8 @@
             </ol>
         </nav>
 
-<div class="p-6 dark:bg-gray-900 min-h-screen">
+<div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg">
+
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
      <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">Device Logs</h2>
 
