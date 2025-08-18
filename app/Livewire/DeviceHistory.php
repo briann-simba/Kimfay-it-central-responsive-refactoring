@@ -28,7 +28,7 @@ class DeviceHistory extends Component
                       ->orWhere('comment', 'like', "%{$this->search}%");
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         return view('livewire.device-history', ['logs' => $logs]);
     }
