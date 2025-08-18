@@ -76,7 +76,7 @@
                             x-cloak
                             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/30 dark:bg-gray-900/30"
                         >
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-md p-6">
                                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Confirm Approval</h2>
                                 <p class="mb-6 text-sm text-gray-600 dark:text-gray-300">
                                     Are you sure you want to approve this device?
