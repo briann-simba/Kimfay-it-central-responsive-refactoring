@@ -1,7 +1,4 @@
-<div x-data="{
-        sidebarOpen: JSON.parse(localStorage.getItem('sidebar')) ?? true
-    }"
-    x-init="$watch('sidebarOpen', val => localStorage.setItem('sidebar', val))">
+<div>
     
     <aside
         x-show="sidebarOpen"

@@ -11,19 +11,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     
+<!-- we want to control the behavior of the sidebar via the localstorage-->
 <body
-  x-data="{
-    sidebarOpen: window.innerWidth >= 640,
-    updateSidebar() {
-      this.sidebarOpen = window.innerWidth >= 640;
-    }
-  }"
-  x-init="
-    updateSidebar();
-    window.addEventListener('resize', updateSidebar);
-  "
+  x-data="sidebarState()"
+  x-init="initSidebar()"
   class="bg-gray-50 dark:bg-gray-900"
 >
+
   <!-- Navbar to edit navbar go to navbar livewire component-->
     <div>
       @livewire('navigation-bar')
@@ -50,7 +44,37 @@
         
         {{$slot}}
     </div>
-  
+
+  <!-- Alpine.js for sidebar state management -->
+<script>
+  function sidebarState() {
+      return {
+          sidebarOpen: true,
+          initSidebar() {
+              const saved = localStorage.getItem('sidebar');
+
+              if (window.innerWidth < 640) {
+                  // On small screen use saved state, default closed if none
+                  this.sidebarOpen = saved ? JSON.parse(saved) : false;
+              } else {
+                  // On wide screen default open unless user saved preference
+                  this.sidebarOpen = saved ? JSON.parse(saved) : true;
+              }
+
+              this.$watch('sidebarOpen', val => localStorage.setItem('sidebar', val));
+
+              // Optional: responsive correction on resize
+              window.addEventListener('resize', () => {
+                  if (window.innerWidth < 640) {
+                      // If screen suddenly shrinks, keep user preference but often closed
+                      this.sidebarOpen = saved ? JSON.parse(saved) : false;
+                  }
+              });
+          }
+      }
+  }
+</script>
+
 @livewireScripts
 </body>
 </html>
