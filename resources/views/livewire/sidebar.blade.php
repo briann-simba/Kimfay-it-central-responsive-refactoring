@@ -1,13 +1,14 @@
-<div>
+<div x-data="{
+        sidebarOpen: JSON.parse(localStorage.getItem('sidebar')) ?? true
+    }"
+    x-init="$watch('sidebarOpen', val => localStorage.setItem('sidebar', val))">
     
     <aside
         x-show="sidebarOpen"
         x-cloak
         x-transition
         class="fixed top-0 left-0 z-40 w-60 h-screen pt-20 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 flex flex-col"
-        @click.away.window="if (window.innerWidth < 640) sidebarOpen = false"
-        style="transition: transform 0.3s ease-in-out;"
-        >
+        @click.away.window="if (window.innerWidth < 640) sidebarOpen = false">
             <!-- Logo -->
         <div class="flex items-center justify-center h-16">
             <img src="/images/kimfay.png" alt="Logo" class="h-12 w-auto object-contain">
@@ -27,7 +28,10 @@
             </li>
 
             <!-- Inventory with nested submenu -->
-            <li x-data="{ open: false }">
+            <li x-data="{
+                        open: JSON.parse(localStorage.getItem('menu-inventory')) ?? false
+                    }"
+                    x-init="$watch('open', value => localStorage.setItem('menu-inventory', value))">
             <button
                 @click="open = !open"
                 class="flex items-center w-full p-2 text-gray-900 transition rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -70,7 +74,10 @@
 
             </li>
 
-            <li x-data="{ open: false }">
+            <li x-data="{
+                        open: JSON.parse(localStorage.getItem('menu-users')) ?? false
+                    }"
+                    x-init="$watch('open', value => localStorage.setItem('menu-users', value))">
                 <!-- Parent menu button -->
                 <button 
                     @click="open = !open"
