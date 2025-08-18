@@ -3,7 +3,6 @@
     <aside
         x-show="sidebarOpen"
         x-cloak
-        x-transition
         class="fixed top-0 left-0 z-40 w-60 h-screen pt-20 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 flex flex-col"
         @click.away.window="if (window.innerWidth < 640) sidebarOpen = false">
             <!-- Logo -->
@@ -16,7 +15,7 @@
         <ul class="space-y-2 font-medium">
             <!-- Dashboard -->
             <li>
-            <a href="{{route('home')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <a wire:navigate href="{{route('home')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V5h2v6H9zm0 4v-2h2v2H9z" />
                 </svg>
@@ -31,7 +30,7 @@
                     x-init="$watch('open', value => localStorage.setItem('menu-inventory', value))">
             <button
                 @click="open = !open"
-                class="flex items-center w-full p-2 text-gray-900 transition rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 :aria-expanded="open"
             >
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
@@ -39,29 +38,29 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16" />
                 </svg>
                 <span class="flex-1 ml-3 text-left whitespace-nowrap">Inventory</span>
-                <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                <svg :class="{ 'rotate-180': open }" class="w-4 h-4" fill="none" stroke="currentColor"
                 stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
 
-            <ul x-show="open" x-transition class="py-2 space-y-2">
+            <ul x-show="open" class="py-2 space-y-2">
                 <li>
-                    <a href="{{route('inventory')}}" 
+                    <a wire:navigate href="{{route('inventory')}}" 
                     class="flex items-center p-2 pl-11 sm:text-xs md:text-base lg:text-sm  text-gray-900 rounded-lg hover:bg-green-200 dark:text-white dark:hover:bg-gray-700 whitespace-nowrap">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">🗂️</span>
                         Overview
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('pendingapproval')}}" 
+                    <a wire:navigate href="{{route('pendingapproval')}}" 
                     class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-yellow-200 dark:text-white dark:hover:bg-gray-700">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">⏳</span>
                         Pending Approval
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('devicehistory')}}" 
+                    <a wire:navigate href="{{route('devicehistory')}}" 
                     class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-blue-200 dark:text-white dark:hover:bg-gray-700 whitespace-nowrap">
                         <span class="w-4 h-4 mr-2 flex items-center justify-center">📜</span>
                         Device History
@@ -78,19 +77,19 @@
                 <!-- Parent menu button -->
                 <button 
                     @click="open = !open"
-                    class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-green-200 dark:text-white dark:hover:bg-gray-700"
+                    class="flex items-center w-full p-2 text-base text-gray-900 rounded-lg group hover:bg-green-200 dark:text-white dark:hover:bg-gray-700"
                 >
                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 2a5 5 0 1 0 0 10A5 5 0 0 0 10 2Zm0 12c-5.33 0-8 2.667-8 4v2h16v-2c0-1.333-2.67-4-8-4Z"/>
                     </svg>
                     <span class="flex-1 ms-3 text-left whitespace-nowrap">User Management</span>
-                    <svg :class="{ 'rotate-180': open }" class="w-3 h-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <svg :class="{ 'rotate-180': open }" class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                 </button>
 
                 <!-- Dropdown menu -->
-                <ul x-show="open" x-transition class="py-2 space-y-2">
+                <ul x-show="open" class="py-2 space-y-2">
                     <li>
                         <a href="#" 
                         class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-green-200 dark:text-white dark:hover:bg-gray-700">
