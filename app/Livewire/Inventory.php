@@ -50,10 +50,7 @@ class Inventory extends Component
         // Reset the form fields
     $this->reset(['user_id', 'name', 'color', 'category', 'value']);
 
-             // Send browser event
-    $this->dispatch('close-crud-modal'); // ✅ important name match
-
-          // Flash message for Livewire UI
+    // Flash message for Livewire UI
     $this->dispatch('notify', 
                 type: 'success',
                 title: 'Device Created',
@@ -61,6 +58,8 @@ class Inventory extends Component
     );
 
     $this->dispatch('refresh-devices');
+
+    $this->dispatch('close-modal');
 
      
     }
