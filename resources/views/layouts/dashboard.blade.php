@@ -44,6 +44,9 @@
         
         {{$slot}}
     </div>
+     <div class="bg-gray-100 p-3 md:p-4 text-center text-xs md:text-sm text-gray-600 flex-shrink-0">
+        <p>© 2025 KIM-FAY EA LTD. All rights reserved.</p>
+    </div>
 
   <!-- Alpine.js for sidebar state management -->
 <script>
@@ -79,5 +82,6 @@
 </script>
 
 @livewireScripts
+
 </body>
 </html>
