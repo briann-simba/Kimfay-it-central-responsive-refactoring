@@ -11,39 +11,19 @@
             </ol>
         </nav>
 
-    <!-- Section Header -->
-    <div class="flex items-center justify-between px-4 py-3 bg-yellow-100 dark:bg-yellow-900 border border-yellow-300 dark:border-yellow-700 rounded-lg shadow-sm">
-        <h2 class="text-lg md:text-xl font-bold text-yellow-900 dark:text-yellow-100 flex items-center gap-2">
-            <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-3a1 1 0 00-1 1v2a1 1 0 002 0V8a1 1 0 00-1-1zm0 6a1 1 0 100-2 1 1 0 000 2z"/>
-            </svg>
-            Pending Devices for Approval
-        </h2>
-        <span class="text-sm text-yellow-700 dark:text-yellow-300 font-medium">Action Required</span>
-    </div>
-
-    
+ 
 <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg">
+    <h2 class="text-2xl pb-3 font-extrabold text-gray-800 dark:text-white tracking-tight">Pending Devices Awaiting Approval</h2>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
+        <thead class="bg-gray-100 dark:bg-gray-700">
+                <tr>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase">Product Name</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase">Color</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase">Category</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase">Price</th>
+                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-300 uppercase">Action</th>
+                </tr>
+            </thead>
         <tbody>
 
         @forelse($pendingDevices as $device)
@@ -51,16 +31,16 @@
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $device->name }}
                 </th>
-                <td class="px-6 py-4">
+                <td class="px-4 py-3">
                     {{ $device->color }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-4 py-3">
                     {{ $device->category }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-4 py-3">
                     {{ $device->value }}
                 </td>
-               <td class="px-6 py-4 text-center">
+               <td class="px-4 py-3 text-center">
                     <div x-data="{ open: false }">
                         <!-- Approve Button -->
                         <button
@@ -104,18 +84,18 @@
             </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-4 text-center">
+                    <td colspan="5" class="px-4 py-3 text-center">
                         No pending devices for approval.
                     </td>
                 </tr>
             @endforelse
         </tbody>
     </table>
-<div class="flex justify-center py-4">
-    {{ $pendingDevices->links('pagination::tailwind') }}
+<div class="flex justify-center py-3">
+    {{ $pendingDevices->links() }}
 </div>
 
 </div>
  
 
-   </div>
+</div>
