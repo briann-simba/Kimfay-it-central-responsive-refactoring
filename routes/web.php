@@ -9,6 +9,7 @@ use App\livewire\initiateoffboarding;
 use App\livewire\Inventory;
 use App\livewire\PendingApproval;
 use App\livewire\DeviceHistory;
+use App\livewire\Onboarding;
 
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/inventory', Inventory::class)->name('inventory');
     Route::get('/pendingapproval', PendingApproval::class)->name('pendingapproval');
     Route::get('/devicehistory', DeviceHistory::class)->name('devicehistory');
+    Route::get('/onboarding', Onboarding::class)->name('onboarding');
 
     //it routes
     Route::middleware('role:It')->group(function(){
