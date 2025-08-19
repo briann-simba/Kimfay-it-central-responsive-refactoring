@@ -6,28 +6,6 @@
             📦 Device Inventory
         </h2>
 
-   @if (session()->has('message'))
-    <div 
-        x-data="{ show: true }" 
-        x-init="setTimeout(() => show = false, 3000)" 
-        x-show="show"
-        
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 transform scale-95"
-        x-transition:enter-end="opacity-100 transform scale-100"
-        x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="opacity-100 transform scale-100"
-        x-transition:leave-end="opacity-0 transform scale-95"
-        class="mb-4 p-4 text-sm text-green-800 bg-green-100 border border-green-300 rounded-lg dark:bg-green-900 dark:text-green-200 dark:border-green-800"
-    >
-        {{ session('message') }}
-    </div>
-@endif
-
-
-
-     
-
         <!-- Search Box -->
         <div class="relative w-full sm:w-72">
             <input
@@ -58,23 +36,23 @@
             <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
                 @forelse ($devices as $device)
                     <tr class="bg-white dark:bg-gray-900 hover:bg-indigo-50 dark:hover:bg-gray-800 transition-colors duration-150 rounded-md">
-                        <td class="px-6 py-4 font-medium">{{ $device->name }}</td>
-                        <td class="px-6 py-4">{{ $device->color }}</td>
-                        <td class="px-6 py-4">{{ $device->category }}</td>
-                        <td class="px-6 py-4 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
-                        <td class="px-6 py-4">
-    @if($device->user_id)
-        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-200">
-            Assigned
-        </span>
-    @else
-        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full dark:bg-red-900 dark:text-red-200">
-            Unassigned
-        </span>
-    @endif
-</td>
+                        <td class="px-4 py-2 font-medium">{{ $device->name }}</td>
+                        <td class="px-4 py-2">{{ $device->color }}</td>
+                        <td class="px-4 py-2">{{ $device->category }}</td>
+                        <td class="px-4 py-2 text-right font-semibold text-green-600 dark:text-green-400">${{ number_format($device->value, 2) }}</td>
+                        <td class="px-4 py-2">
+                            @if($device->user_id)
+                                <span class="inline-flex items-center px-2 text-xs font-medium text-green-800 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-200">
+                                    Assigned
+                                </span>
+                            @else
+                                <span class="inline-flex items-center px-2 text-xs font-medium text-red-800 bg-red-100 rounded-full dark:bg-red-900 dark:text-red-200">
+                                    Unassigned
+                                </span>
+                            @endif
+                        </td>
 
-   <td class="px-6 py-4 text-right">
+   <td class="px-4 py-2 text-right">
     <div x-data="dropdownMenu()" x-init="init()" class="relative inline-block text-left w-full sm:w-auto">
         <!-- Action Button -->
         <button
@@ -152,7 +130,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 italic">
+                        <td colspan="5" class="px-4 py-3 text-center text-gray-500 dark:text-gray-400 italic">
                             No devices found.
                         </td>
                     </tr>
