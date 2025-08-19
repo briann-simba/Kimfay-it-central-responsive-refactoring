@@ -16,23 +16,47 @@ class PendingApproval extends Component
 
     public function approveDevice($deviceId)
     {
-        $device = Device::findOrFail($deviceId);
-        $device->update(['line_manager_approval' => 1]);
-        
-        $user = User::find($device->user_id);
-        
-        // Send email notification
-        Mail::to($user->email)->send(new DeviceApproved([
-            'device' => $device,
-            'user' => $user
-        ]));
+     try {
+            $device = Device::findOrFail($deviceId);
+            
 
-        $this->dispatch('notify', 
-            type: 'success',
-            title: 'Device Approved',
-            message: "Device Approved successfully."
-        );
+            $user = User::find($device->user_id);
+
+            if (!$user || !$user->email) {
+                // Throw exception manually so that the catch block handles notification
+                throw new \Exception('User email not found.');
+            }
+
+            else{
+                            // Send email
+            Mail::to($user->email)->send(new DeviceApproved([
+                'device' => $device,
+                'user'   => $user
+            ]));
+
+            // Update the device's line manager approval status
+            $device->update(['line_manager_approval' => 1]);
+
+            // Dispatch a success notification
+            $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Approved',
+                message: "Device Approved successfully."
+            );
+            }
+
+
+
+        } catch (\Exception $e) {
+                // If any error occurs, throw an error notification
+                $this->dispatch('notify', 
+                    type: 'error',
+                    title: 'Approval Failed',
+                    message: $e->getMessage()
+                );
+        }
     }
+
 
     #[Layout('layouts.dashboard')]
     public function render()
