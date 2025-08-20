@@ -34,9 +34,9 @@
         alert('Onboarding submitted successfully!');
         // In a real app, you would send data to the server here
     }
-}" class="w-full h-full flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+}" class="w-full h-full flex flex-col bg-white shadow-lg overflow-hidden">
     <!-- Header -->
-    <div class="bg-indigo-600 text-white p-4 md:p-6 flex-shrink-0">
+    <div class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-white tracking-tight p-4 md:p-6 flex-shrink-0">
         <h1 class="text-xl md:text-2xl font-bold flex items-center">
             <i class="fas fa-user-plus mr-2 md:mr-3"></i>HR User Onboarding
         </h1>
@@ -86,7 +86,7 @@
         <!-- Tab Content -->
         <div class="w-full flex-grow overflow-auto">
             <!-- STEP 1: Personal Info -->
-            <div x-show="current === 1" class="p-4 md:p-6 border rounded-xl bg-white shadow-sm h-full flex flex-col">
+            <div x-show="current === 1" class="p-4 md:p-6 rounded-xl bg-white shadow-sm h-full flex flex-col">
                 <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-700 flex items-center">
                     <i class="fas fa-user-circle mr-2"></i> Personal Information
                 </h2>
@@ -173,7 +173,7 @@
             </div>
 
             <!-- STEP 2: Documentation -->
-            <div x-show="current === 2" class="p-4 md:p-6 border rounded-xl bg-white shadow-sm h-full flex flex-col">
+            <div x-show="current === 2" class="p-4 md:p-6 rounded-xl bg-white shadow-sm h-full flex flex-col">
                 <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-700 flex items-center">
                     <i class="fas fa-file-alt mr-2"></i> Documentation
                 </h2>
@@ -226,7 +226,7 @@
             </div>
 
             <!-- STEP 3: Confirmation -->
-            <div x-show="current === 3" class="p-4 md:p-6 border rounded-xl bg-white shadow-sm h-full flex flex-col">
+            <div x-show="current === 3" class="p-4 md:p-6 rounded-xl bg-white shadow-sm h-full flex flex-col">
                 <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-700 flex items-center">
                     <i class="fas fa-check-circle mr-2"></i> Confirmation
                 </h2>
@@ -275,6 +275,8 @@
             </div>
         </div>
     </div>
-    
-  
+    <!--footer -->
+    <div class="bg-gray-100 p-3 md:p-4 text-center text-xs md:text-sm text-gray-600 flex-shrink-0">
+        <p>© 2025 KIM-FAY EA LTD. All rights reserved.</p>
+    </div>
 </div>
