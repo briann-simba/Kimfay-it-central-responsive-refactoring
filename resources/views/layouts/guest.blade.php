@@ -13,10 +13,7 @@
     
 <!-- we want to control the behavior of the sidebar via the localstorage-->
 <body
-  x-data="sidebarState()"
-  x-init="initSidebar()"
-  class="bg-gray-50 dark:bg-gray-900"
->
+  class="bg-gray-50 dark:bg-gray-900">
 
   <!-- Navbar to edit navbar go to navbar livewire component-->
     <div>
@@ -32,14 +29,10 @@
   
 
   <!-- Main content -->
-    <div class="p-4 pt-20 flex flex-col items-center justify-center">
-        <!-- <div class="p-4 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700">
-        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Welcome</h1>
-        <p class="text-gray-600 dark:text-gray-300">Sidebar adapts automatically and supports nested menu items.</p>
-        </div> -->
-        
-        {{$slot}}
-    </div>
+ <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    {{$slot}}
+</div>
+
  
 
 @livewireScripts
