@@ -11,6 +11,7 @@ use App\livewire\PendingApproval;
 use App\livewire\DeviceHistory;
 use App\livewire\Onboarding;
 use App\livewire\OnboardNewUser;
+use App\livewire\ContinueOnboarding;
 
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -31,6 +32,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/devicehistory', DeviceHistory::class)->name('devicehistory');
     Route::get('/onboarding', Onboarding::class)->name('onboarding');
     Route::get('/onboard-new-user',OnboardNewUser::class)->name('onboard-new-user');
+    route::get('/continue-onboarding', ContinueOnboarding::class)->name('continue-onboarding');
 
     //it routes
     Route::middleware('role:It')->group(function(){

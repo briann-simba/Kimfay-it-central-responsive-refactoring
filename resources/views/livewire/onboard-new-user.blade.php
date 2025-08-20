@@ -8,7 +8,7 @@
     <!-- Card 2 -->
     <div class="max-w-sm md:w-1/3 pb-3">
         <!-- card content here -->
-          <a href="#"
+          <a wire:navigate href="{{ route('continue-onboarding') }}"
        class="group block p-6 border rounded-lg shadow transition
               border-gray-200 dark:border-gray-700
               bg-white dark:bg-gray-800

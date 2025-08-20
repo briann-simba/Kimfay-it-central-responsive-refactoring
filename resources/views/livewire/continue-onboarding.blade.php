@@ -1,7 +1,8 @@
 <div>
+
 <div class="flex flex-col md:flex-row gap-4">
     <!-- Card 1 -->
-    <div class="max-w-sm md:w-1/2 pb-3">
+    <div class="max-w-sm md:w-1/3 pb-3">
         <!-- card content here -->
              <a wire:navigate href="{{ route('onboard-new-user') }}"
        class="group block p-6 border rounded-lg shadow transition
@@ -27,10 +28,10 @@
     </a>
     </div>
 
-    <!-- Card 2 -->
-    <div class="max-w-sm md:w-1/2 pb-3">
+    <!-- Card 3 -->
+    <div class="max-w-sm md:w-1/3 pb-3">
         <!-- card content here -->
-          <a wire:navigate href="{{ route('continue-onboarding') }}"
+         <a wire:navigate href="{{ route('onboarding') }}"
        class="group block p-6 border rounded-lg shadow transition
               border-gray-200 dark:border-gray-700
               bg-white dark:bg-gray-800
@@ -39,21 +40,28 @@
         <div class="flex items-center space-x-4">
             <div class="p-3 bg-green-100 dark:bg-gray-700 rounded-full transition group-hover:bg-white group-hover:dark:bg-white/20">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 dark:text-green-400 group-hover:text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <!-- Play icon -->
-                    <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
+                    <!-- Progress icon (chart bar) -->
+                    <path d="M3 11h4v6H3v-6zm6-8h4v14h-4V3zm6 4h4v10h-4V7z" />
                 </svg>
             </div>
             <div>
-                <h3 class="text-lg font-semibold dark:text-white">Continue Onboarding</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">Resume an existing session</p>
+                <h3 class="text-lg font-semibold dark:text-white">Back to User Progress</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">View onboarding progress</p>
             </div>
         </div>
     </a>
     </div>
-
 </div>
 
-
+<!-- Search Bar -->
+<div class="flex items-center justify-end mt-4 mb-2">
+    <input type="text" placeholder="Search staff..." 
+           class="px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-green-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600">
+    <button class="px-4 py-2 bg-green-500 text-white rounded-r-md hover:bg-green-600">
+        Search
+    </button>
+</div>
+    
 <div class="overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -96,6 +104,5 @@
         </tbody>
     </table>
 </div>
-
 
 </div>
