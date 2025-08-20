@@ -1,3 +1,122 @@
+<div>
+
+<div class="max-w-sm pb-3">
+    <a href="{{ route('onboarding') }}"
+       class="group block p-6 border rounded-lg shadow transition
+              border-gray-200 dark:border-gray-700
+              bg-white dark:bg-gray-800
+              hover:bg-green-400 hover:border-green-400 hover:text-white
+              dark:hover:bg-green-500 dark:hover:border-green-500">
+        <div class="flex items-center space-x-4">
+            <!-- Icon -->
+            <div class="p-3 bg-green-100 dark:bg-gray-700 rounded-full transition group-hover:bg-white group-hover:dark:bg-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-6 h-6 text-green-600 dark:text-green-400 group-hover:text-green-600"
+                     fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V5h2v6H9zm0 4v-2h2v2H9z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <!-- Text -->
+            <div>
+                <h3 class="text-lg font-semibold dark:text-white">Onboard New User</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Start the onboarding process</p>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="max-w-sm pb-3">
+    <a href="#"
+       class="group block p-6 border rounded-lg shadow transition
+              border-gray-200 dark:border-gray-700
+              bg-white dark:bg-gray-800
+              hover:bg-green-400 hover:border-green-400 hover:text-white
+              dark:hover:bg-green-500 dark:hover:border-green-500">
+        <div class="flex items-center space-x-4">
+            <div class="p-3 bg-green-100 dark:bg-gray-700 rounded-full transition group-hover:bg-white group-hover:dark:bg-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 dark:text-green-400 group-hover:text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <!-- Play icon -->
+                    <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold dark:text-white">Continue Onboarding</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Resume an existing session</p>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="max-w-sm pb-3">
+    <a href="#"
+       class="group block p-6 border rounded-lg shadow transition
+              border-gray-200 dark:border-gray-700
+              bg-white dark:bg-gray-800
+              hover:bg-green-400 hover:border-green-400 hover:text-white
+              dark:hover:bg-green-500 dark:hover:border-green-500">
+        <div class="flex items-center space-x-4">
+            <div class="p-3 bg-green-100 dark:bg-gray-700 rounded-full transition group-hover:bg-white group-hover:dark:bg-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 dark:text-green-400 group-hover:text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <!-- Progress icon (chart bar) -->
+                    <path d="M3 11h4v6H3v-6zm6-8h4v14h-4V3zm6 4h4v10h-4V7z" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold dark:text-white">Back to User Progress</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">View onboarding progress</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+
+
+<div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Department
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Date Onboarded
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Progress
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <!-- Sample Row -->
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">John Doe</td>
+                <td class="px-6 py-4 whitespace-nowrap">IT Department</td>
+                <td class="px-6 py-4 whitespace-nowrap">2025-08-20</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="w-full bg-gray-200 rounded-full">
+                        <div class="bg-green-500 text-xs font-medium text-green-100 text-center p-0.5 leading-none rounded-full" style="width: 70%;">70%</div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        In Progress
+                    </span>
+                </td>
+            </tr>
+            <!-- More rows here -->
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
 <div x-data="{
     current: 1,
     steps: [
@@ -35,6 +154,8 @@
         // In a real app, you would send data to the server here
     }
 }" class="w-full h-full flex flex-col bg-white shadow-lg overflow-hidden">
+
+
     <!-- Header -->
     <div class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-white tracking-tight p-4 md:p-6 flex-shrink-0">
         <h1 class="text-xl md:text-2xl font-bold flex items-center">
@@ -279,4 +400,82 @@
     <div class="bg-gray-100 p-3 md:p-4 text-center text-xs md:text-sm text-gray-600 flex-shrink-0">
         <p>© 2025 KIM-FAY EA LTD. All rights reserved.</p>
     </div>
+    
+        <div class="max-w-md w-full">
+        <!-- Onboarding Card -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover cursor-pointer">
+            <!-- Card Header with Icon -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
+                            <i class="fas fa-user-plus text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Get Started</h2>
+                            <p class="text-blue-100">Begin your journey with us</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold text-white/30">01</div>
+                </div>
+            </div>
+            
+            <!-- Card Content -->
+            <div class="p-6">
+                <p class="text-gray-600 mb-6">Complete your onboarding to unlock all features and personalize your experience.</p>
+                
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm text-gray-500 mb-2">
+                        <span>Progress</span>
+                        <span>2/5 steps</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full w-2/5"></div>
+                    </div>
+                </div>
+                
+                <!-- Steps List -->
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Account Setup</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Profile Information</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <span class="text-blue-600 font-medium">3</span>
+                        </div>
+                        <span class="text-gray-700 font-medium">Preferences</span>
+                    </div>
+                    <div class="flex items-center opacity-60">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                            <span class="text-gray-400 font-medium">4</span>
+                        </div>
+                        <span class="text-gray-500">Connect Tools</span>
+                    </div>
+                    <div class="flex items-center opacity-60">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                            <span class="text-gray-400 font-medium">5</span>
+                        </div>
+                        <span class="text-gray-500">Training</span>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl transition duration-300 flex items-center justify-center">
+                    Continue Onboarding
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+    </div>
+</div>
+
 </div>
