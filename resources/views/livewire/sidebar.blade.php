@@ -129,6 +129,17 @@
                 </ul>
             </li>
 
+            <li>
+                <a wire:navigate href="{{ route('onboarding') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <!-- Clipboard list icon -->
+                        <path d="M9 2a1 1 0 00-.894.553L7.382 4H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2h-1.382l-.724-1.447A1 1 0 0011 2H9zM7 7h6v2H7V7zm0 4h6v2H7v-2z" />
+                    </svg>
+                    <span class="ml-3 sm:text-sm md:text-sm lg:text-base">Onboarding</span>
+                </a>
+            </li>
+
+
 
             <!-- Settings -->
             <li>
