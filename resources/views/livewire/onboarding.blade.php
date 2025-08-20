@@ -1,7 +1,9 @@
 <div>
-
-<div class="max-w-sm pb-3">
-    <a href="{{ route('onboarding') }}"
+<div class="flex flex-col md:flex-row gap-4">
+    <!-- Card 1 -->
+    <div class="max-w-sm md:w-1/3 pb-3">
+        <!-- card content here -->
+             <a href="{{ route('onboarding') }}"
        class="group block p-6 border rounded-lg shadow transition
               border-gray-200 dark:border-gray-700
               bg-white dark:bg-gray-800
@@ -23,9 +25,12 @@
             </div>
         </div>
     </a>
-</div>
-<div class="max-w-sm pb-3">
-    <a href="#"
+    </div>
+
+    <!-- Card 2 -->
+    <div class="max-w-sm md:w-1/3 pb-3">
+        <!-- card content here -->
+          <a href="#"
        class="group block p-6 border rounded-lg shadow transition
               border-gray-200 dark:border-gray-700
               bg-white dark:bg-gray-800
@@ -44,9 +49,12 @@
             </div>
         </div>
     </a>
-</div>
-<div class="max-w-sm pb-3">
-    <a href="#"
+    </div>
+
+    <!-- Card 3 -->
+    <div class="max-w-sm md:w-1/3 pb-3">
+        <!-- card content here -->
+         <a href="#"
        class="group block p-6 border rounded-lg shadow transition
               border-gray-200 dark:border-gray-700
               bg-white dark:bg-gray-800
@@ -65,9 +73,8 @@
             </div>
         </div>
     </a>
+    </div>
 </div>
-
-
 
 
 <div class="overflow-x-auto">
