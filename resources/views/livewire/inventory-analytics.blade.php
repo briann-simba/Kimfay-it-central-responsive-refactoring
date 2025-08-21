@@ -1,5 +1,5 @@
 <div>
-    
+
      <!-- Main content -->
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <!-- Mobile dropdown -->
@@ -64,9 +64,7 @@
                     </div>
                 </dl>
 
-                <div class="overflow-x-auto rounded-lg ring-gray-200 dark:ring-gray-700 mt-4">
-                    @livewire('devices')
-                </div>
+               
             </div>
 
             <!-- Other tabs content... -->
