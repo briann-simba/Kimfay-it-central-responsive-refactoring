@@ -13,6 +13,7 @@ use App\livewire\Onboarding;
 use App\livewire\OnboardNewUser;
 use App\livewire\ContinueOnboarding;
 use App\livewire\GettingStarted;
+use App\livewire\InventoryAnalytics;
 
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/onboard-new-user',OnboardNewUser::class)->name('onboard-new-user');
     Route::get('/continue-onboarding', ContinueOnboarding::class)->name('continue-onboarding');
     Route::get('/getting-started', GettingStarted::class)->name('getting-started');
+    Route::get('/inventory-analytics', InventoryAnalytics::class)->name('inventory-analytics');
 
     //it routes
     Route::middleware('role:It')->group(function(){
