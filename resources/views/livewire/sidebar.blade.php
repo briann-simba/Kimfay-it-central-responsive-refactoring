@@ -66,6 +66,13 @@
                         Device History
                     </a>
                 </li>
+                <li>
+                    <a wire:navigate href="#" 
+                    class="flex items-center sm:text-xs md:text-base lg:text-sm p-2 pl-11 text-gray-900 rounded-lg hover:bg-purple-200 dark:text-white dark:hover:bg-gray-700 whitespace-nowrap">
+                        <span class="w-4 h-4 mr-2 flex items-center justify-center">📊</span>
+                        Inventory Analytics
+                    </a>
+                </li>
             </ul>
 
             </li>
