@@ -140,18 +140,27 @@
                             <input type="text" wire:model="formData.personal.firstName"
                                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
                                    placeholder="Enter first name">
+                            @error('formData.personal.firstName')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
                             <input type="text" wire:model="formData.personal.lastName"
                                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
                                    placeholder="Enter last name">
+                            @error('formData.personal.lastName')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
                             <input type="email" wire:model="formData.personal.email"
                                    class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
                                    placeholder="employee@company.com">
+                            @error('formData.personal.email')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>

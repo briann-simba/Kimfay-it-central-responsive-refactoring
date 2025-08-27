@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('onboardings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // linked after user creation
-            $table->string('email')->unique();
-            $table->string('status')->default('in_progress'); // in_progress | completed
-            $table->json('steps')->nullable();
-            $table->integer('progress')->default(0);
-            $table->boolean('completed')->default(false);
+            $table->unsignedBigInteger('user_id')->nullable(); // Linked once user is created
+            $table->string('email')->unique(); // Email captured at start
+            $table->enum('status', ['in_progress', 'completed', 'cancelled'])->default('in_progress');
+            $table->integer('progress')->default(0); // percentage (0–100)
+            $table->boolean('completed')->default(false); // quick flag
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
+
 
     }
 

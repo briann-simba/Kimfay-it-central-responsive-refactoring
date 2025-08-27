@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('onboarding_steps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('onboarding_id');
-            $table->integer('step_number'); // 1 = personal info, 2 = documents...
-            $table->string('step_name'); // e.g. "personal_info", "documents", "orientation"
-            $table->string('status')->default('pending'); // pending | in_progress | completed
-            $table->unsignedBigInteger('updated_by')->nullable(); // HR who last worked on this step
+            $table->integer('step_number'); // Ordering of steps
+            $table->string('step_name'); // e.g. personal_info, documents, orientation
+            $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');
+            $table->unsignedBigInteger('updated_by')->nullable(); // HR who last worked on step
             $table->timestamps();
 
             $table->foreign('onboarding_id')->references('id')->on('onboardings')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
+
     }
 
     /**

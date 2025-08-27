@@ -9,4 +9,14 @@ class onboarding extends Model
 {
     /** @use HasFactory<\Database\Factories\OnboardingFactory> */
     use HasFactory;
+
+
+    protected $fillable = [
+        'user_id',
+        'email',
+        'status',
+        'progress',
+        'completed',
+        'completed_at',
+    ];
 }
