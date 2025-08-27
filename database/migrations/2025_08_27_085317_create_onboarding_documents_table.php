@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('onboarding_documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('onboarding_id')->constrained()->onDelete('cascade');
+            $table->string('document_type'); // e.g., "contract", "id_copy", "tax_form"
+            $table->boolean('submitted')->default(false);
             $table->timestamps();
         });
+
     }
 
     /**
