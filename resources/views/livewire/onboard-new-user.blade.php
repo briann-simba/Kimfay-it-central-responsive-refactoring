@@ -56,8 +56,8 @@
                 </svg>
             </div>
             <div>
-                <h3 class="text-lg font-semibold dark:text-white">Back to User Progress</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">View onboarding progress</p>
+                <h3 class="text-lg font-semibold dark:text-white">Back to Induction Progress</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300">View Induction progress</p>
             </div>
         </div>
     </a>
