@@ -4,11 +4,15 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use App\Models\Onboarding;
+use App\Models\OnboardingSteps;
 
 class OnboardNewUser extends Component
 {
 
-     public $current = 1;
+    public $current = 1;
+    public $onboarding;
+    public $onboardingId;
 
     public $steps = [
         ['id' => 1, 'title' => 'Personal Info', 'description' => 'Enter employee details'],
@@ -59,12 +63,12 @@ class OnboardNewUser extends Component
                     'formData.personal.firstName' => 'required|string|max:255',
                     'formData.personal.lastName'  => 'required|string|max:255',
                     'formData.personal.email'     => 'required|email|unique:users,email',
-                    'formData.personal.phone'     => 'required|string|max:20',
-                    'formData.personal.position'  => 'required|string|max:255',
-                    'formData.personal.department'=> 'required|string|max:255',
-                    'formData.personal.startDate' => 'required|date',
-                    'formData.personal.manager'   => 'required|string|max:255',
-                    'formData.personal.salary'    => 'required|numeric|min:0',
+                    // 'formData.personal.phone'     => 'required|string|max:20',
+                    // 'formData.personal.position'  => 'required|string|max:255',
+                    // 'formData.personal.department'=> 'required|string|max:255',
+                    // 'formData.personal.startDate' => 'required|date',
+                    // 'formData.personal.manager'   => 'required|string|max:255',
+                    // 'formData.personal.salary'    => 'required|numeric|min:0',
                 ];
             }
 
@@ -84,9 +88,12 @@ class OnboardNewUser extends Component
     {
 
         $this->validate();
+
+        $this->persistStep();
+        
         if ($this->current < count($this->steps)) {
             $this->current++;
-            $this->persistStep();
+            
         }
     }
 
@@ -97,30 +104,44 @@ class OnboardNewUser extends Component
         }
     }
 
-    public function persistStep()
-    {
-        if ($this->current === 1) {
-            // Save personal info into users table
-            $user = User::create([
-                'name'       => $this->formData['personal']['firstName'].' '.$this->formData['personal']['lastName'],
-                'email'      => $this->formData['personal']['email'],
-                'dep_id'     => $this->formData['personal']['department'],
-                'password'   => bcrypt('TempPassword123'), // temporary, HR resets later
+public function persistStep()
+{
+    if ($this->current === 1) {
+        // Create onboarding record only once
+        if (!$this->onboardingId) {
+            $onboarding = Onboarding::create([
+                'email'  => $this->formData['personal']['email'],
+                'status' => 'in_progress',
             ]);
-            session(['onboarding_user_id' => $user->id]);
-        }
 
-        if ($this->current === 2) {
-            // Save documents into onboarding_documents table
-            $userId = session('onboarding_user_id');
-            foreach ($this->formData['documents'] as $docType => $submitted) {
-                OnboardingDocument::updateOrCreate(
-                    ['user_id' => $userId, 'document_type' => $docType],
-                    ['submitted' => $submitted]
-                );
+            $this->onboardingId = $onboarding->id;
+
+            // Initialize steps
+            foreach ($this->steps as $step) {
+                OnboardingSteps::create([
+                    'onboarding_id' => $onboarding->id,
+                    'step_number'   => $step['id'],
+                    'step_name'     => $step['title'],
+                    'status'        => $step['id'] === 1 ? 'in_progress' : 'pending',
+                    'updated_by'    => auth()->id(),
+                ]);
             }
+        } else {
+            // Update step 1 progress if needed
+            OnboardingSteps::where('onboarding_id', $this->onboardingId)
+                ->where('step_number', 1)
+                ->update(['status' => 'completed']);
         }
     }
+
+    if ($this->current === 2) {
+        // Example: mark documents step as in_progress
+        OnboardingSteps::where('onboarding_id', $this->onboardingId)
+            ->where('step_number', 2)
+            ->update(['status' => 'in_progress']);
+    }
+}
+
 
     public function submit()
     {

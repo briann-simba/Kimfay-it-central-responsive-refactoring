@@ -19,4 +19,14 @@ class onboarding extends Model
         'completed',
         'completed_at',
     ];
+
+    public function steps()
+    {
+        return $this->hasMany(OnboardingStep::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

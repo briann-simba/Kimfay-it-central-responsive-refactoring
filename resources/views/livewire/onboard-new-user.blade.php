@@ -276,14 +276,34 @@
 
                         <h3 class="font-medium text-md md:text-lg mt-4 md:mt-6 mb-3 md:mb-4 text-indigo-600">Documents</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                            @foreach ($formData['documents'] as $doc => $status)
+                            <!-- @foreach ($formData['documents'] as $doc => $status)
                                 <div>
                                     <span class="text-gray-600">{{ ucfirst($doc) }}:</span>
                                     <span class="{{ $status ? 'text-green-600' : 'text-red-600' }}">
                                         {{ $status ? 'Received' : 'Pending' }}
                                     </span>
                                 </div>
-                            @endforeach
+                            @endforeach -->
+                            <div>
+    <span class="text-gray-600">Contract:</span>
+    <span class="text-red-600">Pending</span>
+</div>
+
+<div>
+    <span class="text-gray-600">ID Copy:</span>
+    <span class="text-green-600">Received</span>
+</div>
+
+<div>
+    <span class="text-gray-600">Tax Info:</span>
+    <span class="text-red-600">Pending</span>
+</div>
+
+<div>
+    <span class="text-gray-600">NDA:</span>
+    <span class="text-green-600">Received</span>
+</div>
+
                         </div>
                     </div>
 
