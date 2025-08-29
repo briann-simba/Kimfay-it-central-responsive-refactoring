@@ -11,6 +11,7 @@ use App\livewire\DeviceHistory;
 use App\livewire\GettingStarted;
 use App\livewire\OnboardNewUser;
 use App\livewire\PendingApproval;
+use App\Livewire\ManagePermissions;
 use App\livewire\ContinueOnboarding;
 use App\livewire\InventoryAnalytics;
 use App\livewire\initiateoffboarding;
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/usermanagement', ManageUser::class)->name('usermanagement');
     Route::get('/rolemanagement', ManageRoles::class)->name('rolemanagement');
+    Route::get('/permissionmanagement', ManagePermissions::class)->name('permissionmanagement');
     Route::get('/offboarduser', OffboardUser::class)->name('offboarduser');
     Route::get('/initiateoffboarding', initiateoffboarding::class)->name('initiateoffboarding');
     Route::get('/inventory', Inventory::class)->name('inventory');

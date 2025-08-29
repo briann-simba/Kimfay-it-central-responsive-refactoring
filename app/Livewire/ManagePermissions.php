@@ -19,7 +19,7 @@ class ManagePermissions extends Component
     protected $rules = [
         'permissionName' => 'required|min:3|unique:permissions,name',
     ];
-#[layout('layouts.main')]
+#[layout('layouts.dashboard')]
     public function render()
     {
         
