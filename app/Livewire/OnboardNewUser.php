@@ -147,7 +147,7 @@ public function persistStep()
     {
         $this->persistStep();
         session()->flash('success', 'Onboarding completed successfully!');
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
 
