@@ -1,34 +1,25 @@
 <?php
 
-use App\Livewire\Home;
-
-use App\livewire\Login;
-use App\livewire\Inventory;
-use App\livewire\ManageUser;
-use App\Livewire\ManageRoles;
-use App\livewire\OffboardUser;
-use App\livewire\DeviceHistory;
-
-use App\livewire\PendingApproval;
-use App\Livewire\ManagePermissions;
-use App\Livewire\Auth\ResetPassword;
-use App\Livewire\Auth\ForgotPassword;
-use App\livewire\initiateoffboarding;
 use Illuminate\Support\Facades\Route;
+use App\livewire\Home;
+use App\livewire\Login;
+use App\livewire\ManageUser;
+use App\livewire\OffboardUser;
+use App\livewire\initiateoffboarding;
+use App\livewire\Inventory;
+use App\livewire\PendingApproval;
+use App\livewire\DeviceHistory;
+use App\livewire\Onboarding;
+use App\livewire\OnboardNewUser;
+use App\livewire\ContinueOnboarding;
+use App\livewire\GettingStarted;
+use App\livewire\InventoryAnalytics;
 
 
-// Password reset routes
-Route::get('/forgot-password', ForgotPassword::class)
-    ->middleware('guest')
-    ->name('password.request');
-
-Route::get('/reset-password/{token}', ResetPassword::class)
-    ->middleware('guest')
-    ->name('password.reset');
-    
 // Route::get('/', Welcome::class)->name('welcome');
 Route::get('/', Login::class)->name('login');
-//Route::get('/users', App\livewire\Users::class)->name('users');
+Route::get('/users', App\livewire\Users::class)->name('users');
+
 //routes for the authenticated users
 Route::middleware(['auth'])->group(function(){
 
@@ -36,14 +27,16 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/home', Home::class)->name('home');
 
     Route::get('/usermanagement', ManageUser::class)->name('usermanagement');
-    Route::get('/rolemanagement', ManageRoles::class)->name('rolemanagement');
-    Route::get('/permissionmanagement', ManagePermissions::class)->name('permissionmanagement');
-
     Route::get('/offboarduser', OffboardUser::class)->name('offboarduser');
     Route::get('/initiateoffboarding', initiateoffboarding::class)->name('initiateoffboarding');
     Route::get('/inventory', Inventory::class)->name('inventory');
     Route::get('/pendingapproval', PendingApproval::class)->name('pendingapproval');
     Route::get('/devicehistory', DeviceHistory::class)->name('devicehistory');
+    Route::get('/onboarding', Onboarding::class)->name('onboarding');
+    Route::get('/onboard-new-user',OnboardNewUser::class)->name('onboard-new-user');
+    Route::get('/continue-onboarding', ContinueOnboarding::class)->name('continue-onboarding');
+    Route::get('/getting-started', GettingStarted::class)->name('getting-started');
+    Route::get('/inventory-analytics', InventoryAnalytics::class)->name('inventory-analytics');
 
     //it routes
     Route::middleware('role:It')->group(function(){

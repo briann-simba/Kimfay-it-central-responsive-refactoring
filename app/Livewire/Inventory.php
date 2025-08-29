@@ -45,20 +45,23 @@ class Inventory extends Component
             'value' => $this->value,
         ]);
 
-        session()->flash('message', 'Device created successfully.');
+       
 
         // Reset the form fields
-        $this->reset(['user_id', 'name', 'color', 'category', 'value']);
-
-             // Send browser event
-      $this->dispatch('close-crud-modal'); // ✅ important name match
-
-      $this->dispatch('refresh-devices');
+    $this->reset(['user_id', 'name', 'color', 'category', 'value']);
 
     // Flash message for Livewire UI
-    session()->flash('message', 'Device created successfully.');
+    $this->dispatch('notify', 
+                type: 'success',
+                title: 'Device Created',
+                message: "Device Created successfully."
+    );
 
-        
+    $this->dispatch('refresh-devices');
+
+    $this->dispatch('close-modal');
+
+     
     }
 
     public function updatingSearch()
@@ -68,7 +71,7 @@ class Inventory extends Component
 
  
 
-    #[Layout('layouts.main')]
+    #[Layout('layouts.dashboard')]
     public function render()
     {
          return view('livewire.inventory', [

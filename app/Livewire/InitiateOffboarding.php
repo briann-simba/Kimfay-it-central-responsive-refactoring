@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 class InitiateOffboarding extends Component
 {
 
-    #[Layout('layouts.main')]
+    #[Layout('layouts.dashboard')]
     public function render()
     {
         return view('livewire.initiate-offboarding');

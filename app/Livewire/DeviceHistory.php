@@ -15,7 +15,7 @@ class DeviceHistory extends Component
 
     public string $search = '';
 
-    #[layout('layouts.main')]
+    #[layout('layouts.dashboard')]
     public function render()
     {
         $logs = AssignDeviceLog::with(['device', 'user', 'actionByUser'])
@@ -28,7 +28,7 @@ class DeviceHistory extends Component
                       ->orWhere('comment', 'like', "%{$this->search}%");
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         return view('livewire.device-history', ['logs' => $logs]);
     }

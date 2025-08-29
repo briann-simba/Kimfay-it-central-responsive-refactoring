@@ -1,5 +1,5 @@
 <div>
-    <x-slot name="navguide">
+   
         <nav class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-700 dark:text-gray-200" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-2">
                 <li class="inline-flex items-center">
@@ -10,39 +10,32 @@
                 </li>
             </ol>
         </nav>
-    </x-slot>
+    
+    
+        <div class="w-full p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg">
+            <!-- Title row -->
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         class="w-7 h-7 text-indigo-600 dark:text-indigo-400">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v10.5A2.25 2.25 0 0118.75 18H5.25A2.25 2.25 0 013 15.75V5.25z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 18.75h18"/>
+                    </svg>
+                    <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">My&nbsp;Devices</h2>
+                </div>
 
-
-    <!-- Container -->
-    <div class="w-full p-6 sm:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-2xl shadow-lg dark:bg-gray-800 transition-all duration-500">
-        <!-- Title row -->
-        <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2">
-                <!-- Laptop/Device icon (Heroicons Outline) -->
-                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-indigo-600 dark:text-indigo-400">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v10.5A2.25 2.25 0 0118.75 18H5.25A2.25 2.25 0 013 15.75V5.25z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 18.75h18" />
-                </svg>
-                <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">My&nbsp;Devices</h2>
+                <a href="mailto:it@company.com"
+                   class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 transition-colors duration-300">
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                         class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.008v.008H12V17z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M10.29 3.86l-7.482 13.5A1.5 1.5 0 004.018 19.5h15.964a1.5 1.5 0 001.31-2.14l-7.482-13.5a1.5 1.5 0 00-2.62 0z"/>
+                    </svg>
+                    Report discrepancy
+                </a>
             </div>
-            <!-- Report Discrepancy Button -->
-    {{-- <button wire:click="openReportModal" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.008v.008H12V17z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.29 3.86l-7.482 13.5A1.5 1.5 0 004.018 19.5h15.964a1.5 1.5 0 001.31-2.14l-7.482-13.5a1.5 1.5 0 00-2.62 0z" />
-        </svg>
-        Report discrepancy
-    </button> --}}
-    <!-- Report Discrepancy Button - Now using Alpine.js -->
-            <button x-data @click="$dispatch('open-report-modal')" 
-                    class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.008v.008H12V17z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.29 3.86l-7.482 13.5A1.5 1.5 0 004.018 19.5h15.964a1.5 1.5 0 001.31-2.14l-7.482-13.5a1.5 1.5 0 00-2.62 0z" />
-                </svg>
-                Report discrepancy
-            </button>
-        </div>
 
             <p class="mb-6 text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
                 Below is the list of company‑issued devices assigned to you. If you notice any discrepancy, please let the IT team know.
@@ -135,174 +128,9 @@
                             </td>
                         </tr>
                     @endforelse
-                    
-                    <!-- Repeat rows dynamically here -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-<!-- Alpine.js Controlled Modal -->
-    <div x-data="discrepancyModal()" 
-         x-init="initModal()"
-         @open-report-modal.window="openModal()">
-        <!-- Modal content remains the same -->
-          <!-- Modal -->
-
-        <div x-show="showModal" 
-        x-cloak
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0"
-             class="fixed inset-0 bg-gray-900/30 dark:bg-gray-900/30 z-40 flex items-center justify-center p-4">
-            <div @click.away="closeModal" class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-xl">
-                <div class="p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Report Issue</h3>
-                    
-                    <form @submit.prevent="submitReport">
-                        <div class="space-y-4">
-                            <!-- Device Selection -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Affected Device</label>
-                                <select x-model="selectedDevice" class="w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg">
-                                    <option value="">Select a device</option>
-                                    <template x-for="device in userDevices" :key="device.id">
-                                        <option :value="device.id" x-text="`${device.name} (${device.category})`"></option>
-                                    </template>
-                                </select>
-                                <span x-show="errors.selectedDevice" class="text-red-500 text-xs" x-text="errors.selectedDevice"></span>
-                            </div>
-                            
-                            <!-- Category Selection -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Issue Category</label>
-                                <select x-model="selectedCategory" class="w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg">
-                                    <option value="">Select a category</option>
-                                    <template x-for="(category, key) in discrepancyCategories" :key="key">
-                                        <option :value="key" x-text="category"></option>
-                                    </template>
-                                </select>
-                                <span x-show="errors.selectedCategory" class="text-red-500 text-xs" x-text="errors.selectedCategory"></span>
-                            </div>
-                            
-                            <!-- Comments -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Comments</label>
-                                <textarea x-model="userComments" rows="4" class="w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg" placeholder="Describe the issue..."></textarea>
-                                <span x-show="errors.userComments" class="text-red-500 text-xs" x-text="errors.userComments"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 flex justify-end space-x-3">
-                            <button type="button" @click="closeModal" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-600 dark:text-white">
-                                Cancel
-                            </button>
-                            <button type="submit" 
-        :disabled="isLoading"
-        class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 disabled:opacity-75 disabled:cursor-not-allowed"
-        x-text="isLoading ? 'Sending...' : 'Submit Report'">
-</button>
-                        </div>
-                    </form>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-
-    @if (session()->has('reportMessage'))
-        <div x-data="{ show: true }" 
-             x-show="show" 
-             x-init="setTimeout(() => show = false, 3000)" 
-             class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
-            {{ session('reportMessage') }}
-        </div>
-    @endif
-</div>
-
-<script>
-    function discrepancyModal() {
-        return {
-            showModal: false,
-            selectedDevice: '',
-            selectedCategory: '',
-            userComments: '',
-            isLoading: false,
-            discrepancyCategories: @json($discrepancyCategories),
-            userDevices: @json($userDevices),
-            errors: {},
-            
-            initModal() {
-                // This ensures Alpine has fully initialized
-                this.$nextTick(() => {
-                    // Any initialization code if needed
-                });
-            },
-            
-            openModal() {
-                this.showModal = true;
-            },
-            
-            closeModal() {
-                this.showModal = false;
-                this.resetForm();
-            },
-            
-            resetForm() {
-                this.selectedDevice = '';
-                this.selectedCategory = '';
-                this.userComments = '';
-                this.errors = {};
-                this.isLoading = false;
-            },
-            
-            validate() {
-                this.errors = {};
-                
-                if (!this.selectedDevice) {
-                    this.errors.selectedDevice = 'Please select a device';
-                }
-                
-                if (!this.selectedCategory) {
-                    this.errors.selectedCategory = 'Please select a category';
-                }
-                
-                if (!this.userComments || this.userComments.length < 10) {
-                    this.errors.userComments = 'Comments must be at least 10 characters';
-                }
-                
-                return Object.keys(this.errors).length === 0;
-            },
-            
-            async submitReport() {
-                if (!this.validate() || this.isLoading) return;
-                
-                this.isLoading = true;
-                
-                try {
-                    await @this.sendReport(
-                        this.selectedDevice,
-                        this.selectedCategory,
-                        this.userComments
-                    );
-                    
-                    this.closeModal();
-                } catch (error) {
-                    console.error('Error submitting report:', error);
-                    this.isLoading = false;
-                }
-            }
-        }
-    }
-</script>
-
-      
-
-{{-- @if (session()->has('reportMessage'))
- <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">
-     {{ session('reportMessage') }}
- </div>
-@endif --}}
+   
 </div>

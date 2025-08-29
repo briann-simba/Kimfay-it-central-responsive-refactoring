@@ -1,0 +1,121 @@
+[33mdfd2468[m[33m ([m[1;31mupstream/main[m[33m, [m[1;31mupstream/HEAD[m[33m)[m started working on the stepper logic
+[33m1a9d141[m worked on normalization on onboarding table
+[33m7cbd9f6[m added onboarding steps table
+[33m5dc17e8[m started on validation for stepper
+[33mdfc14f7[m added the onboarding documents table
+[33mf0f5dd5[m added the onboarding documents table
+[33m12638a9[m changed the navigation tab names
+[33mde888fa[m added the onboarding table
+[33m95a97a6[m created the onboarding model
+[33m862c888[m started on inventory UI implementation
+[33m561b013[m started on inventory analytics
+[33m0969223[m refactored the overview inventory page
+[33mec268b5[m started on separating the overview so as to have the analytics part
+[33m29140f9[m worked on making the forms centered accross all screen sizes
+[33m78709e9[m added breadcrumb for user onboading navigation pages
+[33m3a47fed[m started on new user landing page implementation
+[33m3a4f0e7[m Added more functionality for onboarding
+[33m4d82abe[m Added more functionality for onboarding
+[33mc325b78[m Added card navigations for onboarding
+[33m9a5c925[m Added card navigations for onboarding
+[33md6f9977[m Added the onboarding list item to sidebar
+[33mf1a72a9[m improved on onboarding UI
+[33ma7eaf58[m worked on Hr  onboarding user interface
+[33m67a6144[m Started on HR onboarding functionality
+[33mca1935c[m worked on inventory view table UI
+[33m3bbc9d6[m worked on try and catch for email sending if email is not available
+[33mb3787cd[m worked on pending approvals page navigation links
+[33mee2def8[m added a pagination for device history
+[33ma824a6f[m worked on the background for pending approval and device history
+[33ma753753[m worked on add item modal
+[33mda71f03[m[33m ([m[1;32mbrian[m[33m)[m refactored the add new inventory to use alpine and tailwind css
+[33m292de02[m worked on smooth transition for menu items
+[33m97bd833[m worked on responsiveness of pending approval for approving device
+[33mce93fa7[m worked on responsiveness of sidebar toggle via local storage
+[33m72d92e4[m made the sidebar menu items fully controlled by user
+[33md892c70[m worked on navigation breadcrumb
+[33m5adb828[m implemented the logout button
+[33m061573b[m worked on inventory page to display notifications toast
+[33m7317284[m refactored the inventory page
+[33md7450fa[m worked on home blade
+[33m2bddff4[m updated the layout to a responsive layout
+[33maf6d7e8[m worked on improving navigation bar UI
+[33mda8a65a[m worked on Device history module
+[33m50378f6[m worked on logic based on #6
+[33m6fe312f[m worked on home ui enhancement
+[33m23c1dd5[m worked on logic based on #6
+[33mf230cbe[m worked on logic based on #6
+[33md892727[m worked on logicbased on #6
+[33m635ac74[m worked on logic based on #6
+[33mcfe7b17[m worked on logic based on #6
+[33mceebd7f[m worked on logic based on #6
+[33md6ec82c[m worked on logic based on #6
+[33m7833d58[m worked on logic based on #6
+[33m807fc0a[m worked on logic based on #6
+[33m560bc48[m worked on devices action menu assign button started working on assign and unassign logic
+[33ma962d85[m worked on devices action menu assign button
+[33m1d17e5f[m worked on devices action menu assign button
+[33m3d5497e[m worked on devices action menu
+[33mde911cd[m worked on devices action menu
+[33mc9b1c14[m worked on devices action menu
+[33m70d7824[m worked on logic based on #5 Line manager approvals and email notification
+[33m42c7223[m worked on logic based on #5 Line manager approvals and email notification
+[33m66fdf73[m worked on logic based on #5 implemented the toast for notifications
+[33m0f141c9[m worked on logic based on #5 Line manager approvals
+[33m82d95d5[m worked on logic based on #5 acceptance button being disabled
+[33mb5adbf2[m worked on logic based on #5 acceptance button being disabled
+[33mc79ae9e[m started on logic based on #5
+[33m6d2ef15[m started on logic based on #5
+[33m653eda0[m started on logic based on #5
+[33m9ee6092[m worked on edit functionality
+[33m67f680a[m worked on edit functionality
+[33m1bbe513[m worked livewire modal
+[33m9625932[m worked livewire modal
+[33m5a339ba[m worked livewire modal
+[33m5d06709[m worked livewire modal
+[33me288836[m worked livewire modal
+[33m02f66f6[m worked on crud for user management
+[33m15974ed[m worked on crud for user management
+[33md2af916[m worked on crud for user management
+[33m64468dc[m worked on dashboard and search bar
+[33mebc4b4f[m worked on dashboard and search bar
+[33m1659235[m worked on dashboard
+[33md25b15c[m search functionality
+[33m255b36e[m search functionality
+[33mcdb3d7e[m search functionality
+[33m67eaf44[m search functionality
+[33m3f7b8ec[m worked on db
+[33m2f64099[m worked on db
+[33m0d63880[m worked on db
+[33mb987d03[m worked on db
+[33m1e26102[m worked on db
+[33m062488c[m worked on db
+[33me479011[m worked on db
+[33m426a662[m worked on db
+[33m08a0e8b[m worked on db
+[33m4a2e3b3[m worked on db
+[33madb02fd[m added more models
+[33md87ea0b[m started on DB
+[33m27828ff[m improved on dashboard
+[33m4010aee[m Improved on dashboard
+[33m1357484[m Improved on dashboard
+[33m0dff4d0[m Improved on dashboard
+[33m7c94b32[m Improved on inventory dashboard
+[33m3575d39[m Improved on inventory dashboard
+[33m548bdfc[m Improved on inventory dashboard
+[33me1fd0c7[m added different routes
+[33m82d7ee4[m This fixes #1
+[33m26adc08[m improved on dashboard #1
+[33mec255d7[m improved on dashboard #1
+[33m907b95c[m created dashboard based on #1
+[33m1d33328[m worked on auth
+[33me3151a5[m worked on home layout
+[33m79475cf[m worked on logout
+[33m6e09e1d[m worked on roles and permissions middleware
+[33maab821a[m worked on roles and permissions
+[33m2ee61d3[m worked on dashbaord UI
+[33m621335b[m worked on dashboard UI and layouts
+[33m2b4926b[m worked on layouts
+[33m3f1b701[m worked on auth and livewire implementation
+[33m5043618[m updated login page
+[33m4c76b7b[m initial commit
