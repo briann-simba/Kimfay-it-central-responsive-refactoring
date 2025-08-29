@@ -162,7 +162,7 @@ $this->dispatch('close-edit-user-modal');
         );
     }
 
-    #[Layout('layouts.main')]
+  #[layout('layouts.dashboard')]
     public function render()
     {
         return view('livewire.manage-user');

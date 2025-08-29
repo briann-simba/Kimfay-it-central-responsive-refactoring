@@ -19,6 +19,6 @@ class Navigationbar extends Component
 
     public function render()
     {
-        return view('livewire.navigationbar');
+        return view('livewire.navigation-bar');
     }
 }

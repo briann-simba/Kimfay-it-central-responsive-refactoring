@@ -21,7 +21,7 @@ resetAddForm() {
                 text-xs sm:text-sm font-medium text-white 
                 bg-blue-600 rounded-lg hover:bg-blue-700 
                 focus:outline-none focus:ring-2 focus:ring-blue-500 
-                transition-all">
+                ">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
@@ -30,7 +30,7 @@ resetAddForm() {
     </div>
 
     <!-- Main content container -->
-    <div class="w-full p-6 sm:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-2xl shadow-lg dark:bg-gray-800 transition-all duration-500 overflow-hidden">
+    <div class="w-full p-6 sm:p-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-2xl shadow-lg dark:bg-gray-800 overflow-hidden">
         @livewire('users',['users' => $users])
     </div>
 
@@ -38,7 +38,7 @@ resetAddForm() {
     <div 
         x-show="showAddUserModal"
         class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
-        x-transition
+        
          x-cloak
     >
         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[calc(100vh-2rem)] overflow-y-auto">
@@ -167,7 +167,7 @@ resetAddForm() {
     <!-- Edit User Modal - Simplified version using wire:model -->
     <div x-show="showEditUserModal"
          class="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
-         x-transition
+         
           x-cloak>
         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[calc(100vh-2rem)] overflow-y-auto">
             <!-- Header -->
