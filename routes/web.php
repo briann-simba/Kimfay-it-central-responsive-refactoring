@@ -1,19 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\livewire\Home;
 use App\livewire\Login;
-use App\livewire\ManageUser;
-use App\livewire\OffboardUser;
-use App\livewire\initiateoffboarding;
 use App\livewire\Inventory;
-use App\livewire\PendingApproval;
-use App\livewire\DeviceHistory;
+use App\livewire\ManageUser;
 use App\livewire\Onboarding;
-use App\livewire\OnboardNewUser;
-use App\livewire\ContinueOnboarding;
+use App\Livewire\ManageRoles;
+use App\livewire\OffboardUser;
+use App\livewire\DeviceHistory;
 use App\livewire\GettingStarted;
+use App\livewire\OnboardNewUser;
+use App\livewire\PendingApproval;
+use App\livewire\ContinueOnboarding;
 use App\livewire\InventoryAnalytics;
+use App\livewire\initiateoffboarding;
+use Illuminate\Support\Facades\Route;
 
 
 // Route::get('/', Welcome::class)->name('welcome');
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/home', Home::class)->name('home');
 
     Route::get('/usermanagement', ManageUser::class)->name('usermanagement');
+    Route::get('/rolemanagement', ManageRoles::class)->name('rolemanagement');
     Route::get('/offboarduser', OffboardUser::class)->name('offboarduser');
     Route::get('/initiateoffboarding', initiateoffboarding::class)->name('initiateoffboarding');
     Route::get('/inventory', Inventory::class)->name('inventory');

@@ -84,7 +84,7 @@ public function resetForm(){
 
 
 
-     #[layout('layouts.main')]
+     #[layout('layouts.dashboard')]
     public function render()
     {
        $roles = Role::query()
